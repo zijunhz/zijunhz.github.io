@@ -1,4 +1,4 @@
-# 程序填空十练
+# 程序填空十一练
 
 ## 小猴传球
 
@@ -110,6 +110,49 @@ Private Sub Monkey_King(l As Long, r As Long)
     Loop
     For i = l To r
         a(i) = b(i)
+    Next
+End Sub
+```
+
+## 小猴的长度
+
+难度：◆◇◇
+
+Unreal 5引擎发布了，HX迫不及待地用它给自己建了个模。但他的建模水平很可惜，只能建由n个点n-1条边构成的火柴人HX，每条边有其边长，如下图：
+
+![小猴的长度](https://s1.ax1x.com/2020/07/17/U6SZRI.png)
+
+任意两个点互相连通，两点间的路径也唯一，两点间的距离为该路径上各边的边长和。求距离两点间距离的最大值。
+
+提示：距离点a最远的点是u，距离点u最远的点是v，可以证明u，v即是距离最远的两个点。
+
+```vbscript
+Dim a(1 To 1000000) As Long, ans As Long, u As Long, n As Long
+'a(n*(i-1),j)表示i点与j点间边的长度，a(k)≥0，为0则i点与j点间无边
+Private Sub Monkey_Click()
+    ...'省略读入n,a()
+    Monkey_King 1: ____1____
+    Text1.Text = Str(ans)
+End Sub
+Private Sub Monkey_King(start As Long)
+    Dim d(1 To 1000000) As Long, b(1 To 1000000) As Long, l As Long, r As Long
+    For i = 1 To n
+        d(i) = -1
+    Next
+    d(start) = 0: l = 0: r = 1: b(0) = start: ans = 0
+    Do While ____2____
+        p = b(l)
+        For i = 1 To n
+            If ____3____ Then
+                d(i) = d(p) + a(n * (p - 1) + i): b(r) = i: r = r + 1
+            End If
+        Next
+        ____4____
+    Loop
+    For i = 1 To n
+        If d(i) > ans Then
+            ans = d(i): ____5____
+        End If
     Next
 End Sub
 ```
@@ -333,11 +376,111 @@ End Function
 
 难度：◆◆◆
 
+HX觉得化学太难了，他要写个程序配平化学方程式并约分系数。为降低难度，保证：物质都用化学式表示，如Cu(NO3)2写为CuN2O6；存在唯一配法；约分后各项系数均为2^3×3^3×5^2×7^2的因数；程序运行时不会出现除数为0的情况。
 
+输入：一个字符串，格式类似这样，结尾有一空格（但此例会出现除数为0的情况，因此仅作为格式示范）
 
-# 程序填空答案
+```
+Cu+HNO3=CuN2O6+NO+H2O
+```
 
-## 小猴传球
+输出：若干系数，用空格隔开，格式类似这样
+
+```
+3 8 3 2 4
+```
+
+提示一：对正实数x四舍五入：Int(x+0.5)
+
+提示二：n（元素种数）与m（物质种数）是有关系的……
+
+提示三：a(i)表示第i种元素；b(n*(i-1)+j)表示第i种物质中j元素的原子个数，若i为生成物则b()取负。
+
+```vbscript
+Private Sub Monkey_Click()
+    Dim a(1 To 200) As String, n As Long, s As String, b(1 To 40000) As Double, ch As Char, ss As String, m As Long, f As Long, cnt As Long, num As Long, t As Double, sum As Double, ans(1 To 200) As Long, gcd As Long
+    s = Text1.Text '统计元素和种数
+    For i = 1 To Len(s)
+        ch = Mid(s, i, 1)
+        If "a" <= ch And ch <= "z" Then
+            ss = ss + ch
+        Else
+            If check(ss) Then
+                n = n + 1: a(n) = ss
+            End If
+            ss = ch
+            If ____1____ Then ss = ""
+        End If
+    Next
+    ____2____
+    For i = 1 To Len(s) '统计每种物质
+        ch = Mid(s, i, 1)
+        If "a" <= ch And ch <= "z" Then
+            ss = ss + ch
+        ElseIf "0" <= ch And ch <= "9" Then
+            cnt = cnt * 10 + Val(ch)
+        Else
+            num = search(ss)
+            If cnt = 0 Then cnt = 1
+            ____3____
+            ss = ""
+            If "A" <= ch And ch <= "Z" Then ss = ch
+            If ch = "=" Then ____4____
+            If ch = "+" Then m = m + 1
+            cnt = 0
+        End If
+    Next
+    For i = 1 To n - 1 '高斯消元解多元一次方程组
+        For j = i + 1 To n
+            t = b(n * (i - 1) + j) / b(n * (i - 1) + i)
+            For k = i To m
+                b(n * (k - 1) + j) = b(n * (k - 1) + j) - t * b(n * (k - 1) + i)
+            Next
+        Next
+    Next
+    ans(m)=____5____
+    For i = n To 1 Step -1
+        sum = 0
+        For j = i + 1 To m
+            sum = sum + b(n * (j - 1) + i) * ans(j)
+        Next
+        ans(i)=____6____
+    Next
+    gcd = ans(1)
+    For i = 2 To m
+        gcd = ggcd(gcd, ans(i))
+    Next
+    Text2.Text = ""
+    For i = 1 To m
+        Text2.Text = Text2.Text + Str(ans(i) \ gcd)
+    Next
+End Sub
+Private Function check(s As String) '判断是否是新元素
+    check = True
+    If s = "" Then check = False
+    For i = 1 To n
+        If Not check Then Exit For
+        If a(i) = s Then check = False
+    Next
+End Function
+Private Function search(s As String) '查找元素
+    For i = 1 To n
+        If a(i) = s Then search = i: Exit For
+    Next
+End Function
+Private Function ggcd(a As Long, b As Long) '求a,b的最大公约数
+    Dim t As Long
+    If (b > a) Then t = b: b = a: a = t
+    If b = 0 Then ggcd = a: Exit Function
+    ggcd = ggcd(b, a Mod b)
+End Function
+```
+
+---
+
+# 程序填空十一练答案
+
+## 1.小猴传球
 
 ```vbscript
 1. f(n)=2
@@ -345,7 +488,7 @@ End Function
 3. f(p+n)
 ```
 
-## 小猴排序
+## 2.小猴排序
 
 ```vbscript
 1. l>=r
@@ -354,7 +497,7 @@ End Function
 4. a(i)=b(i)
 ```
 
-## 小猴排队
+## 3.小猴排队
 
 ```vbscript
 1. Monkey_King l,m:Monkey_King m+1,r
@@ -363,7 +506,17 @@ End Function
 4. b(k)=a(j):j=j+1:k=k+1
 ```
 
-## 小猴喝奶
+## 4.小猴的长度
+
+```vbscript
+1. Monkey_King u
+2. l<r
+3. d(i)=-1 And a(n*(p-1)+i)>0
+4. l=l+1
+5. u=i
+```
+
+## 5.小猴喝奶
 
 ```vbscript
 1. f(0)=0
@@ -374,7 +527,7 @@ End Function
 6. n,x+y
 ```
 
-## 小猴拿石子
+## 6.小猴拿石子
 
 ```vbscript
 1. Not f((m+1)*i+j)
@@ -382,7 +535,7 @@ End Function
 3. Not f((m+1)*n+m)
 ```
 
-## 小猴悬挂
+## 7.小猴悬挂
 
 ```vbscript
 1. B
@@ -391,7 +544,7 @@ End Function
 4. xf=0:yf=0
 ```
 
-## 小猴和无限迷宫
+## 8.小猴和无限迷宫
 
 ```vbscript
 1. f(m*(a-1)+b)=-1 And l<r
@@ -400,7 +553,7 @@ End Function
 4. f(m*(a-1)+b)=-1
 ```
 
-## 小猴买游戏
+## 9.小猴买游戏
 
 ```vbscript
 1. f(0)=True
@@ -409,7 +562,7 @@ End Function
 4. i=i-a(b(i))
 ```
 
-## 小猴的二叉树
+## 10.小猴的二叉树
 
 ```vbscript
 1. father=a(al)
@@ -418,4 +571,13 @@ End Function
 4. x>b(m)
 ```
 
-## 小猴配平方程式
+## 11.小猴配平方程式
+
+```vbscript
+1. ch<"A" Or "Z"<ch
+2. m=1:f=1
+3. b(n*(m-1)+num)=cnt*f
+4. 2^3*3^3*5^2*7^2
+5. Int(-sum/b(n*(i-1)+i)+0.5)
+6. Str(ans(i)\gcd)
+```
