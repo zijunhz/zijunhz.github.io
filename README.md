@@ -332,3 +332,90 @@ End Function
 ## 小猴配平方程式
 
 难度：◆◆◆
+
+
+
+# 程序填空答案
+
+## 小猴传球
+
+```vbscript
+1. f(n)=2
+2. f(j)=f((j+n-1)Mod n + n)*2/3+f((j+1)Mod n + n)/3
+3. f(p+n)
+```
+
+## 小猴排序
+
+```vbscript
+1. l>=r
+2. i<=m And j<=r
+3. a(i)>a(j)
+4. a(i)=b(i)
+```
+
+## 小猴排队
+
+```vbscript
+1. Monkey_King l,m:Monkey_King m+1,r
+2. <=
+3. j=j+1:ans=ans+m-i+1
+4. b(k)=a(j):j=j+1:k=k+1
+```
+
+## 小猴喝奶
+
+```vbscript
+1. f(0)=0
+2. f((m+1)*xx+yy)=-1
+3. l=l+1
+4. 0,x+y-m
+5. m,x+y
+6. n,x+y
+```
+
+## 小猴拿石子
+
+```vbscript
+1. Not f((m+1)*i+j)
+2. f((m+1)*i+j+b(k))=True
+3. Not f((m+1)*n+m)
+```
+
+## 小猴悬挂
+
+```vbscript
+1. B
+2. A选项首项30公比0.97的等差数列求和小于1000√2
+3. xf=xf+m(i)*dx/xy:yf=yf+m(i)*dy/xy
+4. xf=0:yf=0
+```
+
+## 小猴和无限迷宫
+
+```vbscript
+1. f(m*(a-1)+b)=-1 And l<r
+2. xx=(xxx-1) Mod n + 1:yy=(yyy-1) Mod m + 1
+3. x(r)=xx:y(r)=yy:r=r+1
+4. f(m*(a-1)+b)=-1
+```
+
+## 小猴买游戏
+
+```vbscript
+1. f(0)=True
+2. 1000 To a(i) Step -1
+3. b(j)=i
+4. i=i-a(b(i))
+```
+
+## 小猴的二叉树
+
+```vbscript
+1. father=a(al)
+2. al+t-bl+1,ar,t+1,br
+3. anscnt=anscnt+1:ans(anscnt)=father
+4. x>b(m)
+```
+
+## 小猴配平方程式
