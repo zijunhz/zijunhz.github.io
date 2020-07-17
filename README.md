@@ -197,6 +197,27 @@ End Sub
 
 难度：◆◆◇
 
+光滑水平桌面上有n个小洞，第i个洞的坐标为(a(i),b(i))，-1000≤a(i)≤1000，-1000≤b(i)≤1000，每个小洞穿有一根轻绳，下端系有质量为m(i)的HX，上端在桌上与其他轻绳有一个共同打结处，轻绳足够长。求打结处的平衡坐标，精度0.01。
+
+提示：先将打结处随意放在一处，让其向受力方向移动一段距离，重复这个过程并使每次移动的距离变为上一次的0.97倍，就可以……
+
+```vbscript
+Private Sub Monkey_Click()
+    Dim a(1 To 1000) As Double, b(1 To 1000) As Double, m(1 To 1000) As Double, x As Double, y As Double, d As Double, xf As Double, yf As Double, dx As Double, dy As Double, xy As Double
+    ...'省略读入n,a(),b(),m()的代码
+    d = ____1____ '考虑程序正确性和运行效率，选填A.30 B.300，理由：____2____
+    Do While d > 0.001
+        For i = 1 To n
+            dx = a(i) - x: dy = b(i) - y: xy = sqrt(dx ^ 2 + dy ^ 2)
+            ____3____
+        Next
+        xy = sqrt(xf ^ 2 + yf ^ 2): x = x + d * xf / xy: y = y + d * yf / xy
+        ____4____
+    Loop
+    Text1.Text = Str(x) + Str(y)
+End Sub
+```
+
 ## 小猴和无限迷宫
 
 难度：◆◆◇
@@ -233,6 +254,32 @@ End Sub
 ## 小猴买游戏
 
 难度：◆◆◇
+
+Steam夏促了！HX有1000元钱，他的愿望单里有200款游戏，第i款价格a(i)，每款游戏只能买一次。求HX最多能花费多少钱，并求该情况下它买了哪些游戏，并按游戏编号升序输出。保证使花费最大的方案唯一。
+
+提示：假如已知能在前i-1款游戏中花费j元，第i款游戏价格为k，且j+k≤1000，那么就能在前i款游戏中花费……
+
+```vbscript
+Private Sub Monkey_Click()
+    Dim f(0 To 1000) As Boolean, game(0 To 1000) As Long, a(1 To 200) As Long, max As Long
+    ...'省略读入a()的代码
+    ____1____
+    For i = 1 To 200
+        For j = ____2____
+            If f(j - a(i)) Then
+                f(j) = True:____3____
+                If j > max Then max = j
+            End If
+        Next
+    Next
+    Text1.Text = Str(max): i = max: s = ""
+    Do While i > 0
+        s = Str(b(i)) + s
+        ____4____
+    Loop
+    Text1.Text = Text1.Text + s
+End Sub
+```
 
 ## 小猴的二叉树
 
