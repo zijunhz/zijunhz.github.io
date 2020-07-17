@@ -1,5 +1,7 @@
 # 程序填空十一练
 
+题目背景：HX是一只建兰-->杭二中的巨魔小猴。
+
 ## 小猴传球
 
 难度：◇◇◇
@@ -476,15 +478,13 @@ Private Function ggcd(a As Long, b As Long) '求a,b的最大公约数
 End Function
 ```
 
----
-
 # 程序填空十一练答案
 
 ## 1.小猴传球
 
 ```vbscript
 1. f(n)=2
-2. f(j)=f((j+n-1)Mod n + n)*2/3+f((j+1)Mod n + n)/3
+2. f(j)=f((j+n-1)Mod n + n)2/3+f((j+1)Mod n + n)/3
 3. f(p+n)
 ```
 
