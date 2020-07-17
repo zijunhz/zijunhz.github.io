@@ -1,4 +1,4 @@
-# 程序填空六练
+# 程序填空十练
 
 ## 小猴传球
 
@@ -27,7 +27,7 @@ End Sub
 
 ## 小猴排序
 
-难度：◆◇◇
+难度：◇◇◇
 
 HX藐视时间复杂度为O(n^2)的冒泡排序，他想掌握一种O(nlogn)的归并排序。归并排序有如下思想：
 
@@ -120,7 +120,7 @@ End Sub
 
 别看HX长这么大，其实他还在喝奶。HX每次需要精准的a升奶，喝多了被奶穿，喝少了会哭。HX有2个杯子，A杯为n升，B杯为m升。每次操作，HX可以将某个杯子倒空，或将某个杯子倒满，或将一个杯子中的奶倒到另一个杯子中直到另一个杯子满了或该杯子空了。初始时HX有两个空杯子，求他能否得到a升奶，若能则输出最少操作数。
 
-提示：若已知使得A杯装i升，B杯装j升的最少操作数，则再经过一次操作……
+提示：若已知使得A杯装i升，B杯装j升的最少操作数，则再经过一次操作可以得到……
 
 ```vbscript
 Dim f(0 To 1100000) As Long, a As Long, n As Long, m As Long, x(0 To 1100000) As Long, y(0 To 1100000) As Long, l As Long, r As Long, xx As Long, yy As Long
@@ -164,13 +164,46 @@ Private Function min(a As Long, b As Long) As Long
 End Function
 ```
 
+## 小猴拿石子
+
+难度：◆◆◇
+
+有2堆石子，X堆有n块，Y堆有m块。有2只HX，每只HX每次能从X堆拿a(i)块，或从Y堆拿b(j)块（i≤aa，j≤bb，a(i)>0，b(j)>0）。若不能继续拿（没有石子或者剩余石子数目和允许的拿走数目都不相等）则输。输入n,m,aa,bb,a(),b()，假设HX非常聪明，判断先手必胜/必输。
+
+提示：假如已知X堆剩i块，Y堆剩j块时先手必输，可以从X堆中拿z块，则X堆剩i+z块，Y堆剩j块的先手必……
+
+```vbscript
+Private Sub Monkey_Click()
+    ...'省略读入n,m,aa,bb,a(),b()的代码
+    Dim f(0 To 1100000) As Boolean 'f((m+1)*i+j)表示X和Y堆分别剩下i和j块石子时，先手是否必胜
+    For i = 0 To n
+        For j = 0 To m
+            If ____1____ Then
+                For k = 1 To aa
+                    If i + a(k) <= n Then f((m + 1) * (i + a(k)) + j) = True
+                Next
+                For k = 1 To bb
+                    If j + b(k) <= m Then ____2____
+                Next
+            End If
+        Next
+    Next
+    Text1.Text = "先手必胜"
+    If ____3____ Then Text1.Text = "先手必输"
+End Sub
+```
+
+## 小猴悬挂
+
+难度：◆◆◇
+
 ## 小猴和无限迷宫
 
 难度：◆◆◇
 
 HX被困在一无限迷宫中，无限迷宫由无数个**相同**的长n宽m的长方形区块上下左右相邻拼接而成（也就是说，如果HX在某个区块的第1列第k行，并向左走，则他会走到该区块左侧的区块的第n列第k行；如果HX在某个区块的第k列第m行，并向下走，则他会走到该区块下方的区块的第k列第1行。以此类推）。每个区块中1*1的方格是路或者墙。每个区块坐标为(a,b)的方格上有逃离传送门；HX可以选择出生在任意区块坐标为(c,d)的方格上，保证该方格为路。注意，坐标的表示格式为（长，宽）。HX可以向上下左右移动，求HX能否逃离，若能则输出最小移动格数。
 
-提示：若已知到达(i,j)的最小移动格数，则再走一格……
+提示：若已知到达(i,j)的最小移动格数，则再走一格可以到达……
 
 ```vbscript
 Dim dx(1 To 4) As Long, dy(1 To 4) As Long, f(0 To 1000010) As Long, x(0 To 1000010) As Long, y(0 To 1000010) As Long, l As Long, r As Long, a As Long, b As Long, c As Long, d As Long, n As Long, m As Long, map(0 To 1000010) As Boolean
@@ -196,6 +229,10 @@ Private Sub Monkey_Click()
     If ____4____ Then Text1.Text = "HX,GG."
 End Sub
 ```
+
+## 小猴买游戏
+
+难度：◆◆◇
 
 ## 小猴的二叉树
 
@@ -245,3 +282,6 @@ Private Function find(x As Long) As Long
 End Function
 ```
 
+## 小猴配平方程式
+
+难度：◆◆◆
