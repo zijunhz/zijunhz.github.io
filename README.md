@@ -454,7 +454,7 @@ Private Sub Monkey_Click()
     Next
     Text2.Text = ""
     For i = 1 To m
-        Text2.Text = Text2.Text + Str(ans(i) \ gcd)
+        Text2.Text = Text2.Text + ____7____
     Next
 End Sub
 Private Function check(s As String) '判断是否是新元素
@@ -579,7 +579,8 @@ End Function
 1. ch<"A" Or "Z"<ch
 2. m=1:f=1
 3. b(n*(m-1)+num)=cnt*f
-4. 2^3*3^3*5^2*7^2
-5. Int(-sum/b(n*(i-1)+i)+0.5)
-6. Str(ans(i)\gcd)
+4. f=-1:m=m+1
+5. 2^3*3^3*5^2*7^2
+6. Int(-sum/b(n*(i-1)+i)+0.5)
+7. Str(ans(i)\gcd)
 ```
