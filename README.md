@@ -257,7 +257,7 @@ Private Sub Monkey_Click()
             ____3____
         Next
         xy = sqrt(xf ^ 2 + yf ^ 2): x = x + d * xf / xy: y = y + d * yf / xy
-        ____4____
+        d=d*0.97: ____4____
     Loop
     Text1.Text = Str(x) + Str(y)
 End Sub
@@ -550,7 +550,7 @@ End Function
 
 ```vbscript
 1. f(m*(a-1)+b)=-1 And l<r
-2. xx=(xxx-1) Mod n + 1:yy=(yyy-1) Mod m + 1
+2. xx=(xxx+dx(i)+n-1) Mod n + 1:yy=(yyy+dy(i)+m-1) Mod m + 1
 3. x(r)=xx:y(r)=yy:r=r+1
 4. f(m*(a-1)+b)=-1
 ```
