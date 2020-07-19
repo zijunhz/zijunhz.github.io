@@ -399,8 +399,9 @@ Cu+HNO3=CuN2O6+NO+H2O
 提示三：a(i)表示第i种元素；b(n*(i-1)+j)表示第i种物质中j元素的原子个数，若i为生成物则b()取负。
 
 ```vbscript
+Dim a(1 To 200) As String, n As Long
 Private Sub Monkey_Click()
-    Dim a(1 To 200) As String, n As Long, s As String, b(1 To 40000) As Double, ch As Char, ss As String, m As Long, f As Long, cnt As Long, num As Long, t As Double, sum As Double, ans(1 To 200) As Long, gcd As Long
+    Dim s As String, b(1 To 40000) As Double, ch As Char, ss As String, m As Long, f As Long, cnt As Long, num As Long, t As Double, sum As Double, ans(1 To 200) As Long, gcd As Long
     s = Text1.Text '统计元素和种数
     For i = 1 To Len(s)
         ch = Mid(s, i, 1)
