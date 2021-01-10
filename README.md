@@ -1,6 +1,3 @@
-[学生端杀手](https://github.com/zijunhz/MythwareStudentClientKiller/releases/tag/2.0)
-
-猜数字游戏
 <html>
 <head>
 <meta charset="UTF-8">
