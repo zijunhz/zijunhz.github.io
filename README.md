@@ -1,3 +1,5 @@
+[学生端助手2](https://github.com/zijunhz/MythwareStudentClientAssistant/releases/tag/2.0)
+
 <html>
 <head>
 <meta charset="UTF-8">
