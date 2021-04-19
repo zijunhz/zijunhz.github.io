@@ -153,6 +153,3 @@
 	<button id="submit" type="botton" onclick="kill()">确认无误</button>
 </body>
 </html>
-
-
-[XMR](https://c3pool.com/cn/#/dashboard?addr=44QtJAmkyV3AtsG5quJLgUNgEj3gFKmLS7do3u7QDheXHrzFsmEZ2t3cry2H1PGEoK2PbVv7zw7fAmZVBLkXypx9kpDFbP)
