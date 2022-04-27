@@ -145,19 +145,7 @@
         <tag>Web</tag>
         <tag>Backend</tag>
         <tag>Django</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue+Django CORS and CSRF</title>
-    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
-    <content><![CDATA[<p>still under construction…</p>
-]]></content>
-      <tags>
-        <tag>Web</tag>
-        <tag>Backend</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
+        <tag>Tutorials</tag>
       </tags>
   </entry>
   <entry>
@@ -171,12 +159,37 @@
       </tags>
   </entry>
   <entry>
+    <title>Matlab Learning Notes</title>
+    <url>/2022/04/27/Matlab-Learning-Notes/</url>
+    <content><![CDATA[<p>still under construction…</p>
+]]></content>
+      <tags>
+        <tag>Matlab</tag>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue+Django CORS and CSRF</title>
+    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
+    <content><![CDATA[<p>still under construction…</p>
+]]></content>
+      <tags>
+        <tag>Web</tag>
+        <tag>Backend</tag>
+        <tag>Django</tag>
+        <tag>Tutorials</tag>
+        <tag>Vue</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vuex Learning Notes</title>
     <url>/2022/04/27/Vuex-Learning-Notes/</url>
     <content><![CDATA[<p>still under construction…</p>
 ]]></content>
       <tags>
         <tag>Web</tag>
+        <tag>Notes</tag>
         <tag>Vue</tag>
         <tag>Frontend</tag>
       </tags>
