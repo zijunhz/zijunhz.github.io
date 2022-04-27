@@ -25,7 +25,32 @@
 <p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
 ]]></content>
       <tags>
-        <tag>others</tag>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How to deploy Django</title>
+    <url>/2022/04/27/How-to-deploy-Django/</url>
+    <content><![CDATA[<p>still under construction…</p>
+]]></content>
+      <tags>
+        <tag>nginx</tag>
+        <tag>Web</tag>
+        <tag>Backend</tag>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue+Django CORS and CSRF</title>
+    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
+    <content><![CDATA[<p>still under construction…</p>
+]]></content>
+      <tags>
+        <tag>Web</tag>
+        <tag>Backend</tag>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
 </search>
