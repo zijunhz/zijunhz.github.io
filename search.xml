@@ -171,8 +171,19 @@
   <entry>
     <title>Vue+Django CORS and CSRF</title>
     <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
-    <content><![CDATA[<p>still under construction…</p>
-]]></content>
+    <content><![CDATA[<p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
+<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend(Django) Part"></a>Backend(Django) Part</h2><p>According to <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, use:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+<p>to install <code>django-cors-headers</code> and add it to installed apps in <code>settings.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Add a middleware class to listen in on responses. The order of middlewares is <strong>important</strong>:</p>
+<p><code>CorsMiddleware</code> should be placed as high as possible, especially before any middleware that can generate responses such as Django’s <code>CommonMiddleware</code> or Whitenoise’s <code>WhiteNoiseMiddleware</code>. If it is not before, it will not be able to add the CORS headers to these responses.</p>
+<p>Also if you are using <code>CORS_REPLACE_HTTPS_REFERER</code> it should be placed before Django’s <code>CsrfViewMiddleware</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders.middleware.CorsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Assume frontend is functioning on <code>frontend.com</code>.</p>
+<p>Add:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CORS_ALLOWED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = [</span><br><span class="line">    <span class="string">&quot;DELETE&quot;</span>,</span><br><span class="line">    <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PATCH&quot;</span>,</span><br><span class="line">    <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">    <span class="comment">#enable whatever method needed</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CSRF_TRUSTED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SECURE = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SAMESITE = <span class="string">&#x27;None&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Frontend-vue-Part"><a href="#Frontend-vue-Part" class="headerlink" title="Frontend(vue) Part"></a>Frontend(vue) Part</h2>]]></content>
       <tags>
         <tag>Web</tag>
         <tag>Backend</tag>
@@ -185,7 +196,10 @@
   <entry>
     <title>Vuex Learning Notes</title>
     <url>/2022/04/27/Vuex-Learning-Notes/</url>
-    <content><![CDATA[<p>still under construction…</p>
+    <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>Web</tag>
