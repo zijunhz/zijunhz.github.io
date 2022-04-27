@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world!</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue+Django CORS and CSRF</title>
+    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
+    <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
+<p>According to <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, use:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+<p>to install <code>django-cors-headers</code> and add it to installed apps in <code>settings.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Add a middleware class to listen in on responses. The order of middlewares is <strong>important</strong>:</p>
+<p><code>CorsMiddleware</code> should be placed as high as possible, especially before any middleware that can generate responses such as Django’s <code>CommonMiddleware</code> or Whitenoise’s <code>WhiteNoiseMiddleware</code>. If it is not before, it will not be able to add the CORS headers to these responses.</p>
+<p>Also if you are using <code>CORS_REPLACE_HTTPS_REFERER</code> it should be placed before Django’s <code>CsrfViewMiddleware</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders.middleware.CorsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Assume frontend is functioning on <code>frontend.com</code>.</p>
+<p>Add:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CORS_ALLOWED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = [</span><br><span class="line">    <span class="string">&quot;DELETE&quot;</span>,</span><br><span class="line">    <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PATCH&quot;</span>,</span><br><span class="line">    <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">    <span class="comment">#enable whatever method needed</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CSRF_TRUSTED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SECURE = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SAMESITE = <span class="string">&#x27;None&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Frontend-Vue-Part"><a href="#Frontend-Vue-Part" class="headerlink" title="Frontend (Vue) Part"></a>Frontend (Vue) Part</h2><p>Docs: <a href="https://axios-http.com/docs/req_config">Axios Request Config</a></p>
+<p>We need to get CSRF token contained in cookie from backend.</p>
+<p>In <code>urls.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_csrf_token</span>(<span class="params">request</span>):</span><br><span class="line">    csrf_token = get_token(request)</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;token&#x27;</span>: csrf_token&#125;)</span><br><span class="line"></span><br><span class="line">urlpatterns=[</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;get_csrf_token/&#x27;</span>, get_csrf_token),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Assume the backend is functioning on <code>backend.com</code>. In <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+        <tag>Web</tag>
+        <tag>Frontend</tag>
+        <tag>Backend</tag>
+        <tag>Tutorials</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>How to deploy Django</title>
     <url>/2022/04/27/How-to-deploy-Django/</url>
     <content><![CDATA[<p>Just follow the <a href="https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html">docs</a>. That’s it. However, I do find a few things wrong in the docs when I followed it. I rewrite those parts and add some comments.</p>
@@ -141,21 +182,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">env = DJANGO_SETTINGS_MODULE=mysite.settings <span class="comment"># set an environment variable</span></span><br><span class="line">safe-pidfile = /tmp/project-master.pid <span class="comment"># create a pidfile</span></span><br><span class="line">harakiri = <span class="number">20</span> <span class="comment"># respawn processes taking more than 20 seconds</span></span><br><span class="line">limit-<span class="keyword">as</span> = <span class="number">128</span> <span class="comment"># limit the project to 128 MB</span></span><br><span class="line"><span class="built_in">max</span>-requests = <span class="number">5000</span> <span class="comment"># respawn processes after serving 5000 requests</span></span><br><span class="line">daemonize = /var/log/uwsgi/yourproject.log <span class="comment"># background the process &amp; log</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>nginx</tag>
+        <tag>Django</tag>
         <tag>Web</tag>
         <tag>Backend</tag>
-        <tag>Django</tag>
         <tag>Tutorials</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world!</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
+        <tag>nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -169,37 +200,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue+Django CORS and CSRF</title>
-    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
-    <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
-<p>According to <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, use:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install django-cors-headers</span><br></pre></td></tr></table></figure>
-<p>to install <code>django-cors-headers</code> and add it to installed apps in <code>settings.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Add a middleware class to listen in on responses. The order of middlewares is <strong>important</strong>:</p>
-<p><code>CorsMiddleware</code> should be placed as high as possible, especially before any middleware that can generate responses such as Django’s <code>CommonMiddleware</code> or Whitenoise’s <code>WhiteNoiseMiddleware</code>. If it is not before, it will not be able to add the CORS headers to these responses.</p>
-<p>Also if you are using <code>CORS_REPLACE_HTTPS_REFERER</code> it should be placed before Django’s <code>CsrfViewMiddleware</code>.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders.middleware.CorsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Assume frontend is functioning on <code>frontend.com</code>.</p>
-<p>Add:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CORS_ALLOWED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = [</span><br><span class="line">    <span class="string">&quot;DELETE&quot;</span>,</span><br><span class="line">    <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PATCH&quot;</span>,</span><br><span class="line">    <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">    <span class="comment">#enable whatever method needed</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CSRF_TRUSTED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SECURE = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SAMESITE = <span class="string">&#x27;None&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Frontend-Vue-Part"><a href="#Frontend-Vue-Part" class="headerlink" title="Frontend (Vue) Part"></a>Frontend (Vue) Part</h2><p>Docs: <a href="https://axios-http.com/docs/req_config">Axios Request Config</a></p>
-<p>We need to get CSRF token contained in cookie from backend.</p>
-<p>In <code>urls.py</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_csrf_token</span>(<span class="params">request</span>):</span><br><span class="line">    csrf_token = get_token(request)</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;token&#x27;</span>: csrf_token&#125;)</span><br><span class="line"></span><br><span class="line">urlpatterns=[</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;get_csrf_token/&#x27;</span>, get_csrf_token),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Assume the backend is functioning on <code>backend.com</code>. In <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Web</tag>
-        <tag>Backend</tag>
-        <tag>Django</tag>
-        <tag>Tutorials</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vuex Learning Notes</title>
     <url>/2022/04/27/Vuex-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
@@ -208,10 +208,10 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Web</tag>
-        <tag>Notes</tag>
         <tag>Vue</tag>
+        <tag>Web</tag>
         <tag>Frontend</tag>
+        <tag>Notes</tag>
       </tags>
   </entry>
 </search>
