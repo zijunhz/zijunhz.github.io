@@ -1,6 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world!</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Number Guessing Game Bot</title>
+    <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
+    <content><![CDATA[<p><div id="guessing_game">
+    <h1>A Guessing Game</h1>
+    <a target="_blank" href="https://baike.baidu.com/item/%E7%8C%9C%E6%95%B0%E5%AD%97/83200?fr=aladdin">Here's the
+      rules.</a><br>
+    <button onclick="init()">Start the Game</button><button onclick="result()">Correct!</button><br>
+    <input id="reA" type="tel">A <input id="reB" type="tel">B<br>
+    <button onclick="kill()">Confirm</button>
+    <p id="inf"></p>
+  </div><br>  <img scr="../images/avatar.png"></p>
+<script>
+let rule_on_show = 0, init1 = 0, tern = 0, ans, first = 1, tot = 0, pre = 0, l = 0, check = 0, G = 0, isright = 0, lA = 0;
+let a = new Array(), b = new Array(), cmp = new Array(), rd = new Array();
+function build() {
+  for (let i = 0; i <= 5; i++)cmp[i] = new Array();
+  for (let i = 0; i <= 9; i++)for (let j = 0; j <= 9; j++)for (let k = 0; k <= 9; k++)for (let l = 0; l <= 9; l++) {
+    if (i == j || i == k || i == l || j == k || j == l || k == l) continue;
+    a[++tot] = i * 1000 + j * 100 + k * 10 + l;
+  }
+}
+function init() {
+  document.getElementById("inf").innerHTML = '';
+  if (first == 1) {
+    build(); first = 0;
+  }
+  for (let i = 1; i <= tot; i++)b[i] = 1;
+  check = 1; init1 = 1; tern = 0; isright = 0; lA = 0;
+  makeguess();
+}
+function getn(x, n) {
+  for (let i = 1; i <= 4 - n; i++)x = Math.floor(x / 10);
+  return x % 10;
+}
+function compA(X, Y) {
+  let x = new Array(), y = new Array(), A = 0;
+  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
+  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
+  for (let i = 1; i <= 4; i++)if (x[i] == y[i]) A++;
+  return A;
+}
+function compB(X, Y) {
+  let x = new Array(), y = new Array(), B = 0;
+  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
+  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
+  for (let i = 1; i <= 4; i++)for (let j = 1; j <= 4; j++)if (i != j && x[i] == y[j]) B++;
+  return B;
+}
+function sqr(x) {
+  return x * x;
+}
+function abS(x) {
+  if (x >= 0) return x; return -x;
+}
+function makeguess() {
+  tern++;
+  if (tern == 1) {
+    G = a[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % tot + 1]; pre = 5040;
+  } else {
+    let bestans = 0, ans; l = 0, eps = 1e-3;
+    pre = 0;
+    for (let i = 1; i <= tot; i++) {
+      pre += b[i]
+    }
+    for (let i = 1; i <= tot; i++) {
+      if (b[i] == 0) continue;
+      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)cmp[j][k] = 0;
+      for (let j = 1; j <= tot; j++)
+        if (b[j] == 1) {
+          cmp[compA(a[j], a[i])][compB(a[j], a[i])]++;
+        }
+      ans = 0;
+      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)
+        if (cmp[j][k] != 0) {
+          ans += Math.log(pre / cmp[j][k]) * cmp[j][k] / pre;//sqr(ave-cmp[j][k]);
+        }
+      //ans/=cnt;ans-=cnt*1.1;
+      if (abS(ans - bestans) <= eps) {
+        rd[++l] = i;
+        console.log(ans + ' ' + a[rd[l]]);
+        continue;
+      }
+      if (ans > bestans) {
+        console.log(ans + ' ' + a[rd[1]])
+        l = 1; rd[1] = i; bestans = ans;
+      }
+    }
+    G = a[rd[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % l + 1]];
+  }
+  let t = '';
+  for (let i = 1; i <= 4; i++)t = t + String(getn(G, i));
+  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + 'Attempt ' + String(tern) + ': ' + t + ' (' + String(pre) + ')';
+  //document.getElementById("inf").innerHTML=String(l);
+}
+function kill() {
+  if (init1 == 0) {
+    document.getElementById("inf").innerHTML = 'Game has not started'; return;
+  }
+  if (isright == 1) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
+    return;
+  }
+  let gusA = document.getElementById("reA").value, gusB = document.getElementById("reB").value, A, B, ill = 0;
+  if (isNaN(gusA) || isNaN(gusB) || gusA == '' || gusB == '') ill = 1;
+  else {
+    A = Number(gusA); B = Number(gusB);
+    if (A < 0 || B < 0 || A > 4 || B > 4 || A + B > 4) ill = 1;
+  }
+  if (ill == 1) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; return;
+  }
+  lA = A;
+  if (A == 4) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
+    return;
+  }
+  let count = 0;
+  for (let i = 1; i <= tot; i++) {
+    if (b[i] == 1 && ((compA(a[i], G) != A || compB(a[i], G) != B) || a[i] == G)) b[i] = 0;
+    if (b[i] == 1) count++;
+  }
+  if (count == 0) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; init1 = 0; return;
+  }
+  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + ' ' + String(gusA) + 'A ' + String(gusB) + 'B<br>';
+  makeguess();
+}
+function result() {
+  isright = 1;
+  kill();
+}
+</script>
+]]></content>
+      <tags>
+        <tag>Fun Stuff</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git Learning Notes</title>
     <url>/2022/04/28/Git-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
@@ -26,16 +174,6 @@
       <tags>
         <tag>Notes</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world!</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -183,22 +321,7 @@
         <tag>Web Dev</tag>
         <tag>Backend</tag>
         <tag>Django</tag>
-        <tag>Tutorials</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vuex Learning Notes</title>
-    <url>/2022/04/27/Vuex-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
+        <tag>Tutorial</tag>
       </tags>
   </entry>
   <entry>
@@ -237,7 +360,22 @@
         <tag>Web Dev</tag>
         <tag>Backend</tag>
         <tag>Django</tag>
-        <tag>Tutorials</tag>
+        <tag>Tutorial</tag>
+        <tag>Vue</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vuex Learning Notes</title>
+    <url>/2022/04/27/Vuex-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
         <tag>Vue</tag>
         <tag>Frontend</tag>
       </tags>
