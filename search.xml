@@ -187,6 +187,31 @@
       </tags>
   </entry>
   <entry>
+    <title>Vuex Learning Notes</title>
+    <url>/2022/04/27/Vuex-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Vue</tag>
+        <tag>Frontend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Matlab Learning Notes</title>
+    <url>/2022/04/27/Matlab-Learning-Notes/</url>
+    <content><![CDATA[<p>still under construction…</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue+Django CORS and CSRF</title>
     <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
     <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
@@ -215,31 +240,6 @@
         <tag>Tutorials</tag>
         <tag>Vue</tag>
         <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vuex Learning Notes</title>
-    <url>/2022/04/27/Vuex-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h2><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            reutnr <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Matlab Learning Notes</title>
-    <url>/2022/04/27/Matlab-Learning-Notes/</url>
-    <content><![CDATA[<p>still under construction…</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Matlab</tag>
       </tags>
   </entry>
 </search>
