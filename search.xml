@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><p>Create new branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
+<p>List all branches</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>Switch between different branches locally</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -139,42 +175,6 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><p>Create new branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
-<p>List all branches</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<p>Switch between different branches locally</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Goodbye World</title>
     <url>/2022/04/26/Goodbye-World/</url>
     <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world!</p>
@@ -182,6 +182,63 @@ function result() {
 ]]></content>
       <tags>
         <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue+Django CORS and CSRF</title>
+    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
+    <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
+<p>According to <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, use:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install django-cors-headers</span><br></pre></td></tr></table></figure>
+<p>to install <code>django-cors-headers</code> and add it to installed apps in <code>settings.py</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Add a middleware class to listen in on responses. The order of middlewares is <strong>important</strong>:</p>
+<p><code>CorsMiddleware</code> should be placed as high as possible, especially before any middleware that can generate responses such as Django’s <code>CommonMiddleware</code> or Whitenoise’s <code>WhiteNoiseMiddleware</code>. If it is not before, it will not be able to add the CORS headers to these responses.</p>
+<p>Also if you are using <code>CORS_REPLACE_HTTPS_REFERER</code> it should be placed before Django’s <code>CsrfViewMiddleware</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders.middleware.CorsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Assume frontend is functioning on <code>frontend.com</code>.</p>
+<p>Add:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CORS_ALLOWED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = [</span><br><span class="line">    <span class="string">&quot;DELETE&quot;</span>,</span><br><span class="line">    <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PATCH&quot;</span>,</span><br><span class="line">    <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">    <span class="comment">#enable whatever method needed</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CSRF_TRUSTED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SECURE = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SAMESITE = <span class="string">&#x27;None&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Frontend-Vue-Part"><a href="#Frontend-Vue-Part" class="headerlink" title="Frontend (Vue) Part"></a>Frontend (Vue) Part</h2><p>Docs: <a href="https://axios-http.com/docs/req_config">Axios Request Config</a></p>
+<p>We need to get CSRF token contained in cookie from backend.</p>
+<p>In <code>urls.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_csrf_token</span>(<span class="params">request</span>):</span><br><span class="line">    csrf_token = get_token(request)</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;token&#x27;</span>: csrf_token&#125;)</span><br><span class="line"></span><br><span class="line">urlpatterns=[</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;get_csrf_token/&#x27;</span>, get_csrf_token),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>Assume the backend is functioning on <code>backend.com</code>. In <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+        <tag>Web Dev</tag>
+        <tag>Frontend</tag>
+        <tag>Backend</tag>
+        <tag>Tutorial</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Matlab Learning Notes</title>
+    <url>/2022/04/27/Matlab-Learning-Notes/</url>
+    <content><![CDATA[<p>Docs: <a href="https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html">Get Started with MATLAB</a></p>
+<h2 id="Add-Fonts-to-MATLAB"><a href="#Add-Fonts-to-MATLAB" class="headerlink" title="Add Fonts to MATLAB"></a>Add Fonts to MATLAB</h2><p>Reference: <a href="https://ww2.mathworks.cn/matlabcentral/answers/514119-can-i-add-custom-fonts-to-my-matlab-desktop-in-preferences">Can I add custom fonts to my MATLAB Desktop in Preferences?</a></p>
+<p>Basically, copy <code>ttf</code> font files to <code>\matlabRoot\sys\java\jre\win64\jre\lib\fonts</code>, restart MATLAB, and choose the font in the MATLAB preferences.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Matlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode Using Notes</title>
+    <url>/2022/04/28/VSCode-Using-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be intergrated into vscode.</p>
+<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
+<h3 id="Install-Extentions"><a href="#Install-Extentions" class="headerlink" title="Install Extentions"></a>Install Extentions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extention settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extention settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extention settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extention, do not enable another extention &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br></pre></td></tr></table></figure>
+<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extention <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
+<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Software Using</tag>
       </tags>
   </entry>
   <entry>
@@ -325,52 +382,11 @@ function result() {
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">env = DJANGO_SETTINGS_MODULE=mysite.settings <span class="comment"># set an environment variable</span></span><br><span class="line">safe-pidfile = /tmp/project-master.pid <span class="comment"># create a pidfile</span></span><br><span class="line">harakiri = <span class="number">20</span> <span class="comment"># respawn processes taking more than 20 seconds</span></span><br><span class="line">limit-<span class="keyword">as</span> = <span class="number">128</span> <span class="comment"># limit the project to 128 MB</span></span><br><span class="line"><span class="built_in">max</span>-requests = <span class="number">5000</span> <span class="comment"># respawn processes after serving 5000 requests</span></span><br><span class="line">daemonize = /var/log/uwsgi/yourproject.log <span class="comment"># background the process &amp; log</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
+        <tag>Django</tag>
+        <tag>Web Dev</tag>
+        <tag>Backend</tag>
+        <tag>Tutorial</tag>
         <tag>nginx</tag>
-        <tag>Web Dev</tag>
-        <tag>Backend</tag>
-        <tag>Django</tag>
-        <tag>Tutorial</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Matlab Learning Notes</title>
-    <url>/2022/04/27/Matlab-Learning-Notes/</url>
-    <content><![CDATA[<p>still under construction…</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Matlab</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue+Django CORS and CSRF</title>
-    <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
-    <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
-<p>According to <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, use:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m pip install django-cors-headers</span><br></pre></td></tr></table></figure>
-<p>to install <code>django-cors-headers</code> and add it to installed apps in <code>settings.py</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Add a middleware class to listen in on responses. The order of middlewares is <strong>important</strong>:</p>
-<p><code>CorsMiddleware</code> should be placed as high as possible, especially before any middleware that can generate responses such as Django’s <code>CommonMiddleware</code> or Whitenoise’s <code>WhiteNoiseMiddleware</code>. If it is not before, it will not be able to add the CORS headers to these responses.</p>
-<p>Also if you are using <code>CORS_REPLACE_HTTPS_REFERER</code> it should be placed before Django’s <code>CsrfViewMiddleware</code>.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">MIDDLEWARE = [</span><br><span class="line">    ...,</span><br><span class="line">    <span class="string">&quot;corsheaders.middleware.CorsMiddleware&quot;</span>,</span><br><span class="line">    <span class="string">&quot;django.middleware.common.CommonMiddleware&quot;</span>,</span><br><span class="line">    ...,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Assume frontend is functioning on <code>frontend.com</code>.</p>
-<p>Add:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CORS_ALLOWED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_METHODS = [</span><br><span class="line">    <span class="string">&quot;DELETE&quot;</span>,</span><br><span class="line">    <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">    <span class="string">&quot;OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PATCH&quot;</span>,</span><br><span class="line">    <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">    <span class="comment">#enable whatever method needed</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CSRF_TRUSTED_ORIGINS = [</span><br><span class="line">    <span class="string">&quot;frontend.com&quot;</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">CORS_ALLOW_CREDENTIALS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SECURE = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">CSRF_COOKIE_SAMESITE = <span class="string">&#x27;None&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="Frontend-Vue-Part"><a href="#Frontend-Vue-Part" class="headerlink" title="Frontend (Vue) Part"></a>Frontend (Vue) Part</h2><p>Docs: <a href="https://axios-http.com/docs/req_config">Axios Request Config</a></p>
-<p>We need to get CSRF token contained in cookie from backend.</p>
-<p>In <code>urls.py</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_csrf_token</span>(<span class="params">request</span>):</span><br><span class="line">    csrf_token = get_token(request)</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;token&#x27;</span>: csrf_token&#125;)</span><br><span class="line"></span><br><span class="line">urlpatterns=[</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;get_csrf_token/&#x27;</span>, get_csrf_token),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>Assume the backend is functioning on <code>backend.com</code>. In <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Backend</tag>
-        <tag>Django</tag>
-        <tag>Tutorial</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -389,8 +405,8 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Web Dev</tag>
         <tag>Vue</tag>
+        <tag>Web Dev</tag>
         <tag>Frontend</tag>
       </tags>
   </entry>
