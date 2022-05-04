@@ -205,18 +205,8 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How to deploy Django</title>
-    <url>/2022/04/27/How-to-deploy-Django/</url>
+    <title>How to Deploy Django</title>
+    <url>/2022/04/27/How-to-Deploy-Django/</url>
     <content><![CDATA[<p>Just follow the <a href="https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html">docs</a>. That’s it. However, I do find a few things wrong in the docs when I followed it. I rewrite those parts and add some comments.</p>
 <h2 id="Some-notes-about-this-tutorial"><a href="#Some-notes-about-this-tutorial" class="headerlink" title="Some notes about this tutorial"></a>Some notes about this tutorial</h2><p>Note</p>
 <p>This is a tutorial. It is not intended to provide a reference guide, never mind an exhaustive reference, to the subject of deployment.</p>
@@ -356,10 +346,20 @@ function result() {
 ]]></content>
       <tags>
         <tag>Web Dev</tag>
-        <tag>nginx</tag>
+        <tag>Nginx</tag>
         <tag>Backend</tag>
         <tag>Django</tag>
         <tag>Tutorial</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -465,7 +465,8 @@ function result() {
   <entry>
     <title>Vue Learning Notes</title>
     <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
 <p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
 <p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
 <p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
