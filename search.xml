@@ -17,6 +17,9 @@
     <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
 <p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
 ]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git Learning Notes</title>
