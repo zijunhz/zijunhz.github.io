@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -192,38 +181,14 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Linux Using Notes</title>
-    <url>/2022/05/10/Linux-Using-Notes/</url>
-    <content><![CDATA[<h2 id="tzselect-Set-Timezone"><a href="#tzselect-Set-Timezone" class="headerlink" title="tzselect | Set Timezone"></a>tzselect | Set Timezone</h2><p>A simple, user-friendly timezone settings guider.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tzselect</span><br></pre></td></tr></table></figure>
-<p>Remember to add a line in <code>~/.profile</code> according to instructions given by <code>tzselect</code>.</p>
-<h2 id="clean-Clear-Terminal-Screen"><a href="#clean-Clear-Terminal-Screen" class="headerlink" title="clean | Clear Terminal Screen"></a>clean | Clear Terminal Screen</h2><p>A simple command to clear the terminal screen.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
-<h2 id="screen-A-Terminal-Multiplexer"><a href="#screen-A-Terminal-Multiplexer" class="headerlink" title="screen | A Terminal Multiplexer"></a>screen | A Terminal Multiplexer</h2><h3 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h3><p>There are several cases you want to use screen to manage your terminals.</p>
-<ul>
-<li>You are connecting to your Linux machine using ssh, but the job is time-consuming. You don’t want to keep the ssh window open, but killing it will also kill the process.</li>
-<li>You are using Linux desktop. You want to hide a terminal when you not need it and resume to the status right before you hide it.</li>
-</ul>
-<p>screen does the job perfectly. It serve as a layer between the terminal users see and the actual processes.</p>
-<h3 id="How-to-Use-it"><a href="#How-to-Use-it" class="headerlink" title="How to Use it"></a>How to Use it</h3><p>To create a new screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S whateverNameYouLike</span><br></pre></td></tr></table></figure>
-<p>To list all screens:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-<p>To reattach to a screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theNameOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theIdOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
-<p>To end a screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S screenIdYouWantToKill -X quit</span><br></pre></td></tr></table></figure>
-<p>If you are in a screen, you can do the following operations:</p>
-<p>I will use <code>@</code> to refer to <code>Ctrl+A</code></p>
-<p>To detach the screen: press <code>@+D</code>.</p>
-<p>To create a window in a screen: press <code>@+C</code>.</p>
-<p>To navigate to the previous/next window in a screen: press <code>@+P/N</code></p>
-<p>To list all windows in a screen: press <code>@+W</code>.</p>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
       </tags>
   </entry>
   <entry>
@@ -235,9 +200,9 @@ function result() {
 <h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
 ]]></content>
       <tags>
-        <tag>Web Dev</tag>
         <tag>Fun Stuff</tag>
         <tag>Project</tag>
+        <tag>Web Dev</tag>
       </tags>
   </entry>
   <entry>
@@ -248,15 +213,6 @@ function result() {
 ]]></content>
       <tags>
         <tag>Others</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -304,6 +260,50 @@ function result() {
 <p>To create a script, use the <code>edit</code> command,</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">edit whateverScriptNameYouLike</span><br></pre></td></tr></table></figure>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line">f(<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">f(<span class="number">2</span>) = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">3</span>:N   <span class="comment">% for loop</span></span><br><span class="line">    f(<span class="built_in">i</span>) = f(<span class="built_in">i</span> - <span class="number">1</span>) + f(<span class="built_in">i</span> - <span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">-0.3</span>:<span class="number">0</span></span><br><span class="line"><span class="built_in">disp</span>(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.7000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.4000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% if elseif and else</span></span><br><span class="line">num=randi(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">if</span> num&lt;<span class="number">34</span></span><br><span class="line">  sz=<span class="string">&#x27;low&#x27;</span></span><br><span class="line"><span class="keyword">elseif</span> num&lt;<span class="number">67</span></span><br><span class="line">  sz=<span class="string">&#x27;medium&#x27;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  sz=<span class="string">&#x27;high&#x27;</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment">% remember to add &#x27;end&#x27; at the end of if!!!!</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">10</span>;</span><br><span class="line">f = n;</span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span>  <span class="comment">% while loop</span></span><br><span class="line">    n = n<span class="number">-1</span>;</span><br><span class="line">    f = f*n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;n! = &#x27;</span> num2str(f)])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux Using Notes</title>
+    <url>/2022/05/10/Linux-Using-Notes/</url>
+    <content><![CDATA[<h2 id="tzselect-Set-Timezone"><a href="#tzselect-Set-Timezone" class="headerlink" title="tzselect | Set Timezone"></a>tzselect | Set Timezone</h2><p>A simple, user-friendly timezone settings guider.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tzselect</span><br></pre></td></tr></table></figure>
+<p>Remember to add a line in <code>~/.profile</code> according to instructions given by <code>tzselect</code>.</p>
+<h2 id="clean-Clear-Terminal-Screen"><a href="#clean-Clear-Terminal-Screen" class="headerlink" title="clean | Clear Terminal Screen"></a>clean | Clear Terminal Screen</h2><p>A simple command to clear the terminal screen.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+<h2 id="screen-A-Terminal-Multiplexer"><a href="#screen-A-Terminal-Multiplexer" class="headerlink" title="screen | A Terminal Multiplexer"></a>screen | A Terminal Multiplexer</h2><h3 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h3><p>There are several cases you want to use screen to manage your terminals.</p>
+<ul>
+<li>You are connecting to your Linux machine using ssh, but the job is time-consuming. You don’t want to keep the ssh window open, but killing it will also kill the process.</li>
+<li>You are using Linux desktop. You want to hide a terminal when you not need it and resume to the status right before you hide it.</li>
+</ul>
+<p>screen does the job perfectly. It serve as a layer between the terminal users see and the actual processes.</p>
+<h3 id="How-to-Use-it"><a href="#How-to-Use-it" class="headerlink" title="How to Use it"></a>How to Use it</h3><p>To create a new screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S whateverNameYouLike</span><br></pre></td></tr></table></figure>
+<p>To list all screens:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p>To reattach to a screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theNameOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theIdOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
+<p>To end a screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S screenIdYouWantToKill -X quit</span><br></pre></td></tr></table></figure>
+<p>If you are in a screen, you can do the following operations:</p>
+<p>I will use <code>@</code> to refer to <code>Ctrl+A</code></p>
+<p>To detach the screen: press <code>@+D</code>.</p>
+<p>To create a window in a screen: press <code>@+C</code>.</p>
+<p>To navigate to the previous/next window in a screen: press <code>@+P/N</code></p>
+<p>To list all windows in a screen: press <code>@+W</code>.</p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
@@ -477,6 +477,21 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>VSCode Using Notes</title>
+    <url>/2022/04/28/VSCode-Using-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
+<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
+<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
+<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
+<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Software Using</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue+Django CORS and CSRF</title>
     <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
     <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
@@ -523,25 +538,10 @@ function result() {
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
+        <tag>Notes</tag>
         <tag>Frontend</tag>
         <tag>Web Dev</tag>
-        <tag>Notes</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode Using Notes</title>
-    <url>/2022/04/28/VSCode-Using-Notes/</url>
-    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
-<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
-<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
-<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
-<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Software Using</tag>
       </tags>
   </entry>
 </search>
