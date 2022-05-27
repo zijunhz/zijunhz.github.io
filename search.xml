@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
+<p>Try the following commands to fix this problem:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
+<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<p>e.g. <code>feat(homepage): add register button</code></p>
+<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><p>Create new branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
+<p>List all branches</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<p>Switch between different branches locally</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -137,87 +192,6 @@ function result() {
       <tags>
         <tag>Fun Stuff</tag>
         <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
-<p>Try the following commands to fix this problem:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
-<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<p>e.g. <code>feat(homepage): add register button</code></p>
-<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><p>Create new branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
-<p>List all branches</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<p>Switch between different branches locally</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>God of Avalon</title>
-    <url>/2022/05/03/God-of-Avalon/</url>
-    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
-<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -408,8 +382,8 @@ function result() {
 ]]></content>
       <tags>
         <tag>Web Dev</tag>
-        <tag>Django</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
         <tag>Nginx</tag>
       </tags>
@@ -425,27 +399,13 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Tech Life Hacks</title>
-    <url>/2022/05/10/Tech-Life-Hacks/</url>
-    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
-<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
-<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
-<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
-<ul>
-<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
-<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
-</ul>
-<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
-<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
-<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
-<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
-<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
-<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
-<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
-<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
+        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -518,6 +478,74 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Vocabulary</title>
+    <url>/2022/05/16/Vocabulary/</url>
+    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>directly proportional to: 成正比。</p>
+<p>displacement: 位移。注意与distance（路程）区分。</p>
+<p>distance: 路程。注意与displacement（位移）区分。</p>
+<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p>inversely proportional to: 成反比。</p>
+<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
+<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
+<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
+<p>symmetric matrix: $A=A^T$</p>
+<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
+<p>transverse: 横向的。</p>
+<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue Learning Notes</title>
+    <url>/2022/04/27/Vue-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
+<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
+<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tech Life Hacks</title>
+    <url>/2022/05/10/Tech-Life-Hacks/</url>
+    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
+<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
+<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
+<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
+<ul>
+<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
+<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
+</ul>
+<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
+<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
+<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
+<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
+<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
+<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
+<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
+<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VSCode Using Notes</title>
     <url>/2022/04/28/VSCode-Using-Notes/</url>
     <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
@@ -530,26 +558,6 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Software Using</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vocabulary</title>
-    <url>/2022/05/16/Vocabulary/</url>
-    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>displacement: 位移。注意与distance（路程）区分。</p>
-<p>distance: 路程。注意与displacement（位移）区分。</p>
-<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
-<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
-<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
-<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
-<p>symmetric matrix: $A=A^T$</p>
-<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
-<p>transverse: 横向的。</p>
-<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -577,31 +585,25 @@ function result() {
       <tags>
         <tag>Frontend</tag>
         <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
-    <title>Vue Learning Notes</title>
-    <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
-<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
-<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
-<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
-<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>God of Avalon</title>
+    <url>/2022/05/03/God-of-Avalon/</url>
+    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
+<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
+<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
         <tag>Web Dev</tag>
+        <tag>Fun Stuff</tag>
+        <tag>Project</tag>
+        <tag>Django</tag>
         <tag>Vue</tag>
       </tags>
   </entry>
