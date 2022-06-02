@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
+<p>Try the following commands to fix this problem:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
+<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<p>e.g. <code>feat(homepage): add register button</code></p>
+<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-new-branch"><a href="#Create-new-branch" class="headerlink" title="Create new branch"></a>Create new branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
+<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -140,45 +193,13 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
-<p>Try the following commands to fix this problem:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
-<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<p>e.g. <code>feat(homepage): add register button</code></p>
-<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Create-new-branch"><a href="#Create-new-branch" class="headerlink" title="Create new branch"></a>Create new branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch anyNameYouLike</span><br></pre></td></tr></table></figure>
-<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><p>Set/change upstream</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
+        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -188,35 +209,8 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
+        <tag>Web Dev</tag>
         <tag>Maintenance</tag>
-        <tag>Web Dev</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>God of Avalon</title>
-    <url>/2022/05/03/God-of-Avalon/</url>
-    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
-<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -361,8 +355,8 @@ function result() {
 ]]></content>
       <tags>
         <tag>Web Dev</tag>
-        <tag>Django</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
         <tag>Nginx</tag>
       </tags>
@@ -400,6 +394,32 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>God of Avalon</title>
+    <url>/2022/05/03/God-of-Avalon/</url>
+    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
+<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
+<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
+]]></content>
+      <tags>
+        <tag>Web Dev</tag>
+        <tag>Fun Stuff</tag>
+        <tag>Project</tag>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -468,6 +488,8 @@ function result() {
 <h2 id="Scripts-Related"><a href="#Scripts-Related" class="headerlink" title="Scripts Related"></a>Scripts Related</h2><p>Docs: <a href="https://ww2.mathworks.cn/help/matlab/learn_matlab/scripts.html">Programming and Scripts</a></p>
 <h3 id="struct-Similar-to-struct-in-C"><a href="#struct-Similar-to-struct-in-C" class="headerlink" title="struct | Similar to struct in C"></a>struct | Similar to <code>struct</code> in <code>C</code></h3><p><a href="https://ww2.mathworks.cn/help/matlab/ref/struct.html?s_tid=doc_ta">Docs</a></p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">s.a = <span class="number">1</span>;</span><br><span class="line">s.b = &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">s = struct(<span class="string">&#x27;a&#x27;</span>,<span class="number">1</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;Bob&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="Write-Custom-Functions"><a href="#Write-Custom-Functions" class="headerlink" title="Write Custom Functions"></a>Write Custom Functions</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% y are outputs and x are input</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[y1,...,yN]</span> = <span class="title">myfun</span><span class="params">(x1,...,xM)</span></span></span><br><span class="line">    <span class="comment">% here scripts</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h3 id="loop-if"><a href="#loop-if" class="headerlink" title="loop, if"></a>loop, if</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line">f(<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">f(<span class="number">2</span>) = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">3</span>:N   <span class="comment">% for loop</span></span><br><span class="line">    f(<span class="built_in">i</span>) = f(<span class="built_in">i</span> - <span class="number">1</span>) + f(<span class="built_in">i</span> - <span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">-0.3</span>:<span class="number">0</span></span><br><span class="line"><span class="built_in">disp</span>(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.7000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.4000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% if elseif and else</span></span><br><span class="line">num=randi(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">if</span> num&lt;<span class="number">34</span></span><br><span class="line">  sz=<span class="string">&#x27;low&#x27;</span></span><br><span class="line"><span class="keyword">elseif</span> num&lt;<span class="number">67</span></span><br><span class="line">  sz=<span class="string">&#x27;medium&#x27;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  sz=<span class="string">&#x27;high&#x27;</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment">% remember to add &#x27;end&#x27; at the end of if!!!!</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">10</span>;</span><br><span class="line">f = n;</span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span>  <span class="comment">% while loop</span></span><br><span class="line">    n = n<span class="number">-1</span>;</span><br><span class="line">    f = f*n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;n! = &#x27;</span> num2str(f)])</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -477,23 +499,18 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+    <title>VSCode Using Notes</title>
+    <url>/2022/04/28/VSCode-Using-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
+<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
+<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
+<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
+<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
+        <tag>Software Using</tag>
       </tags>
   </entry>
   <entry>
@@ -518,21 +535,6 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode Using Notes</title>
-    <url>/2022/04/28/VSCode-Using-Notes/</url>
-    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
-<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
-<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
-<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
-<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Software Using</tag>
       </tags>
   </entry>
   <entry>
@@ -575,9 +577,9 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
+        <tag>Frontend</tag>
         <tag>Web Dev</tag>
         <tag>Vue</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -603,12 +605,12 @@ function result() {
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
         <tag>Frontend</tag>
+        <tag>Web Dev</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
 </search>
