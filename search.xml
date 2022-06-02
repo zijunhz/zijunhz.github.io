@@ -182,6 +182,17 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>How You Reach a Website</title>
+    <url>/2022/05/14/How-You-Reach-a-Website/</url>
+    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Maintenance</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>God of Avalon</title>
     <url>/2022/05/03/God-of-Avalon/</url>
     <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
@@ -455,14 +466,34 @@ function result() {
 <p>To add plots to an existing figure, use <code>hold on</code>. Until you use <code>hold off</code> or close the window, all plots appear in the current figure window.</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">x = <span class="built_in">linspace</span>(<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">pi</span>);</span><br><span class="line">y = <span class="built_in">sin</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x,y)</span><br><span class="line"></span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"></span><br><span class="line">y2 = <span class="built_in">cos</span>(x);</span><br><span class="line"><span class="built_in">plot</span>(x,y2,<span class="string">&quot;:&quot;</span>)</span><br><span class="line"><span class="built_in">legend</span>(<span class="string">&quot;sin&quot;</span>,<span class="string">&quot;cos&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">hold</span> off</span><br></pre></td></tr></table></figure>
 <h2 id="Scripts-Related"><a href="#Scripts-Related" class="headerlink" title="Scripts Related"></a>Scripts Related</h2><p>Docs: <a href="https://ww2.mathworks.cn/help/matlab/learn_matlab/scripts.html">Programming and Scripts</a></p>
+<h3 id="struct-Similar-to-struct-in-C"><a href="#struct-Similar-to-struct-in-C" class="headerlink" title="struct | Similar to struct in C"></a>struct | Similar to <code>struct</code> in <code>C</code></h3><p><a href="https://ww2.mathworks.cn/help/matlab/ref/struct.html?s_tid=doc_ta">Docs</a></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">s.a = <span class="number">1</span>;</span><br><span class="line">s.b = &#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Write-Custom-Functions"><a href="#Write-Custom-Functions" class="headerlink" title="Write Custom Functions"></a>Write Custom Functions</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% y are outputs and x are input</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[y1,...,yN]</span> = <span class="title">myfun</span><span class="params">(x1,...,xM)</span></span></span><br><span class="line">    <span class="comment">% here scripts</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>To create a script, use the <code>edit</code> command,</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">edit whateverScriptNameYouLike</span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line">f(<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">f(<span class="number">2</span>) = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">3</span>:N   <span class="comment">% for loop</span></span><br><span class="line">    f(<span class="built_in">i</span>) = f(<span class="built_in">i</span> - <span class="number">1</span>) + f(<span class="built_in">i</span> - <span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">-0.3</span>:<span class="number">0</span></span><br><span class="line"><span class="built_in">disp</span>(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.7000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.4000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% if elseif and else</span></span><br><span class="line">num=randi(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">if</span> num&lt;<span class="number">34</span></span><br><span class="line">  sz=<span class="string">&#x27;low&#x27;</span></span><br><span class="line"><span class="keyword">elseif</span> num&lt;<span class="number">67</span></span><br><span class="line">  sz=<span class="string">&#x27;medium&#x27;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  sz=<span class="string">&#x27;high&#x27;</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment">% remember to add &#x27;end&#x27; at the end of if!!!!</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">10</span>;</span><br><span class="line">f = n;</span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span>  <span class="comment">% while loop</span></span><br><span class="line">    n = n<span class="number">-1</span>;</span><br><span class="line">    f = f*n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;n! = &#x27;</span> num2str(f)])</span><br></pre></td></tr></table></figure>
+<h3 id="loop-if"><a href="#loop-if" class="headerlink" title="loop, if"></a>loop, if</h3><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">N = <span class="number">100</span>;</span><br><span class="line">f(<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">f(<span class="number">2</span>) = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">3</span>:N   <span class="comment">% for loop</span></span><br><span class="line">    f(<span class="built_in">i</span>) = f(<span class="built_in">i</span> - <span class="number">1</span>) + f(<span class="built_in">i</span> - <span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">f(<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt; <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">-0.3</span>:<span class="number">0</span></span><br><span class="line"><span class="built_in">disp</span>(<span class="built_in">i</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">     <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.7000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.4000</span></span><br><span class="line"></span><br><span class="line">    <span class="number">0.1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% if elseif and else</span></span><br><span class="line">num=randi(<span class="number">100</span>)</span><br><span class="line"><span class="keyword">if</span> num&lt;<span class="number">34</span></span><br><span class="line">  sz=<span class="string">&#x27;low&#x27;</span></span><br><span class="line"><span class="keyword">elseif</span> num&lt;<span class="number">67</span></span><br><span class="line">  sz=<span class="string">&#x27;medium&#x27;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  sz=<span class="string">&#x27;high&#x27;</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment">% remember to add &#x27;end&#x27; at the end of if!!!!</span></span><br><span class="line"></span><br><span class="line">n = <span class="number">10</span>;</span><br><span class="line">f = n;</span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span>  <span class="comment">% while loop</span></span><br><span class="line">    n = n<span class="number">-1</span>;</span><br><span class="line">    f = f*n;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">disp</span>([<span class="string">&#x27;n! = &#x27;</span> num2str(f)])</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>Notes</tag>
         <tag>Matlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -490,27 +521,6 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How You Reach a Website</title>
-    <url>/2022/05/14/How-You-Reach-a-Website/</url>
-    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Maintenance</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSCode Using Notes</title>
     <url>/2022/04/28/VSCode-Using-Notes/</url>
     <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
@@ -523,16 +533,6 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Software Using</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -556,6 +556,28 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue Learning Notes</title>
+    <url>/2022/04/27/Vue-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
+<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
+<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Vue</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -587,28 +609,6 @@ function result() {
         <tag>Frontend</tag>
         <tag>Backend</tag>
         <tag>Tutorial</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue Learning Notes</title>
-    <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
-<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
-<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
-<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
-<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
 </search>
