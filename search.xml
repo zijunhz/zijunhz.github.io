@@ -156,13 +156,25 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
 ]]></content>
       <tags>
-        <tag>Others</tag>
+        <tag>Web Dev</tag>
+        <tag>Frontend</tag>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How You Reach a Website</title>
+    <url>/2022/05/14/How-You-Reach-a-Website/</url>
+    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
+]]></content>
+      <tags>
+        <tag>Web Dev</tag>
+        <tag>Notes</tag>
+        <tag>Maintenance</tag>
       </tags>
   </entry>
   <entry>
@@ -205,28 +217,6 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How You Reach a Website</title>
-    <url>/2022/05/14/How-You-Reach-a-Website/</url>
-    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Notes</tag>
-        <tag>Maintenance</tag>
       </tags>
   </entry>
   <entry>
@@ -413,6 +403,31 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Math is Hard</title>
+    <url>/2022/06/03/Math-is-Hard/</url>
+    <content><![CDATA[<h2 id="QR-Factorization"><a href="#QR-Factorization" class="headerlink" title="QR Factorization"></a>QR Factorization</h2><p>Reference: <a href="https://www.youtube.com/watch?v=J41Ypt6Mftc">this video</a></p>
+<h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
+<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
+<p>Reference: <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
+<p>It tell you how to calc the rank of a matrix.</p>
+<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Reference: <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
+<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python Learning Notes</title>
     <url>/2022/05/03/Python-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
@@ -420,6 +435,45 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tech Life Hacks</title>
+    <url>/2022/05/10/Tech-Life-Hacks/</url>
+    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
+<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
+<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
+<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
+<ul>
+<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
+<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
+</ul>
+<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
+<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
+<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
+<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
+<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
+<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
+<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
+<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VSCode Using Notes</title>
+    <url>/2022/04/28/VSCode-Using-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
+<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
+<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
+<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
+<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Software Using</tag>
       </tags>
   </entry>
   <entry>
@@ -508,69 +562,6 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Tech Life Hacks</title>
-    <url>/2022/05/10/Tech-Life-Hacks/</url>
-    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
-<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
-<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
-<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
-<ul>
-<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
-<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
-</ul>
-<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
-<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
-<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
-<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
-<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
-<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
-<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
-<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VSCode Using Notes</title>
-    <url>/2022/04/28/VSCode-Using-Notes/</url>
-    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
-<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
-<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
-<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
-<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Software Using</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vocabulary</title>
-    <url>/2022/05/16/Vocabulary/</url>
-    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>directly proportional to: 成正比。</p>
-<p>displacement: 位移。注意与distance（路程）区分。</p>
-<p>distance: 路程。注意与displacement（位移）区分。</p>
-<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p>inversely proportional to: 成反比。</p>
-<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
-<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
-<p>orthonormal: 标准正交，i.e. 正交，且模长为1.</p>
-<h2 id="P"><a href="#P" class="headerlink" title="P"></a>P</h2><p>projection matrix: matrix $A$ s.t. $A^2=A$</p>
-<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
-<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
-<p>symmetric matrix: $A=A^T$</p>
-<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
-<p>transverse: 横向的。</p>
-<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue+Django CORS and CSRF</title>
     <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
     <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
@@ -602,6 +593,30 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Vocabulary</title>
+    <url>/2022/05/16/Vocabulary/</url>
+    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>directly proportional to: 成正比。</p>
+<p>displacement: 位移。注意与distance（路程）区分。</p>
+<p>distance: 路程。注意与displacement（位移）区分。</p>
+<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p>inversely proportional to: 成反比。</p>
+<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
+<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
+<p>orthonormal: 标准正交，i.e. 正交，且模长为1.</p>
+<h2 id="P"><a href="#P" class="headerlink" title="P"></a>P</h2><p>projection matrix: matrix $A$ s.t. $A^2=A$</p>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
+<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
+<p>symmetric matrix: $A=A^T$</p>
+<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
+<p>transverse: 横向的。</p>
+<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue Learning Notes</title>
     <url>/2022/04/27/Vue-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
@@ -619,21 +634,7 @@ function result() {
       <tags>
         <tag>Web Dev</tag>
         <tag>Vue</tag>
-        <tag>Notes</tag>
         <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Math is Hard</title>
-    <url>/2022/06/03/Math-is-Hard/</url>
-    <content><![CDATA[<h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
-<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
-<p>Refers to <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
-<p>It tell you how to calc the rank of a matrix.</p>
-<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Refers to <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
-<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
-]]></content>
-      <tags>
         <tag>Notes</tag>
       </tags>
   </entry>
