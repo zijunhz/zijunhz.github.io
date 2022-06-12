@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>God of Avalon</title>
-    <url>/2022/05/03/God-of-Avalon/</url>
-    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
-<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
-]]></content>
-      <tags>
-        <tag>Project</tag>
-        <tag>Fun Stuff</tag>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How You Reach a Website</title>
-    <url>/2022/05/14/How-You-Reach-a-Website/</url>
-    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Notes</tag>
-        <tag>Maintenance</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -162,8 +135,8 @@ function result() {
 </script>
 ]]></content>
       <tags>
-        <tag>Project</tag>
         <tag>Fun Stuff</tag>
+        <tag>Project</tag>
       </tags>
   </entry>
   <entry>
@@ -206,6 +179,54 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How You Reach a Website</title>
+    <url>/2022/05/14/How-You-Reach-a-Website/</url>
+    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Maintenance</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>God of Avalon</title>
+    <url>/2022/05/03/God-of-Avalon/</url>
+    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
+<p>I haven’t deployed it to any VPS, but I do have the plan.</p>
+<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
+]]></content>
+      <tags>
+        <tag>Fun Stuff</tag>
+        <tag>Project</tag>
+        <tag>Web Dev</tag>
+        <tag>Django</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -357,16 +378,6 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux Using Notes</title>
     <url>/2022/05/10/Linux-Using-Notes/</url>
     <content><![CDATA[<h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br></pre></td></tr></table></figure>
@@ -412,7 +423,8 @@ a\times a=0
 \\
 a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \left( a\times b \right) =0
 \\
-\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
+\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><p>For $a,b,c\in \mathbb{R}^3$: $a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c$ , which is also know as the vector triple product.</p>
+<h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
 Q^TQ=I\\
 Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
 v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
@@ -533,27 +545,13 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Tech Life Hacks</title>
-    <url>/2022/05/10/Tech-Life-Hacks/</url>
-    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
-<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
-<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
-<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
-<ul>
-<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
-<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
-</ul>
-<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
-<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
-<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
-<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
-<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
-<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
-<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
-<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -572,24 +570,52 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+    <title>Vocabulary</title>
+    <url>/2022/05/16/Vocabulary/</url>
+    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
+<p>angular frequency: aka, angular velocity, radial frequency and circular frequency. Denoted as $\omega$</p>
+<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>buoyancy: 浮力。</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>directly proportional to: 成正比。</p>
+<p>displacement: 位移。注意与distance（路程）区分。</p>
+<p>distance: 路程。注意与displacement（位移）区分。</p>
+<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><p>elastic force: 弹力。</p>
+<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p>inversely proportional to: 成反比。</p>
+<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
+<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
+<p>orthonormal: 标准正交，i.e. 正交，且模长为1.</p>
+<h2 id="P"><a href="#P" class="headerlink" title="P"></a>P</h2><p>projection matrix: matrix $A$ s.t. $A^2=A$</p>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
+<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
+<p>symmetric matrix: $A=A^T$</p>
+<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
+<p>transverse: 横向的。</p>
+<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
 ]]></content>
       <tags>
-        <tag>Web Dev</tag>
         <tag>Notes</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+    <title>Vue Learning Notes</title>
+    <url>/2022/04/27/Vue-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
+<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
+<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Python</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -615,58 +641,33 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
+        <tag>Frontend</tag>
         <tag>Web Dev</tag>
         <tag>Django</tag>
         <tag>Vue</tag>
         <tag>Backend</tag>
         <tag>Tutorial</tag>
-        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
-    <title>Vue Learning Notes</title>
-    <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
-<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
-<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
-<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
-<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vocabulary</title>
-    <url>/2022/05/16/Vocabulary/</url>
-    <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>antisymmetric matrix: $A^T=-A$</p>
-<p>angular frequency: aka, angular velocity, radial frequency and circular frequency. Denoted as $\omega$</p>
-<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>buoyancy: 浮力。</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>curvature: 曲率。</p>
-<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>directly proportional to: 成正比。</p>
-<p>displacement: 位移。注意与distance（路程）区分。</p>
-<p>distance: 路程。注意与displacement（位移）区分。</p>
-<h2 id="E"><a href="#E" class="headerlink" title="E"></a>E</h2><p>elastic force: 弹力。</p>
-<h2 id="I"><a href="#I" class="headerlink" title="I"></a>I</h2><p>inversely proportional to: 成反比。</p>
-<h2 id="N"><a href="#N" class="headerlink" title="N"></a>N</h2><p>normal: 法向的。</p>
-<h2 id="O"><a href="#O" class="headerlink" title="O"></a>O</h2><p>orthogonal matrix: 正交矩阵，$A^T=A^{-1}$</p>
-<p>orthonormal: 标准正交，i.e. 正交，且模长为1.</p>
-<h2 id="P"><a href="#P" class="headerlink" title="P"></a>P</h2><p>projection matrix: matrix $A$ s.t. $A^2=A$</p>
-<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p>radial: 径向的。</p>
-<h2 id="S"><a href="#S" class="headerlink" title="S"></a>S</h2><p>speed: 速率。注意与velocity（速度）区分。</p>
-<p>symmetric matrix: $A=A^T$</p>
-<h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><p>tangential: 切向的。</p>
-<p>transverse: 横向的。</p>
-<h2 id="V"><a href="#V" class="headerlink" title="V"></a>V</h2><p>velocity: 速度。注意与speed（速率）区分。</p>
+    <title>Tech Life Hacks</title>
+    <url>/2022/05/10/Tech-Life-Hacks/</url>
+    <content><![CDATA[<h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
+<h2 id="PowerToys-Powerful-Windows-Toolbox"><a href="#PowerToys-Powerful-Windows-Toolbox" class="headerlink" title="PowerToys | Powerful Windows Toolbox"></a>PowerToys | Powerful Windows Toolbox</h2><p>Find it in Microsoft Store.</p>
+<h2 id="Win-Number-Open-Taskbar-Apps"><a href="#Win-Number-Open-Taskbar-Apps" class="headerlink" title="Win + Number | Open Taskbar Apps"></a>Win + Number | Open Taskbar Apps</h2><p>e.g. <code>Win+1</code></p>
+<h2 id="Ctrl-D-Detach-from-Something"><a href="#Ctrl-D-Detach-from-Something" class="headerlink" title="Ctrl+D | Detach from Something"></a>Ctrl+D | Detach from Something</h2><p>Using this shortcut keys, users can detach from various things. Such as:</p>
+<ul>
+<li><code>ssh</code> connection, basically replacing the command <code>exit</code></li>
+<li><code>screen</code> in linux. Though <code>Ctrl+D</code> is not enough, you should use <code>Ctrl+A+D</code></li>
+</ul>
+<h2 id="Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><a href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell" class="headerlink" title="Oh My Posh | A Theme Engine for Any Shell"></a>Oh My Posh | A Theme Engine for Any Shell</h2><p><a href="https://ohmyposh.dev/docs">Docs</a></p>
+<p>Jump to the <code>Installation</code> part and do according to the docs based on your OS.</p>
+<p>Then, read the <code>Prompt</code> part and setup the terminal profile.</p>
+<p>Restart the terminal and you should be ready to enjoy the beautiful terminal.</p>
+<p>Personally, I use theme <code>atomic</code> on my Windows machine and <code>thecyberden</code> on my linux servers.</p>
+<p>Also, Nerd Fonts are recommended. Check out <a href="https://www.nerdfonts.com/font-downloads">this site</a> to install them.</p>
+<p>Personally, I use <code>FuraCode Nerd Font Retina</code> in any editor and <code>FiraCode Nerd Font Retina</code> in any terminal. This is because <code>FuraCode</code> is thinner than <code>FiraCode</code> and thus can make the code looks compact while <code>FiraCode</code> has better Nerd Pattern display.</p>
+<h2 id="Transfer-SSH-keys-to-a-New-Computer-Windows"><a href="#Transfer-SSH-keys-to-a-New-Computer-Windows" class="headerlink" title="Transfer SSH keys to a New Computer (Windows)"></a>Transfer SSH keys to a New Computer (Windows)</h2><p>If you purchased a new computer and still want to use the ssh keys on the old computer to log in to your server. Just copy the <code>.ssh</code> folder under <code>C:\User\yourUserName</code> in the old computer to the exact path in the new computer. Simple.</p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
