@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2022/06/12/XgqMpn.png">
 <meta property="og:image" content="https://s1.ax1x.com/2022/06/12/XgBGdg.png">
 <meta property="article:published_time" content="2022-06-03T13:25:03.000Z">
-<meta property="article:modified_time" content="2022-06-13T03:44:58.867Z">
+<meta property="article:modified_time" content="2022-06-13T05:42:51.470Z">
 <meta property="article:author" content="zPatronus">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-13 11:44:58" itemprop="dateModified" datetime="2022-06-13T11:44:58+08:00">2022-06-13</time>
+                <time title="Modified: 2022-06-13 13:42:51" itemprop="dateModified" datetime="2022-06-13T13:42:51+08:00">2022-06-13</time>
               </span>
 
           
@@ -240,11 +240,27 @@
 
       
         <h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><p>Properties:</p>
-<p>Let $A\in R^{n\times n}$</p>
+<h3 id="Property-1"><a href="#Property-1" class="headerlink" title="Property 1"></a>Property 1</h3><p>Let $A\in R^{n\times n}$</p>
 <script type="math/tex; mode=display">
 det(A)=det(A^T)
 \\
-det(A)=(-1)^n det(-A)</script><h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
+det(A)=(-1)^n det(-A)</script><p>$-1$ can be replaced by any number $c$</p>
+<h3 id="Property-2"><a href="#Property-2" class="headerlink" title="Property 2"></a>Property 2</h3><p>Multiply one column (or one row) by $k$,</p>
+<script type="math/tex; mode=display">
+\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ ka_{i1}&  ka_{i2}&  \cdots&  ka_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|=k\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{i1}&  a_{i2}&  \cdots&  a_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|</script><p>The determinant of the new matrix is k times the determinant of the original matrix.</p>
+<h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
 a\cdot \left( b\times c \right) =b\cdot \left( c\times a \right) =c\cdot \left( a\times b \right)
 \\
 a\times a=0
@@ -258,19 +274,19 @@ a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \lef
 a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c</script><p>which is also know as the vector triple product.</p>
 <script type="math/tex; mode=display">
 (a\times b)\cdot(c\times d)=(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)</script><p>whose proof is given here:</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt="Proof of the Lagrange identity on vector product"></p>
 <h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
 Q^TQ=I\\
 Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
 v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt=""></p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt="Linear transformation in transformed basis"></p>
 <h2 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h2><script type="math/tex; mode=display">
 R=\left[ \begin{matrix}
  \cos \theta&  -\sin \theta&  0\\
  \sin \theta&  \cos \theta&  0\\
  0&  0&  1\\
-\end{matrix} \right]</script><h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
-<p>A matrix is a rotation matrix iff $R^T=R^-1$ i.e. $R^TR=I$ and $detR=1$</p>
+\end{matrix} \right]</script><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
+<h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>A matrix is a rotation matrix iff $R^T=R^{-1}$ i.e. $R^TR=I$ and $detR=1$</p>
 <h3 id="Calculate-the-axis-of-the-rotation-matrix"><a href="#Calculate-the-axis-of-the-rotation-matrix" class="headerlink" title="Calculate the axis of the rotation matrix"></a>Calculate the axis of the rotation matrix</h3><p>The axis of the rotation matrix stays unchanged after rotation, i.e. $Rx=x$</p>
 <p>Solving the equation and we get the axis of the rotation.</p>
 <h3 id="Calculate-the-rotation-angle-of-the-rotation-matrix"><a href="#Calculate-the-rotation-angle-of-the-rotation-matrix" class="headerlink" title="Calculate the rotation angle of the rotation matrix"></a>Calculate the rotation angle of the rotation matrix</h3><p>Choose a random vector, usually $v=(1,0,0,…,0)$. Therefor, $w=Rv$, i.e. $v$ after rotation, is the actually the first column of $R$ (or you can just do the calculate).</p>
@@ -370,7 +386,7 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Determinant"><span class="nav-number">1.</span> <span class="nav-text">Determinant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Properties-about-Cross-Product"><span class="nav-number">2.</span> <span class="nav-text">Properties about Cross Product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-of-Orthonormal-Matrix"><span class="nav-number">3.</span> <span class="nav-text">Property of Orthonormal Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Transformation-In-Transformed-Basis"><span class="nav-number">4.</span> <span class="nav-text">Linear Transformation In Transformed Basis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotation-Matrix"><span class="nav-number">5.</span> <span class="nav-text">Rotation Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Judge-whether-a-matrix-is-a-rotation-matrix"><span class="nav-number">5.1.</span> <span class="nav-text">Judge whether a matrix is a rotation matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculate-the-axis-of-the-rotation-matrix"><span class="nav-number">5.2.</span> <span class="nav-text">Calculate the axis of the rotation matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculate-the-rotation-angle-of-the-rotation-matrix"><span class="nav-number">5.3.</span> <span class="nav-text">Calculate the rotation angle of the rotation matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QR-Factorization"><span class="nav-number">6.</span> <span class="nav-text">QR Factorization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nullity-of-a-Matrix"><span class="nav-number">7.</span> <span class="nav-text">Nullity of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null-Space-Kernel-of-a-Matrix"><span class="nav-number">8.</span> <span class="nav-text">Null Space &#x2F; Kernel of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rank-of-a-Matrix"><span class="nav-number">9.</span> <span class="nav-text">Rank of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-Matrix"><span class="nav-number">10.</span> <span class="nav-text">Projection Matrix</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Determinant"><span class="nav-number">1.</span> <span class="nav-text">Determinant</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-1"><span class="nav-number">1.1.</span> <span class="nav-text">Property 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-2"><span class="nav-number">1.2.</span> <span class="nav-text">Property 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Properties-about-Cross-Product"><span class="nav-number">2.</span> <span class="nav-text">Properties about Cross Product</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Property-of-Orthonormal-Matrix"><span class="nav-number">3.</span> <span class="nav-text">Property of Orthonormal Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Transformation-In-Transformed-Basis"><span class="nav-number">4.</span> <span class="nav-text">Linear Transformation In Transformed Basis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rotation-Matrix"><span class="nav-number">5.</span> <span class="nav-text">Rotation Matrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Judge-whether-a-matrix-is-a-rotation-matrix"><span class="nav-number">5.1.</span> <span class="nav-text">Judge whether a matrix is a rotation matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculate-the-axis-of-the-rotation-matrix"><span class="nav-number">5.2.</span> <span class="nav-text">Calculate the axis of the rotation matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculate-the-rotation-angle-of-the-rotation-matrix"><span class="nav-number">5.3.</span> <span class="nav-text">Calculate the rotation angle of the rotation matrix</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QR-Factorization"><span class="nav-number">6.</span> <span class="nav-text">QR Factorization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nullity-of-a-Matrix"><span class="nav-number">7.</span> <span class="nav-text">Nullity of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Null-Space-Kernel-of-a-Matrix"><span class="nav-number">8.</span> <span class="nav-text">Null Space &#x2F; Kernel of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rank-of-a-Matrix"><span class="nav-number">9.</span> <span class="nav-text">Rank of a Matrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Projection-Matrix"><span class="nav-number">10.</span> <span class="nav-text">Projection Matrix</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
