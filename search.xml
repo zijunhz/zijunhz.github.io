@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -151,6 +140,25 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>C and C++ Learning Notes</title>
+    <url>/2022/06/25/C-and-C-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-deal-with-complex-number-in-C"><a href="#How-to-deal-with-complex-number-in-C" class="headerlink" title="How to deal with complex number in C"></a>How to deal with complex number in C</h2><p>Include <code>&lt;complex.h&gt;</code><br><a href="https://en.cppreference.com/w/c/numeric/complex">Docs</a></p>
+<h2 id="Dynamic-memory-allocation"><a href="#Dynamic-memory-allocation" class="headerlink" title="Dynamic memory allocation"></a>Dynamic memory allocation</h2><p><a href="https://en.cppreference.com/w/c/memory/malloc">Docs for malloc</a><br><a href="https://www.tutorialspoint.com/c_standard_library/c_function_realloc.htm">Docs for realloc</a></p>
+<p>When using dynamic memory allocation, remember to time the size of the memory by <code>sizeof(type)</code>!!!!! This is true for all command: <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, etc.</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>   </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span> </span></span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *p1 = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">// allocates enough for an array of 4 int</span></span><br><span class="line">    <span class="type">int</span> *p2 = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>[<span class="number">4</span>])); <span class="comment">// same, naming the type directly</span></span><br><span class="line">    <span class="type">int</span> *p3 = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span> *p3);   <span class="comment">// same, without repeating the type name</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(p1) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> n=<span class="number">0</span>; n&lt;<span class="number">4</span>; ++n) <span class="comment">// populate the array</span></span><br><span class="line">            p1[n] = n*n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> n=<span class="number">0</span>; n&lt;<span class="number">4</span>; ++n) <span class="comment">// print it back out</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;p1[%d] == %d\n&quot;</span>, n, p1[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p1);</span><br><span class="line">    <span class="built_in">free</span>(p2);</span><br><span class="line">    <span class="built_in">free</span>(p3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="How-to-concatenate-two-strings"><a href="#How-to-concatenate-two-strings" class="headerlink" title="How to concatenate two strings?"></a>How to concatenate two strings?</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">strResult=concat(s1,s2);</span><br></pre></td></tr></table></figure>
+<h2 id="How-to-init-a-struct-array"><a href="#How-to-init-a-struct-array" class="headerlink" title="How to init a struct array"></a>How to init a struct array</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">patientType</span> <span class="title">patients</span>[200] =</span> &#123;&#123;.socialID = <span class="number">0</span>, .age = <span class="number">0</span>, .dayCnt = <span class="number">0</span>, .temperature = &#123;<span class="number">0</span>&#125;, .isIn = <span class="number">0</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>use <code>&#123;&#123;&#125;&#125;</code></p>
+<h2 id="How-to-assign-a-char-array-to-another"><a href="#How-to-assign-a-char-array-to-another" class="headerlink" title="How to assign a char array to another"></a>How to assign a char array to another</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span>* s = argv[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>where <code>argv</code> is a 2-D char array whose every row represents a char array.</p>
+]]></content>
+      <tags>
+        <tag>C</tag>
+        <tag>C++</tag>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git Learning Notes</title>
     <url>/2022/04/28/Git-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
@@ -208,6 +216,17 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>God of Avalon</title>
     <url>/2022/05/03/God-of-Avalon/</url>
     <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
@@ -216,39 +235,11 @@ function result() {
 <h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
 ]]></content>
       <tags>
-        <tag>Web Dev</tag>
         <tag>Fun Stuff</tag>
         <tag>Project</tag>
+        <tag>Web Dev</tag>
         <tag>Django</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C and C++ Learning Notes</title>
-    <url>/2022/06/25/C-and-C-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Dynamic-memory-allocation"><a href="#Dynamic-memory-allocation" class="headerlink" title="Dynamic memory allocation"></a>Dynamic memory allocation</h2><p><a href="https://en.cppreference.com/w/c/memory/malloc">Docs for malloc</a><br><a href="https://www.tutorialspoint.com/c_standard_library/c_function_realloc.htm">Docs for realloc</a></p>
-<p>When using dynamic memory allocation, remember to time the size of the memory by <code>sizeof(type)</code>!!!!! This is true for all command: <code>malloc</code>, <code>calloc</code>, <code>realloc</code>, etc.</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>   </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span> </span></span><br><span class="line"> </span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> *p1 = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">// allocates enough for an array of 4 int</span></span><br><span class="line">    <span class="type">int</span> *p2 = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>[<span class="number">4</span>])); <span class="comment">// same, naming the type directly</span></span><br><span class="line">    <span class="type">int</span> *p3 = <span class="built_in">malloc</span>(<span class="number">4</span>*<span class="keyword">sizeof</span> *p3);   <span class="comment">// same, without repeating the type name</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span>(p1) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> n=<span class="number">0</span>; n&lt;<span class="number">4</span>; ++n) <span class="comment">// populate the array</span></span><br><span class="line">            p1[n] = n*n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> n=<span class="number">0</span>; n&lt;<span class="number">4</span>; ++n) <span class="comment">// print it back out</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;p1[%d] == %d\n&quot;</span>, n, p1[n]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p1);</span><br><span class="line">    <span class="built_in">free</span>(p2);</span><br><span class="line">    <span class="built_in">free</span>(p3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="How-to-concatenate-two-strings"><a href="#How-to-concatenate-two-strings" class="headerlink" title="How to concatenate two strings?"></a>How to concatenate two strings?</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">strResult=concat(s1,s2);</span><br></pre></td></tr></table></figure>
-<h2 id="How-to-init-a-struct-array"><a href="#How-to-init-a-struct-array" class="headerlink" title="How to init a struct array"></a>How to init a struct array</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">patientType</span> <span class="title">patients</span>[200] =</span> &#123;&#123;.socialID = <span class="number">0</span>, .age = <span class="number">0</span>, .dayCnt = <span class="number">0</span>, .temperature = &#123;<span class="number">0</span>&#125;, .isIn = <span class="number">0</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>use <code>&#123;&#123;&#125;&#125;</code></p>
-<h2 id="How-to-assign-a-char-array-to-another"><a href="#How-to-assign-a-char-array-to-another" class="headerlink" title="How to assign a char array to another"></a>How to assign a char array to another</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">char</span>* s = argv[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
-<p>where <code>argv</code> is a 2-D char array whose every row represents a char array.</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>C</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -405,19 +396,86 @@ function result() {
     <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
 ]]></content>
       <tags>
-        <tag>Web Dev</tag>
         <tag>Notes</tag>
+        <tag>Web Dev</tag>
         <tag>Maintenance</tag>
       </tags>
   </entry>
   <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+    <title>Math is Hard</title>
+    <url>/2022/06/03/Math-is-Hard/</url>
+    <content><![CDATA[<h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><p>Properties:</p>
+<h3 id="Property-1"><a href="#Property-1" class="headerlink" title="Property 1"></a>Property 1</h3><p>Let $A\in R^{n\times n}$</p>
+<script type="math/tex; mode=display">
+det(A)=det(A^T)
+\\
+det(A)=(-1)^n det(-A)</script><p>$-1$ can be replaced by any number $c$</p>
+<h3 id="Property-2"><a href="#Property-2" class="headerlink" title="Property 2"></a>Property 2</h3><p>Multiply one column (or one row) by $k$,</p>
+<script type="math/tex; mode=display">
+\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ ka_{i1}&  ka_{i2}&  \cdots&  ka_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|=k\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{i1}&  a_{i2}&  \cdots&  a_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|</script><p>The determinant of the new matrix is k times the determinant of the original matrix.</p>
+<h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
+a\cdot \left( b\times c \right) =b\cdot \left( c\times a \right) =c\cdot \left( a\times b \right)
+\\
+a\times a=0
+\\
+(a\times b) \cdot a =0
+\\
+a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \left( a\times b \right) =0
+\\
+\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><p>For $a,b,c,d\in \mathbb{R}^3$:</p>
+<script type="math/tex; mode=display">
+a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c
+\\
+(a\times b)\times (a\times c)=(a\cdot (b\times c))a=det(a,b,c)a</script><p>which is also know as the vector triple product.</p>
+<script type="math/tex; mode=display">
+(a\times b)\cdot(c\times d)=(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)</script><p>whose proof is given here:</p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt="Proof of the Lagrange identity on vector product"></p>
+<h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
+Q^TQ=I\\
+Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
+v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt="Linear transformation in transformed basis"></p>
+<h2 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h2><script type="math/tex; mode=display">
+R=\left[ \begin{matrix}
+ \cos \theta&  -\sin \theta&  0\\
+ \sin \theta&  \cos \theta&  0\\
+ 0&  0&  1\\
+\end{matrix} \right]</script><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
+<h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>A matrix is a rotation matrix iff $R^T=R^{-1}$ i.e. $R^TR=I$ and $detR=1$</p>
+<h3 id="Calculate-the-axis-of-the-rotation-matrix"><a href="#Calculate-the-axis-of-the-rotation-matrix" class="headerlink" title="Calculate the axis of the rotation matrix"></a>Calculate the axis of the rotation matrix</h3><p>The axis of the rotation matrix stays unchanged after rotation, i.e. $Rx=x$, $(R-I)x=0$</p>
+<p>Solving the equation and we get the axis of the rotation.</p>
+<h3 id="Calculate-the-rotation-angle-of-the-rotation-matrix"><a href="#Calculate-the-rotation-angle-of-the-rotation-matrix" class="headerlink" title="Calculate the rotation angle of the rotation matrix"></a>Calculate the rotation angle of the rotation matrix</h3><p>Choose a random vector, usually $v=(1,0,0,…,0)$. Therefor, $w=Rv$, i.e. $v$ after rotation, is the actually the first column of $R$ (or you can just do the calculate).</p>
+<p>Let $a$ be the vector representing the axis of the rotation.</p>
+<p>We can use $v’=v-\frac{aa^T}{a^Ta}v$ to get the vector perpendicular to the axis while pointing from the axis to the end of $v$. Similarly, use $w’=w-\frac{aa^T}{a^Ta}w$ to get the vector perpendicular to the axis while pointing from the axis t othe end of $w$.</p>
+<p>It’s easy to find that $Span(v’,w’)$ is perpendicular to the axis $a$. Therefor, the angle between $v’$ and $w’$ is the angle of the rotation, i.e. $\arccos(\frac{<v',w'>}{||v’||||w’||})$</p>
+<h2 id="QR-Factorization"><a href="#QR-Factorization" class="headerlink" title="QR Factorization"></a>QR Factorization</h2><p>Reference: <a href="https://www.youtube.com/watch?v=J41Ypt6Mftc">this video</a> and <a href="https://www.youtube.com/watch?v=0MtwqhIwdrI">this video(better, starts at 25:30)</a></p>
+<script type="math/tex; mode=display">
+q_3=\frac{C}{||C||} \\
+C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
+<h2 id="Null-Space-Kernel-of-a-Matrix"><a href="#Null-Space-Kernel-of-a-Matrix" class="headerlink" title="Null Space / Kernel of a Matrix"></a>Null Space / Kernel of a Matrix</h2><p>Reference: <a href="https://www.youtube.com/watch?v=8o5Cmfpeo6g&amp;t=1692s">this video</a> and <a href="https://www.youtube.com/watch?v=VqP2tREMvt0">this video(talks about how to calc)</a></p>
+<p>The null space of $A$ is all solution $x$ (a vector), s.t. $Ax=0$. Often denoted as $N(A)$ or $ker(A)$</p>
+<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
+<p>Reference: <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
+<p>It tell you how to calc the rank of a matrix.</p>
+<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Reference: <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
+<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
+<p>A projection matrix onto a col space of $Q$ is:</p>
+<script type="math/tex; mode=display">P=Q(Q^TQ)^{-1}Q^T</script><p>Specifically, if $Q$ is a square orthonormal matrix, then $P=I$</p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -558,6 +616,16 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Tech Life Hacks</title>
     <url>/2022/05/10/Tech-Life-Hacks/</url>
     <content><![CDATA[<h2 id="Life-Saver-When-Fixing-Someone’s-Internet"><a href="#Life-Saver-When-Fixing-Someone’s-Internet" class="headerlink" title="Life Saver When Fixing Someone’s Internet"></a>Life Saver When Fixing Someone’s Internet</h2><h3 id="How-to-get-MAC-address"><a href="#How-to-get-MAC-address" class="headerlink" title="How to get MAC address?"></a>How to get MAC address?</h3><p>Method 1. On Windows, open terminal and type in <code>getmac -V</code></p>
@@ -612,18 +680,13 @@ function result() {
       </tags>
   </entry>
   <entry>
-    <title>VSCode Using Notes</title>
-    <url>/2022/04/28/VSCode-Using-Notes/</url>
-    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
-<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
-<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
-<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
-<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Software Using</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -658,6 +721,21 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>VSCode Using Notes</title>
+    <url>/2022/04/28/VSCode-Using-Notes/</url>
+    <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
+<h2 id="How-to-write-MATLAB-scripts-in-VSCode"><a href="#How-to-write-MATLAB-scripts-in-VSCode" class="headerlink" title="How to write MATLAB scripts in VSCode"></a>How to write MATLAB scripts in VSCode</h2><p>However, I find it not a good idea. The terminal crashes from time to time and <code>Workspace</code> in MATLAB cannot be integrated into vscode.</p>
+<p>The main reason I want to use vscode to write MATLAB scripts is darkmode and suggestions. By changing the color profile and enabling autocompletion in MATLAB preferences, I can get a similar result.</p>
+<h3 id="Install-Extensions"><a href="#Install-Extensions" class="headerlink" title="Install Extensions"></a>Install Extensions</h3><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">Matlab <span class="comment"># highlighting, suggestions, error messages</span></span><br><span class="line"><span class="comment"># You need to set matlab path and mlint path in the extension settings page.</span></span><br><span class="line"></span><br><span class="line">matlab-formatter <span class="comment"># format things</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page. </span></span><br><span class="line"></span><br><span class="line">Matlab Interactive Terminal <span class="comment"># use vscode terminal instead of matlab IDE</span></span><br><span class="line"><span class="comment"># You need to set Python path in the extension settings page.</span></span><br><span class="line"><span class="comment"># If you enable this extension, do not enable another extension &#x27;matlab-code-run&#x27;</span></span><br><span class="line"></span><br><span class="line">Matlab Snippets <span class="comment"># more advanced suggestions </span></span><br><span class="line"></span><br><span class="line">Matlab Code Run <span class="comment"># run matlab using ctrl+shift+p and choose &#x27;run current matlab script or open a matlab terminal&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Install-MATLAB-API-for-Python"><a href="#Install-MATLAB-API-for-Python" class="headerlink" title="Install MATLAB API for Python"></a>Install MATLAB API for Python</h3><p>The extension <code>Matlab Interactive Terminal</code> is based on matlab api for python. Follow <a href="https://ww2.mathworks.cn/help/matlab/matlab_external/install-the-matlab-engine-for-python.html">this doc</a> to install matlab api for python.</p>
+<p>In Windows, <code>cd matlabRootPath\extern\engines\python</code>, then <code>python setup.py install</code>.  </p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Software Using</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue Learning Notes</title>
     <url>/2022/04/27/Vue-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
@@ -673,87 +751,10 @@ function result() {
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
+        <tag>Notes</tag>
         <tag>Frontend</tag>
         <tag>Web Dev</tag>
-        <tag>Notes</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Math is Hard</title>
-    <url>/2022/06/03/Math-is-Hard/</url>
-    <content><![CDATA[<h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><p>Properties:</p>
-<h3 id="Property-1"><a href="#Property-1" class="headerlink" title="Property 1"></a>Property 1</h3><p>Let $A\in R^{n\times n}$</p>
-<script type="math/tex; mode=display">
-det(A)=det(A^T)
-\\
-det(A)=(-1)^n det(-A)</script><p>$-1$ can be replaced by any number $c$</p>
-<h3 id="Property-2"><a href="#Property-2" class="headerlink" title="Property 2"></a>Property 2</h3><p>Multiply one column (or one row) by $k$,</p>
-<script type="math/tex; mode=display">
-\left| \begin{matrix}{l}
- a_{11}&  a_{12}&  \cdots&  a_{1n}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- ka_{i1}&  ka_{i2}&  \cdots&  ka_{in}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
-\end{matrix} \right|=k\left| \begin{matrix}{l}
- a_{11}&  a_{12}&  \cdots&  a_{1n}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{i1}&  a_{i2}&  \cdots&  a_{in}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
-\end{matrix} \right|</script><p>The determinant of the new matrix is k times the determinant of the original matrix.</p>
-<h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
-a\cdot \left( b\times c \right) =b\cdot \left( c\times a \right) =c\cdot \left( a\times b \right)
-\\
-a\times a=0
-\\
-(a\times b) \cdot a =0
-\\
-a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \left( a\times b \right) =0
-\\
-\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><p>For $a,b,c,d\in \mathbb{R}^3$:</p>
-<script type="math/tex; mode=display">
-a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c
-\\
-(a\times b)\times (a\times c)=(a\cdot (b\times c))a=det(a,b,c)a</script><p>which is also know as the vector triple product.</p>
-<script type="math/tex; mode=display">
-(a\times b)\cdot(c\times d)=(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)</script><p>whose proof is given here:</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt="Proof of the Lagrange identity on vector product"></p>
-<h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
-Q^TQ=I\\
-Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
-v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt="Linear transformation in transformed basis"></p>
-<h2 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h2><script type="math/tex; mode=display">
-R=\left[ \begin{matrix}
- \cos \theta&  -\sin \theta&  0\\
- \sin \theta&  \cos \theta&  0\\
- 0&  0&  1\\
-\end{matrix} \right]</script><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
-<h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>A matrix is a rotation matrix iff $R^T=R^{-1}$ i.e. $R^TR=I$ and $detR=1$</p>
-<h3 id="Calculate-the-axis-of-the-rotation-matrix"><a href="#Calculate-the-axis-of-the-rotation-matrix" class="headerlink" title="Calculate the axis of the rotation matrix"></a>Calculate the axis of the rotation matrix</h3><p>The axis of the rotation matrix stays unchanged after rotation, i.e. $Rx=x$, $(R-I)x=0$</p>
-<p>Solving the equation and we get the axis of the rotation.</p>
-<h3 id="Calculate-the-rotation-angle-of-the-rotation-matrix"><a href="#Calculate-the-rotation-angle-of-the-rotation-matrix" class="headerlink" title="Calculate the rotation angle of the rotation matrix"></a>Calculate the rotation angle of the rotation matrix</h3><p>Choose a random vector, usually $v=(1,0,0,…,0)$. Therefor, $w=Rv$, i.e. $v$ after rotation, is the actually the first column of $R$ (or you can just do the calculate).</p>
-<p>Let $a$ be the vector representing the axis of the rotation.</p>
-<p>We can use $v’=v-\frac{aa^T}{a^Ta}v$ to get the vector perpendicular to the axis while pointing from the axis to the end of $v$. Similarly, use $w’=w-\frac{aa^T}{a^Ta}w$ to get the vector perpendicular to the axis while pointing from the axis t othe end of $w$.</p>
-<p>It’s easy to find that $Span(v’,w’)$ is perpendicular to the axis $a$. Therefor, the angle between $v’$ and $w’$ is the angle of the rotation, i.e. $\arccos(\frac{<v',w'>}{||v’||||w’||})$</p>
-<h2 id="QR-Factorization"><a href="#QR-Factorization" class="headerlink" title="QR Factorization"></a>QR Factorization</h2><p>Reference: <a href="https://www.youtube.com/watch?v=J41Ypt6Mftc">this video</a> and <a href="https://www.youtube.com/watch?v=0MtwqhIwdrI">this video(better, starts at 25:30)</a></p>
-<script type="math/tex; mode=display">
-q_3=\frac{C}{||C||} \\
-C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
-<h2 id="Null-Space-Kernel-of-a-Matrix"><a href="#Null-Space-Kernel-of-a-Matrix" class="headerlink" title="Null Space / Kernel of a Matrix"></a>Null Space / Kernel of a Matrix</h2><p>Reference: <a href="https://www.youtube.com/watch?v=8o5Cmfpeo6g&amp;t=1692s">this video</a> and <a href="https://www.youtube.com/watch?v=VqP2tREMvt0">this video(talks about how to calc)</a></p>
-<p>The null space of $A$ is all solution $x$ (a vector), s.t. $Ax=0$. Often denoted as $N(A)$ or $ker(A)$</p>
-<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
-<p>Reference: <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
-<p>It tell you how to calc the rank of a matrix.</p>
-<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Reference: <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
-<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
-<p>A projection matrix onto a col space of $Q$ is:</p>
-<script type="math/tex; mode=display">P=Q(Q^TQ)^{-1}Q^T</script><p>Specifically, if $Q$ is a square orthonormal matrix, then $P=I$</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
       </tags>
   </entry>
 </search>
