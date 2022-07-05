@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/sheep.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/sheep.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/sheep.png">
+  <link rel="mask-icon" href="/images/sheep.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="luoguP3932 浮游大陆的68号岛">
+<meta property="og:url" content="http://example.com/2018/11/05/luoguP3932%20%E6%B5%AE%E6%B8%B8%E5%A4%A7%E9%99%86%E7%9A%8468%E5%8F%B7%E5%B2%9B/index.html">
+<meta property="og:site_name" content="zPatronus&#39;s blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2018/11/05/iIjSvd.png">
+<meta property="article:published_time" content="2018-11-05T07:53:26.000Z">
+<meta property="article:modified_time" content="2022-07-05T09:23:19.552Z">
+<meta property="article:author" content="zPatronus">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2018/11/05/iIjSvd.png">
+
+<link rel="canonical" href="http://example.com/2018/11/05/luoguP3932%20%E6%B5%AE%E6%B8%B8%E5%A4%A7%E9%99%86%E7%9A%8468%E5%8F%B7%E5%B2%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>luoguP3932 浮游大陆的68号岛 | zPatronus's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zPatronus's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/11/05/luoguP3932%20%E6%B5%AE%E6%B8%B8%E5%A4%A7%E9%99%86%E7%9A%8468%E5%8F%B7%E5%B2%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="zPatronus">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zPatronus's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          luoguP3932 浮游大陆的68号岛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-11-05 15:53:26" itemprop="dateCreated datePublished" datetime="2018-11-05T15:53:26+08:00">2018-11-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-07-05 17:23:19" itemprop="dateModified" datetime="2022-07-05T17:23:19+08:00">2022-07-05</time>
+              </span>
+
+          
+            <div class="post-description"> </div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P3932">题目</a></p>
+<hr>
+<p>开四个数组：</p>
+<p>$lcnt[i]$记录仓库i左边（不包括i）共有多少物品 $rcnt[i]$记录仓库i右边（不包括i）共有多少物品 $lcost[i]$记录将仓库i左边的所有物品移到仓库i所需的代价 $rcost[i]$记录将仓库i右边的所有物品移到仓库i所需的代价。</p>
+<hr>
+<p>$lcnt[i]$和$rcnt[i]$很好算，考虑如何O(n)计算$lcost[]$和$rcost[]​$。</p>
+<p>以$lcost[]$为例</p>
+<p>考虑新加入一个仓库。假设为6。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>编号(i)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$lcnt[i]$</td>
+<td>0</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>把1-5号仓库的所有物品移到6号仓库等价于把1-4号仓库的所有物品移到5号仓库，然后把5号仓库里的所有东西移到6号仓库。</p>
+<p>也就是$lcost[i]=lcost[i-1]+lcnt[i]·dis(i-1,i)$</p>
+<p>$rcost[]$也可以如法炮制</p>
+<hr>
+<p>考虑对于一个询问$l..r$</p>
+<p><img src="https://s1.ax1x.com/2018/11/05/iIjSvd.png" alt="image"></p>
+<p>一定是形如这样的（或者在x的右边；或者包括了x，包括x时可以分成两段分开计算）</p>
+<p>把$l..r$的所有物品移到x等价于把r左边所有物品移到r，然后把r仓库的所有东西移到x，<em>减去</em>把l左边所有东西移到l，然后把l仓库的所有东西移到x</p>
+<p>也就是$cost(l,r)=lcnt[r+1]·(po[x]-po[r])+lcost[r]-lcost[l]-lcnt[l]·(po[x]-po[l])$</p>
+<p>$l..r$在x的右边也可以如法炮制</p>
+<hr>
+<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 200010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 19260817</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) (((a)%mo+mo)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,m,po[N],a[N],lcnt[N],rcnt[N],lcost[N],rcost[N],x,l,r;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">// freopen(&quot;3932_1.in&quot;,&quot;r&quot;,stdin);freopen(&quot;3932.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);po[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(po[i]);po[i]+=po[i<span class="number">-1</span>];po[i]=<span class="built_in">md</span>(po[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(a,<span class="number">0</span>);<span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">mem</span>(lcnt,<span class="number">0</span>);<span class="built_in">mem</span>(rcnt,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  lcnt[i]=lcnt[i<span class="number">-1</span>]+a[i<span class="number">-1</span>];lcnt[i]=<span class="built_in">md</span>(lcnt[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fbs</span>(i,n,<span class="number">1</span>)&#123;</span><br><span class="line">  rcnt[i]=rcnt[i+<span class="number">1</span>]+a[i+<span class="number">1</span>];rcnt[i]=<span class="built_in">md</span>(rcnt[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(lcost,<span class="number">0</span>);<span class="built_in">mem</span>(rcost,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">  lcost[i]=<span class="built_in">md</span>(lcost[i<span class="number">-1</span>]+lcnt[i]*(po[i]-po[i<span class="number">-1</span>]));</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// fsb(i,1,n)printf(&quot;%10lld %lld %lld\n&quot;,i,lcnt[i],rcnt[i]);</span></span><br><span class="line"> <span class="built_in">fbs</span>(i,n<span class="number">-1</span>,<span class="number">1</span>)&#123;</span><br><span class="line">  rcost[i]=<span class="built_in">md</span>(rcost[i+<span class="number">1</span>]+rcnt[i]*(po[i+<span class="number">1</span>]-po[i]));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(l);<span class="built_in">rll</span>(r);</span><br><span class="line">  l=l==x?l+<span class="number">1</span>:l;</span><br><span class="line">  r=r==x?r<span class="number">-1</span>:r;</span><br><span class="line">  <span class="keyword">if</span>(l&gt;r)&#123;</span><br><span class="line">   <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>);<span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ll ans=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(r&lt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(lcnt[r+<span class="number">1</span>]*(po[x]-po[r])+lcost[r]-lcost[l]-lcnt[l]*(po[x]-po[l]));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(l&gt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(rcnt[l<span class="number">-1</span>]*(po[l]-po[x])+rcost[l]-rcost[r]-rcnt[r]*(po[r]-po[x]));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(l&lt;x&amp;&amp;r&gt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(lcnt[x]*(po[x]-po[x<span class="number">-1</span>])+lcost[x<span class="number">-1</span>]-lcost[l]-lcnt[l]*(po[x]-po[l]));</span><br><span class="line">   ans+=<span class="built_in">md</span>(rcnt[x]*(po[x+<span class="number">1</span>]-po[x])+rcost[x+<span class="number">1</span>]-rcost[r]-rcnt[r]*(po[r]-po[x]));</span><br><span class="line">   ans=<span class="built_in">md</span>(ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：数字有点大，及时%。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OI/" rel="tag"># OI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/05/luoguP4047%20%5BJSOI2010%5D%E9%83%A8%E8%90%BD%E5%88%92%E5%88%86/" rel="prev" title="luoguP4047 [JSOI2010]部落划分">
+      <i class="fa fa-chevron-left"></i> luoguP4047 [JSOI2010]部落划分
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/05/luoguP2845%20%5BUSACO15DEC%5DSwitching%20on%20the%20Lights%20%E5%BC%80%E5%85%B3%E7%81%AF/" rel="next" title="luoguP2845 [USACO15DEC]Switching on the Lights 开关灯">
+      luoguP2845 [USACO15DEC]Switching on the Lights 开关灯 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#code"><span class="nav-number">1.</span> <span class="nav-text">code</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="zPatronus"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">zPatronus</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zPatronus</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
