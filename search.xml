@@ -183,6 +183,117 @@
       </tags>
   </entry>
   <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
+<ol>
+<li><code>git checkout main</code> to switch the local branch to main.</li>
+<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
+<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
+<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
+<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
+<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
+</ol>
+</li>
+<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
+<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
+</ol>
+<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
+<p>Try the following commands to fix this problem:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
+<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<p>e.g. <code>feat(homepage): add register button</code></p>
+<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><p>If you want to delete a local branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
+<p>If you want to delete a remote branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d nameOfRemoteBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
+<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>God of Avalon</title>
+    <url>/2022/05/03/God-of-Avalon/</url>
+    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
+<p><del>I haven’t deployed it to any VPS, but I do have the plan.</del></p>
+<p>Update: it has been deployed to a VPS. Visit <a href="https://goa.zpatronus.top">this site</a> to enjoy it.</p>
+<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
+]]></content>
+      <tags>
+        <tag>Web Dev</tag>
+        <tag>Project</tag>
+        <tag>Fun Stuff</tag>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How You Reach a Website</title>
+    <url>/2022/05/14/How-You-Reach-a-Website/</url>
+    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Maintenance</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Number Guessing Game Bot</title>
     <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
     <content><![CDATA[<p><div id="guessing_game">
@@ -317,264 +428,8 @@ function result() {
 </script>
 ]]></content>
       <tags>
-        <tag>Fun Stuff</tag>
         <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
-<ol>
-<li><code>git checkout main</code> to switch the local branch to main.</li>
-<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
-<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
-<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
-<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
-<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
-</ol>
-</li>
-<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
-<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
-</ol>
-<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
-<p>Try the following commands to fix this problem:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
-<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<p>e.g. <code>feat(homepage): add register button</code></p>
-<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
-<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
-<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How You Reach a Website</title>
-    <url>/2022/05/14/How-You-Reach-a-Website/</url>
-    <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Web Dev</tag>
-        <tag>Maintenance</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>God of Avalon</title>
-    <url>/2022/05/03/God-of-Avalon/</url>
-    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
-<p><del>I haven’t deployed it to any VPS, but I do have the plan.</del></p>
-<p>Update: it has been deployed to a VPS. Visit <a href="https://goa.zpatronus.top">this site</a> to enjoy it.</p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
-]]></content>
-      <tags>
         <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How to Deploy Django</title>
-    <url>/2022/04/27/How-to-Deploy-Django/</url>
-    <content><![CDATA[<p>Just follow the <a href="https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html">docs</a>. That’s it. However, I do find a few things wrong in the docs when I followed it. I rewrite those parts and add some comments.</p>
-<h2 id="Some-notes-about-this-tutorial"><a href="#Some-notes-about-this-tutorial" class="headerlink" title="Some notes about this tutorial"></a>Some notes about this tutorial</h2><p>Note</p>
-<p>This is a tutorial. It is not intended to provide a reference guide, never mind an exhaustive reference, to the subject of deployment.</p>
-<p>nginx and uWSGI are good choices for Django deployment, but they are not the only ones, or the ‘official’ ones. There are excellent alternatives to both, and you are encouraged to investigate them.</p>
-<p>The way we deploy Django here is a good way, but it is not the only way; for some purposes it is probably not even the best way.</p>
-<p>It is however a reliable and easy way, and the material covered here will introduce you to concepts and procedures you will need to be familiar with whatever software you use for deploying Django. By providing you with a working setup, and rehearsing the steps you must take to get there, it will offer you a basis for exploring other ways to achieve this.</p>
-<p>Note</p>
-<p>This tutorial makes some assumptions about the system you are using.</p>
-<p>It is assumed that you are using a Unix-like system, and that it features an aptitude-like package manager. However if you need to ask questions like “What’s the equivalent of aptitude on Mac OS X?”, you’ll be able to find that kind of help fairly easily.</p>
-<p>While this tutorial assumes Django 1.4 or later, which will automatically create a wsgi module in your new project, the instructions will work with earlier versions. You will though need to obtain that Django wsgi module yourself, and you may find that the Django project directory structure is slightly different.</p>
-<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><p>A web server faces the outside world. It can serve files (HTML, images, CSS, etc) directly from the file system. However, it can’t talk directly to Django applications; it needs something that will run the application, feed it requests from web clients (such as browsers) and return responses.</p>
-<p>A Web Server Gateway Interface - WSGI - does this job. WSGI is a Python standard.</p>
-<p>uWSGI is a WSGI implementation. In this tutorial we will set up uWSGI so that it creates a Unix socket, and serves responses to the web server via the uwsgi protocol. At the end, our complete stack of components will look like this:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; the web server &lt;-&gt; the socket &lt;-&gt; uwsgi &lt;-&gt; Django</span><br></pre></td></tr></table></figure>
-<h2 id="Before-you-start-setting-up-uWSGI"><a href="#Before-you-start-setting-up-uWSGI" class="headerlink" title="Before you start setting up uWSGI"></a>Before you start setting up uWSGI</h2><h3 id="virtual-env"><a href="#virtual-env" class="headerlink" title="virtual env"></a>virtual env</h3><p>Make sure you are in a virtualenv for the software we need to install (we will describe how to install a system-wide uwsgi later):</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">virtualenv uwsgi-tutorial</span><br><span class="line"><span class="built_in">cd</span> uwsgi-tutorial</span><br><span class="line"><span class="built_in">source</span> bin/activate</span><br></pre></td></tr></table></figure>
-<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>Install Django into your virtualenv, create a new project, and <code>cd</code> into the project:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install Django</span><br><span class="line">django-admin.py startproject mysite</span><br><span class="line"><span class="built_in">cd</span> mysite</span><br></pre></td></tr></table></figure>
-<h3 id="About-the-domain-and-port"><a href="#About-the-domain-and-port" class="headerlink" title="About the domain and port"></a>About the domain and port</h3><p>In this tutorial we will call your domain <code>example.com</code>. Substitute your own FQDN or IP address.</p>
-<p>Throughout, we’ll be using port 8000 for the web server to publish on, just like the Django runserver does by default. You can use whatever port you want of course, but I have chosen this one so it doesn’t conflict with anything a web server might be doing already.</p>
-<h2 id="Basic-uWSGI-installation-and-configuration"><a href="#Basic-uWSGI-installation-and-configuration" class="headerlink" title="Basic uWSGI installation and configuration"></a>Basic uWSGI installation and configuration</h2><h3 id="Install-uWSGI-into-your-virtualenv"><a href="#Install-uWSGI-into-your-virtualenv" class="headerlink" title="Install uWSGI into your virtualenv"></a>Install uWSGI into your virtualenv</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
-<p>Of course there are other ways to install uWSGI, but this one is as good as any. Remember that you will need to have Python development packages installed. In the case of Debian, or Debian-derived systems such as Ubuntu, what you need to have installed is <code>pythonX.Y-dev</code>, where X.Y is your version of Python.</p>
-<h3 id="Basic-test"><a href="#Basic-test" class="headerlink" title="Basic test"></a>Basic test</h3><p>Create a file called <code>test.py</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># test.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">application</span>(<span class="params">env, start_response</span>):</span><br><span class="line">    start_response(<span class="string">&#x27;200 OK&#x27;</span>, [(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/html&#x27;</span>)])</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">b&quot;Hello World&quot;</span>] <span class="comment"># python3</span></span><br><span class="line">    <span class="comment">#return [&quot;Hello World&quot;] # python2</span></span><br></pre></td></tr></table></figure>
-<p>Note</p>
-<p>Take into account that Python 3 requires <code>bytes()</code>.</p>
-<p>Run uWSGI:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --http :8000 --wsgi-file test.py</span><br></pre></td></tr></table></figure>
-<p>The options mean:</p>
-<ul>
-<li><code>http :8000</code>: use protocol http, port 8000</li>
-<li><code>wsgi-file test.py</code>: load the specified file, test.py</li>
-</ul>
-<p>This should serve a ‘hello world’ message directly to the browser on port 8000. Visit: <code>http://example.com:8000</code> to check. If so, it means the following stack of components works:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; uWSGI &lt;-&gt; Python</span><br></pre></td></tr></table></figure>
-<h3 id="Test-your-Django-project"><a href="#Test-your-Django-project" class="headerlink" title="Test your Django project"></a>Test your Django project</h3><p>Now we want uWSGI to do the same thing, but to run a Django site instead of the <code>test.py</code> module.</p>
-<p>If you haven’t already done so, make sure that your <code>mysite</code> project actually works:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py runserver 0.0.0.0:8000</span><br></pre></td></tr></table></figure>
-<p>And if that works, run it using uWSGI:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --http :8000 --module mysite.wsgi</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>module mysite.wsgi</code>: load the specificied wsgi module</li>
-</ul>
-<p>Point your browser at the server; if the site appears, it means uWSGI is able to serve your Django application from your virtualenv, and this stack operates correctly:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; uWSGI &lt;-&gt; Django</span><br></pre></td></tr></table></figure>
-<p>Now normally we won’t have the browser speaking directly to uWSGI. That’s a job for the webserver, which will act as a go-between.</p>
-<h2 id="Basic-nginx"><a href="#Basic-nginx" class="headerlink" title="Basic nginx"></a>Basic nginx</h2><h3 id="Install-nginx"><a href="#Install-nginx" class="headerlink" title="Install nginx"></a>Install nginx</h3><p>To simple, I’ll skip this part.</p>
-<p>Use <code>sudo /etc/init.d/nginx start</code> to start nginx and use <code>sudo nginx -s reload</code> to reload configurations.</p>
-<h3 id="Configure-nginx-for-your-site"><a href="#Configure-nginx-for-your-site" class="headerlink" title="Configure nginx for your site"></a>Configure nginx for your site</h3><p>You will need the <code>uwsgi_params</code> file, which is available in the <code>nginx</code> directory of the uWSGI distribution, or from <a href="https://github.com/nginx/nginx/blob/master/conf/uwsgi_params">https://github.com/nginx/nginx/blob/master/conf/uwsgi_params</a></p>
-<p>Copy it into your project directory. In a moment we will tell nginx to refer to it.</p>
-<p>Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/ directory, and put this in it:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite_nginx.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># the upstream component nginx needs to connect to</span></span><br><span class="line">upstream django &#123;</span><br><span class="line">    <span class="comment"># server unix:///path/to/your/mysite/mysite.sock; # for a file socket</span></span><br><span class="line">    server <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8001</span>; <span class="comment"># for a web port socket (we&#x27;ll use this first)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># configuration of the server</span></span><br><span class="line">server &#123;</span><br><span class="line">    <span class="comment"># the port your site will be served on</span></span><br><span class="line">    listen      <span class="number">8000</span>;</span><br><span class="line">    <span class="comment"># the domain name it will serve for</span></span><br><span class="line">    server_name example.com; <span class="comment"># substitute your machine&#x27;s IP address or FQDN</span></span><br><span class="line">    charset     utf-<span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># max upload size</span></span><br><span class="line">    client_max_body_size 75M;   <span class="comment"># adjust to taste</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Django media</span></span><br><span class="line">    location /media  &#123;</span><br><span class="line">        alias /path/to/your/mysite/media;  <span class="comment"># your Django project&#x27;s media files - amend as required</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /static &#123;</span><br><span class="line">        alias /path/to/your/mysite/static; <span class="comment"># your Django project&#x27;s static files - amend as required</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Finally, send all non-media requests to the Django server.</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        uwsgi_pass  django;</span><br><span class="line">        include     /path/to/your/mysite/uwsgi_params; <span class="comment"># the uwsgi_params file you installed</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This conf file tells nginx to serve up media and static files from the filesystem, as well as handle requests that require Django’s intervention. For a large deployment it is considered good practice to let one server handle static/media files, and another handle Django applications, but for now, this will do just fine.</p>
-<p>Symlink to this file from /etc/nginx/sites-enabled so nginx can see it:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /etc/nginx/sites-available/mysite_nginx.conf /etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure>
-<h3 id="Deploying-static-files"><a href="#Deploying-static-files" class="headerlink" title="Deploying static files"></a>Deploying static files</h3><p>Before running nginx, you have to collect all Django static files in the static folder. First of all you have to edit mysite/settings.py adding:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&quot;static/&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>and then run</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
-<h3 id="Basic-nginx-test"><a href="#Basic-nginx-test" class="headerlink" title="Basic nginx test"></a>Basic nginx test</h3><p>Restart nginx:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo /etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
-<p>To check that media files are being served correctly, add an image called <code>media.png</code> to the <code>/path/to/your/project/project/media</code> directory, then visit <a href="http://example.com:8000/media/media.png">http://example.com:8000/media/media.png</a> - if this works, you’ll know at least that nginx is serving files correctly.</p>
-<p>It is worth not just restarting nginx, but actually stopping and then starting it again, which will inform you if there is a problem, and where it is.</p>
-<h2 id="nginx-and-uWSGI-and-test-py"><a href="#nginx-and-uWSGI-and-test-py" class="headerlink" title="nginx and uWSGI and test.py"></a>nginx and uWSGI and test.py</h2><p>Let’s get nginx to speak to the “hello world” <code>test.py</code> application.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket :8001 --wsgi-file test.py</span><br></pre></td></tr></table></figure>
-<p>This is nearly the same as before, except this time one of the options is different:</p>
-<ul>
-<li><code>socket :8001</code>: use protocol uwsgi, port 8001</li>
-</ul>
-<p>nginx meanwhile has been configured to communicate with uWSGI on that port, and with the outside world on port 8000. Visit:</p>
-<p><a href="http://example.com:8000/">http://example.com:8000/</a></p>
-<p>to check. And this is our stack:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; the web server &lt;-&gt; the socket &lt;-&gt; uWSGI &lt;-&gt; Python</span><br></pre></td></tr></table></figure>
-<p>Meanwhile, you can try to have a look at the uwsgi output at <a href="http://example.com:8001">http://example.com:8001</a> - but quite probably, it won’t work because your browser speaks http, not uWSGI, though you should see output from uWSGI in your terminal.</p>
-<h2 id="Using-Unix-sockets-instead-of-ports"><a href="#Using-Unix-sockets-instead-of-ports" class="headerlink" title="Using Unix sockets instead of ports"></a>Using Unix sockets instead of ports</h2><p>So far we have used a TCP port socket, because it’s simpler, but in fact it’s better to use Unix sockets than ports - there’s less overhead.</p>
-<p>Edit <code>mysite_nginx.conf</code>, changing it to match:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">server unix:///path/to/your/mysite/mysite.sock; <span class="comment"># for a file socket</span></span><br><span class="line"><span class="comment"># server 127.0.0.1:8001; # for a web port socket (we&#x27;ll use this first)</span></span><br></pre></td></tr></table></figure>
-<p>and restart nginx.</p>
-<p>Run uWSGI again:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py</span><br></pre></td></tr></table></figure>
-<p>This time the <code>socket</code> option tells uWSGI which file to use.</p>
-<p>Try <a href="http://example.com:8000/">http://example.com:8000/</a> in the browser.</p>
-<h3 id="If-that-doesn’t-work"><a href="#If-that-doesn’t-work" class="headerlink" title="If that doesn’t work"></a>If that doesn’t work</h3><p>Check your nginx error log(/var/log/nginx/error.log). If you see something like:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">connect() to unix:///path/to/your/mysite/mysite.sock failed (13: Permission</span><br><span class="line">denied)</span><br></pre></td></tr></table></figure>
-<p>then probably you need to manage the permissions on the socket so that nginx is allowed to use it.</p>
-<p>Try:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py --chmod-socket=666 <span class="comment"># (very permissive)</span></span><br></pre></td></tr></table></figure>
-<p>↑This works for me and ↓this does not</p>
-<p>or:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py --chmod-socket=664 <span class="comment"># (more sensible)</span></span><br></pre></td></tr></table></figure>
-<p>You may also have to add your user to nginx’s group (which is probably www-data), or vice-versa, so that nginx can read and write to your socket properly.</p>
-<p>It’s worth keeping the output of the nginx log running in a terminal window so you can easily refer to it while troubleshooting.</p>
-<h2 id="Running-the-Django-application-with-uwsgi-and-nginx"><a href="#Running-the-Django-application-with-uwsgi-and-nginx" class="headerlink" title="Running the Django application with uwsgi and nginx"></a>Running the Django application with uwsgi and nginx</h2><p>Let’s run our Django application:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=666</span><br></pre></td></tr></table></figure>
-<p>Note that in the original docs, this command is</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=664</span><br></pre></td></tr></table></figure>
-<p>but it does not work for me.</p>
-<p>Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project.</p>
-<h2 id="Now-uWSGI-and-nginx-should-be-serving-up-not-just-a-“Hello-World”-module-but-your-Django-project"><a href="#Now-uWSGI-and-nginx-should-be-serving-up-not-just-a-“Hello-World”-module-but-your-Django-project" class="headerlink" title="Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project"></a>Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project</h2><p>We can put the same options that we used with uWSGI into a file, and then ask uWSGI to run with that file. It makes it easier to manage configurations.</p>
-<p>Create a file called <code>mysite_uwsgi.ini</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite_uwsgi.ini file</span></span><br><span class="line">[uwsgi]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Django-related settings</span></span><br><span class="line"><span class="comment"># the base directory (full path)</span></span><br><span class="line">chdir           = /path/to/your/project</span><br><span class="line"><span class="comment"># Django&#x27;s wsgi file</span></span><br><span class="line">module          = project.wsgi</span><br><span class="line"><span class="comment"># the virtualenv (full path)</span></span><br><span class="line">home            = /path/to/virtualenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># process-related settings</span></span><br><span class="line"><span class="comment"># master</span></span><br><span class="line">master          = true</span><br><span class="line"><span class="comment"># maximum number of worker processes</span></span><br><span class="line">processes       = <span class="number">10</span></span><br><span class="line"><span class="comment"># the socket (use the full path to be safe</span></span><br><span class="line">socket          = /path/to/your/project/mysite.sock</span><br><span class="line"><span class="comment"># ... with appropriate permissions - may be needed</span></span><br><span class="line"><span class="comment"># chmod-socket    = 664</span></span><br><span class="line"><span class="comment"># clear environment on exit</span></span><br><span class="line">vacuum          = true</span><br></pre></td></tr></table></figure>
-<p>And run uwsgi using this file:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --ini mysite_uwsgi.ini <span class="comment"># the --ini option is used to specify a file</span></span><br></pre></td></tr></table></figure>
-<p>Once again, test that the Django site works as expected.</p>
-<h2 id="Install-uWSGI-system-wide"><a href="#Install-uWSGI-system-wide" class="headerlink" title="Install uWSGI system-wide"></a>Install uWSGI system-wide</h2><p>So far, uWSGI is only installed in our virtualenv; we’ll need it installed system-wide for deployment purposes.</p>
-<p>Deactivate your virtualenv using command: <code>deactivate</code></p>
-<p>and install uWSGI system-wide:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pip install uwsgi</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or install LTS (long term support).</span></span><br><span class="line">pip install https://projects.unbit.it/downloads/uwsgi-lts.tar.gz</span><br></pre></td></tr></table></figure>
-<p>The uWSGI wiki describes several installation procedures. Before installing uWSGI system-wide, it’s worth considering which version to choose and the most appropriate way of installing it.</p>
-<p>Check again that you can still run uWSGI just like you did before:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --ini mysite_uwsgi.ini <span class="comment"># the --ini option is used to specify a file</span></span><br></pre></td></tr></table></figure>
-<h2 id="Emperor-mode"><a href="#Emperor-mode" class="headerlink" title="Emperor mode"></a>Emperor mode</h2><p>uWSGI can run in ‘emperor’ mode. In this mode it keeps an eye on a directory of uWSGI config files, and will spawn instances (‘vassals’) for each one it finds.</p>
-<p>Whenever a config file is amended, the emperor will automatically restart the vassal.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create a directory for the vassals</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/uwsgi/vassals</span><br><span class="line"><span class="comment"># symlink from the default config directory to your config file</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /path/to/your/mysite/mysite_uwsgi.ini /etc/uwsgi/vassals/</span><br><span class="line"><span class="comment"># run the emperor</span></span><br><span class="line">uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data</span><br></pre></td></tr></table></figure>
-<p>You may need to run uWSGI with sudo (I need not)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data</span><br></pre></td></tr></table></figure>
-<p>The options mean:</p>
-<ul>
-<li><code>emperor</code>: where to look for vassals (config files)</li>
-<li><code>uid</code>: the user id of the process once it’s started</li>
-<li><code>gid</code>: the group id of the process once it’s started</li>
-</ul>
-<p>Check the site; it should be running.</p>
-<h2 id="Check-the-site-it-should-be-running"><a href="#Check-the-site-it-should-be-running" class="headerlink" title="Check the site; it should be running"></a>Check the site; it should be running</h2><p>The last step is to make it all happen automatically at system startup time.</p>
-<p>For many systems, the easiest (if not the best) way to do this is to use the <code>rc.local</code> file.</p>
-<p>Edit <code>/etc/rc.local</code> and add:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /var/log/uwsgi-emperor.log</span><br></pre></td></tr></table></figure>
-<p>before the line <code>exit 0</code>. <strong>(Important)</strong></p>
-<p>And that should be it!</p>
-<h2 id="Further-configuration"><a href="#Further-configuration" class="headerlink" title="Further configuration"></a>Further configuration</h2><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
-<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
-<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
-<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
-<h3 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a>uWSGI</h3><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
-<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">env = DJANGO_SETTINGS_MODULE=mysite.settings <span class="comment"># set an environment variable</span></span><br><span class="line">safe-pidfile = /tmp/project-master.pid <span class="comment"># create a pidfile</span></span><br><span class="line">harakiri = <span class="number">20</span> <span class="comment"># respawn processes taking more than 20 seconds</span></span><br><span class="line">limit-<span class="keyword">as</span> = <span class="number">128</span> <span class="comment"># limit the project to 128 MB</span></span><br><span class="line"><span class="built_in">max</span>-requests = <span class="number">5000</span> <span class="comment"># respawn processes after serving 5000 requests</span></span><br><span class="line">daemonize = /var/log/uwsgi/yourproject.log <span class="comment"># background the process &amp; log</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Backend</tag>
-        <tag>Tutorial</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -608,6 +463,84 @@ function result() {
 <p>To create a window in a screen: press <code>@+C</code>.</p>
 <p>To navigate to the previous/next window in a screen: press <code>@+P/N</code></p>
 <p>To list all windows in a screen: press <code>@+W</code>.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Math is Hard</title>
+    <url>/2022/06/03/Math-is-Hard/</url>
+    <content><![CDATA[<h2 id="Hessian-Matrix"><a href="#Hessian-Matrix" class="headerlink" title="Hessian Matrix"></a>Hessian Matrix</h2><p><a href="https://zh.wikipedia.org/zh-tw/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">Wiki</a></p>
+<script type="math/tex; mode=display">H_{i,j}=\frac{\partial ^2 f}{\partial x_i \partial x_j}</script><script type="math/tex; mode=display">H=\nabla ^2 f</script><h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><p>Properties:</p>
+<h3 id="Property-1"><a href="#Property-1" class="headerlink" title="Property 1"></a>Property 1</h3><p>Let $A\in R^{n\times n}$</p>
+<script type="math/tex; mode=display">
+det(A)=det(A^T)
+\\
+det(A)=(-1)^n det(-A)</script><p>$-1$ can be replaced by any number $c$</p>
+<h3 id="Property-2"><a href="#Property-2" class="headerlink" title="Property 2"></a>Property 2</h3><p>Multiply one column (or one row) by $k$,</p>
+<script type="math/tex; mode=display">
+\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ ka_{i1}&  ka_{i2}&  \cdots&  ka_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|=k\left| \begin{matrix}{l}
+ a_{11}&  a_{12}&  \cdots&  a_{1n}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{i1}&  a_{i2}&  \cdots&  a_{in}\\
+ \vdots&  \vdots&  \ddots&  \vdots\\
+ a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
+\end{matrix} \right|</script><p>The determinant of the new matrix is k times the determinant of the original matrix.</p>
+<h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
+a\cdot \left( b\times c \right) =b\cdot \left( c\times a \right) =c\cdot \left( a\times b \right)
+\\
+a\times a=0
+\\
+(a\times b) \cdot a =0
+\\
+a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \left( a\times b \right) =0
+\\
+\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><p>For $a,b,c,d\in \mathbb{R}^3$:</p>
+<script type="math/tex; mode=display">
+a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c
+\\
+(a\times b)\times (a\times c)=(a\cdot (b\times c))a=det(a,b,c)a</script><p>which is also know as the vector triple product.</p>
+<script type="math/tex; mode=display">
+(a\times b)\cdot(c\times d)=(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)</script><p>whose proof is given here:</p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt="Proof of the Lagrange identity on vector product"></p>
+<h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
+Q^TQ=I\\
+Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
+v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
+<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt="Linear transformation in transformed basis"></p>
+<h2 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h2><script type="math/tex; mode=display">
+R=\left[ \begin{matrix}
+ \cos \theta&  -\sin \theta&  0\\
+ \sin \theta&  \cos \theta&  0\\
+ 0&  0&  1\\
+\end{matrix} \right]</script><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
+<h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>A matrix is a rotation matrix iff $R^T=R^{-1}$ i.e. $R^TR=I$ and $detR=1$</p>
+<h3 id="Calculate-the-axis-of-the-rotation-matrix"><a href="#Calculate-the-axis-of-the-rotation-matrix" class="headerlink" title="Calculate the axis of the rotation matrix"></a>Calculate the axis of the rotation matrix</h3><p>The axis of the rotation matrix stays unchanged after rotation, i.e. $Rx=x$, $(R-I)x=0$</p>
+<p>Solving the equation and we get the axis of the rotation.</p>
+<h3 id="Calculate-the-rotation-angle-of-the-rotation-matrix"><a href="#Calculate-the-rotation-angle-of-the-rotation-matrix" class="headerlink" title="Calculate the rotation angle of the rotation matrix"></a>Calculate the rotation angle of the rotation matrix</h3><p>Choose a random vector, usually $v=(1,0,0,…,0)$. Therefor, $w=Rv$, i.e. $v$ after rotation, is the actually the first column of $R$ (or you can just do the calculate).</p>
+<p>Let $a$ be the vector representing the axis of the rotation.</p>
+<p>We can use $v’=v-\frac{aa^T}{a^Ta}v$ to get the vector perpendicular to the axis while pointing from the axis to the end of $v$. Similarly, use $w’=w-\frac{aa^T}{a^Ta}w$ to get the vector perpendicular to the axis while pointing from the axis t othe end of $w$.</p>
+<p>It’s easy to find that $Span(v’,w’)$ is perpendicular to the axis $a$. Therefor, the angle between $v’$ and $w’$ is the angle of the rotation, i.e. $\arccos(\frac{<v',w'>}{||v’||||w’||})$</p>
+<h2 id="QR-Factorization"><a href="#QR-Factorization" class="headerlink" title="QR Factorization"></a>QR Factorization</h2><p>Reference: <a href="https://www.youtube.com/watch?v=J41Ypt6Mftc">this video</a> and <a href="https://www.youtube.com/watch?v=0MtwqhIwdrI">this video(better, starts at 25:30)</a></p>
+<script type="math/tex; mode=display">
+q_3=\frac{C}{||C||} \\
+C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
+<h2 id="Null-Space-Kernel-of-a-Matrix"><a href="#Null-Space-Kernel-of-a-Matrix" class="headerlink" title="Null Space / Kernel of a Matrix"></a>Null Space / Kernel of a Matrix</h2><p>Reference: <a href="https://www.youtube.com/watch?v=8o5Cmfpeo6g&amp;t=1692s">this video</a> and <a href="https://www.youtube.com/watch?v=VqP2tREMvt0">this video(talks about how to calc)</a></p>
+<p>The null space of $A$ is all solution $x$ (a vector), s.t. $Ax=0$. Often denoted as $N(A)$ or $ker(A)$</p>
+<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
+<p>Reference: <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
+<p>It tell you how to calc the rank of a matrix.</p>
+<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Reference: <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
+<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
+<p>A projection matrix onto a col space of $Q$ is:</p>
+<script type="math/tex; mode=display">P=Q(Q^TQ)^{-1}Q^T</script><p>Specifically, if $Q$ is a square orthonormal matrix, then $P=I$</p>
 ]]></content>
       <tags>
         <tag>Notes</tag>
@@ -804,6 +737,154 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>How to Deploy Django</title>
+    <url>/2022/04/27/How-to-Deploy-Django/</url>
+    <content><![CDATA[<p>Just follow the <a href="https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html">docs</a>. That’s it. However, I do find a few things wrong in the docs when I followed it. I rewrite those parts and add some comments.</p>
+<h2 id="Some-notes-about-this-tutorial"><a href="#Some-notes-about-this-tutorial" class="headerlink" title="Some notes about this tutorial"></a>Some notes about this tutorial</h2><p>Note</p>
+<p>This is a tutorial. It is not intended to provide a reference guide, never mind an exhaustive reference, to the subject of deployment.</p>
+<p>nginx and uWSGI are good choices for Django deployment, but they are not the only ones, or the ‘official’ ones. There are excellent alternatives to both, and you are encouraged to investigate them.</p>
+<p>The way we deploy Django here is a good way, but it is not the only way; for some purposes it is probably not even the best way.</p>
+<p>It is however a reliable and easy way, and the material covered here will introduce you to concepts and procedures you will need to be familiar with whatever software you use for deploying Django. By providing you with a working setup, and rehearsing the steps you must take to get there, it will offer you a basis for exploring other ways to achieve this.</p>
+<p>Note</p>
+<p>This tutorial makes some assumptions about the system you are using.</p>
+<p>It is assumed that you are using a Unix-like system, and that it features an aptitude-like package manager. However if you need to ask questions like “What’s the equivalent of aptitude on Mac OS X?”, you’ll be able to find that kind of help fairly easily.</p>
+<p>While this tutorial assumes Django 1.4 or later, which will automatically create a wsgi module in your new project, the instructions will work with earlier versions. You will though need to obtain that Django wsgi module yourself, and you may find that the Django project directory structure is slightly different.</p>
+<h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><p>A web server faces the outside world. It can serve files (HTML, images, CSS, etc) directly from the file system. However, it can’t talk directly to Django applications; it needs something that will run the application, feed it requests from web clients (such as browsers) and return responses.</p>
+<p>A Web Server Gateway Interface - WSGI - does this job. WSGI is a Python standard.</p>
+<p>uWSGI is a WSGI implementation. In this tutorial we will set up uWSGI so that it creates a Unix socket, and serves responses to the web server via the uwsgi protocol. At the end, our complete stack of components will look like this:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; the web server &lt;-&gt; the socket &lt;-&gt; uwsgi &lt;-&gt; Django</span><br></pre></td></tr></table></figure>
+<h2 id="Before-you-start-setting-up-uWSGI"><a href="#Before-you-start-setting-up-uWSGI" class="headerlink" title="Before you start setting up uWSGI"></a>Before you start setting up uWSGI</h2><h3 id="virtual-env"><a href="#virtual-env" class="headerlink" title="virtual env"></a>virtual env</h3><p>Make sure you are in a virtualenv for the software we need to install (we will describe how to install a system-wide uwsgi later):</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">virtualenv uwsgi-tutorial</span><br><span class="line"><span class="built_in">cd</span> uwsgi-tutorial</span><br><span class="line"><span class="built_in">source</span> bin/activate</span><br></pre></td></tr></table></figure>
+<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>Install Django into your virtualenv, create a new project, and <code>cd</code> into the project:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install Django</span><br><span class="line">django-admin.py startproject mysite</span><br><span class="line"><span class="built_in">cd</span> mysite</span><br></pre></td></tr></table></figure>
+<h3 id="About-the-domain-and-port"><a href="#About-the-domain-and-port" class="headerlink" title="About the domain and port"></a>About the domain and port</h3><p>In this tutorial we will call your domain <code>example.com</code>. Substitute your own FQDN or IP address.</p>
+<p>Throughout, we’ll be using port 8000 for the web server to publish on, just like the Django runserver does by default. You can use whatever port you want of course, but I have chosen this one so it doesn’t conflict with anything a web server might be doing already.</p>
+<h2 id="Basic-uWSGI-installation-and-configuration"><a href="#Basic-uWSGI-installation-and-configuration" class="headerlink" title="Basic uWSGI installation and configuration"></a>Basic uWSGI installation and configuration</h2><h3 id="Install-uWSGI-into-your-virtualenv"><a href="#Install-uWSGI-into-your-virtualenv" class="headerlink" title="Install uWSGI into your virtualenv"></a>Install uWSGI into your virtualenv</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
+<p>Of course there are other ways to install uWSGI, but this one is as good as any. Remember that you will need to have Python development packages installed. In the case of Debian, or Debian-derived systems such as Ubuntu, what you need to have installed is <code>pythonX.Y-dev</code>, where X.Y is your version of Python.</p>
+<h3 id="Basic-test"><a href="#Basic-test" class="headerlink" title="Basic test"></a>Basic test</h3><p>Create a file called <code>test.py</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># test.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">application</span>(<span class="params">env, start_response</span>):</span><br><span class="line">    start_response(<span class="string">&#x27;200 OK&#x27;</span>, [(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/html&#x27;</span>)])</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">b&quot;Hello World&quot;</span>] <span class="comment"># python3</span></span><br><span class="line">    <span class="comment">#return [&quot;Hello World&quot;] # python2</span></span><br></pre></td></tr></table></figure>
+<p>Note</p>
+<p>Take into account that Python 3 requires <code>bytes()</code>.</p>
+<p>Run uWSGI:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --http :8000 --wsgi-file test.py</span><br></pre></td></tr></table></figure>
+<p>The options mean:</p>
+<ul>
+<li><code>http :8000</code>: use protocol http, port 8000</li>
+<li><code>wsgi-file test.py</code>: load the specified file, test.py</li>
+</ul>
+<p>This should serve a ‘hello world’ message directly to the browser on port 8000. Visit: <code>http://example.com:8000</code> to check. If so, it means the following stack of components works:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; uWSGI &lt;-&gt; Python</span><br></pre></td></tr></table></figure>
+<h3 id="Test-your-Django-project"><a href="#Test-your-Django-project" class="headerlink" title="Test your Django project"></a>Test your Django project</h3><p>Now we want uWSGI to do the same thing, but to run a Django site instead of the <code>test.py</code> module.</p>
+<p>If you haven’t already done so, make sure that your <code>mysite</code> project actually works:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py runserver 0.0.0.0:8000</span><br></pre></td></tr></table></figure>
+<p>And if that works, run it using uWSGI:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --http :8000 --module mysite.wsgi</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>module mysite.wsgi</code>: load the specificied wsgi module</li>
+</ul>
+<p>Point your browser at the server; if the site appears, it means uWSGI is able to serve your Django application from your virtualenv, and this stack operates correctly:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; uWSGI &lt;-&gt; Django</span><br></pre></td></tr></table></figure>
+<p>Now normally we won’t have the browser speaking directly to uWSGI. That’s a job for the webserver, which will act as a go-between.</p>
+<h2 id="Basic-nginx"><a href="#Basic-nginx" class="headerlink" title="Basic nginx"></a>Basic nginx</h2><h3 id="Install-nginx"><a href="#Install-nginx" class="headerlink" title="Install nginx"></a>Install nginx</h3><p>To simple, I’ll skip this part.</p>
+<p>Use <code>sudo /etc/init.d/nginx start</code> to start nginx and use <code>sudo nginx -s reload</code> to reload configurations.</p>
+<h3 id="Configure-nginx-for-your-site"><a href="#Configure-nginx-for-your-site" class="headerlink" title="Configure nginx for your site"></a>Configure nginx for your site</h3><p>You will need the <code>uwsgi_params</code> file, which is available in the <code>nginx</code> directory of the uWSGI distribution, or from <a href="https://github.com/nginx/nginx/blob/master/conf/uwsgi_params">https://github.com/nginx/nginx/blob/master/conf/uwsgi_params</a></p>
+<p>Copy it into your project directory. In a moment we will tell nginx to refer to it.</p>
+<p>Now create a file called mysite_nginx.conf in the /etc/nginx/sites-available/ directory, and put this in it:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite_nginx.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># the upstream component nginx needs to connect to</span></span><br><span class="line">upstream django &#123;</span><br><span class="line">    <span class="comment"># server unix:///path/to/your/mysite/mysite.sock; # for a file socket</span></span><br><span class="line">    server <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8001</span>; <span class="comment"># for a web port socket (we&#x27;ll use this first)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># configuration of the server</span></span><br><span class="line">server &#123;</span><br><span class="line">    <span class="comment"># the port your site will be served on</span></span><br><span class="line">    listen      <span class="number">8000</span>;</span><br><span class="line">    <span class="comment"># the domain name it will serve for</span></span><br><span class="line">    server_name example.com; <span class="comment"># substitute your machine&#x27;s IP address or FQDN</span></span><br><span class="line">    charset     utf-<span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># max upload size</span></span><br><span class="line">    client_max_body_size 75M;   <span class="comment"># adjust to taste</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Django media</span></span><br><span class="line">    location /media  &#123;</span><br><span class="line">        alias /path/to/your/mysite/media;  <span class="comment"># your Django project&#x27;s media files - amend as required</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /static &#123;</span><br><span class="line">        alias /path/to/your/mysite/static; <span class="comment"># your Django project&#x27;s static files - amend as required</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Finally, send all non-media requests to the Django server.</span></span><br><span class="line">    location / &#123;</span><br><span class="line">        uwsgi_pass  django;</span><br><span class="line">        include     /path/to/your/mysite/uwsgi_params; <span class="comment"># the uwsgi_params file you installed</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This conf file tells nginx to serve up media and static files from the filesystem, as well as handle requests that require Django’s intervention. For a large deployment it is considered good practice to let one server handle static/media files, and another handle Django applications, but for now, this will do just fine.</p>
+<p>Symlink to this file from /etc/nginx/sites-enabled so nginx can see it:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">ln</span> -s /etc/nginx/sites-available/mysite_nginx.conf /etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure>
+<h3 id="Deploying-static-files"><a href="#Deploying-static-files" class="headerlink" title="Deploying static files"></a>Deploying static files</h3><p>Before running nginx, you have to collect all Django static files in the static folder. First of all you have to edit mysite/settings.py adding:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">STATIC_ROOT = os.path.join(BASE_DIR, <span class="string">&quot;static/&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>and then run</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
+<h3 id="Basic-nginx-test"><a href="#Basic-nginx-test" class="headerlink" title="Basic nginx test"></a>Basic nginx test</h3><p>Restart nginx:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo /etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+<p>To check that media files are being served correctly, add an image called <code>media.png</code> to the <code>/path/to/your/project/project/media</code> directory, then visit <a href="http://example.com:8000/media/media.png">http://example.com:8000/media/media.png</a> - if this works, you’ll know at least that nginx is serving files correctly.</p>
+<p>It is worth not just restarting nginx, but actually stopping and then starting it again, which will inform you if there is a problem, and where it is.</p>
+<h2 id="nginx-and-uWSGI-and-test-py"><a href="#nginx-and-uWSGI-and-test-py" class="headerlink" title="nginx and uWSGI and test.py"></a>nginx and uWSGI and test.py</h2><p>Let’s get nginx to speak to the “hello world” <code>test.py</code> application.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket :8001 --wsgi-file test.py</span><br></pre></td></tr></table></figure>
+<p>This is nearly the same as before, except this time one of the options is different:</p>
+<ul>
+<li><code>socket :8001</code>: use protocol uwsgi, port 8001</li>
+</ul>
+<p>nginx meanwhile has been configured to communicate with uWSGI on that port, and with the outside world on port 8000. Visit:</p>
+<p><a href="http://example.com:8000/">http://example.com:8000/</a></p>
+<p>to check. And this is our stack:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">the web client &lt;-&gt; the web server &lt;-&gt; the socket &lt;-&gt; uWSGI &lt;-&gt; Python</span><br></pre></td></tr></table></figure>
+<p>Meanwhile, you can try to have a look at the uwsgi output at <a href="http://example.com:8001">http://example.com:8001</a> - but quite probably, it won’t work because your browser speaks http, not uWSGI, though you should see output from uWSGI in your terminal.</p>
+<h2 id="Using-Unix-sockets-instead-of-ports"><a href="#Using-Unix-sockets-instead-of-ports" class="headerlink" title="Using Unix sockets instead of ports"></a>Using Unix sockets instead of ports</h2><p>So far we have used a TCP port socket, because it’s simpler, but in fact it’s better to use Unix sockets than ports - there’s less overhead.</p>
+<p>Edit <code>mysite_nginx.conf</code>, changing it to match:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">server unix:///path/to/your/mysite/mysite.sock; <span class="comment"># for a file socket</span></span><br><span class="line"><span class="comment"># server 127.0.0.1:8001; # for a web port socket (we&#x27;ll use this first)</span></span><br></pre></td></tr></table></figure>
+<p>and restart nginx.</p>
+<p>Run uWSGI again:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py</span><br></pre></td></tr></table></figure>
+<p>This time the <code>socket</code> option tells uWSGI which file to use.</p>
+<p>Try <a href="http://example.com:8000/">http://example.com:8000/</a> in the browser.</p>
+<h3 id="If-that-doesn’t-work"><a href="#If-that-doesn’t-work" class="headerlink" title="If that doesn’t work"></a>If that doesn’t work</h3><p>Check your nginx error log(/var/log/nginx/error.log). If you see something like:</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">connect() to unix:///path/to/your/mysite/mysite.sock failed (13: Permission</span><br><span class="line">denied)</span><br></pre></td></tr></table></figure>
+<p>then probably you need to manage the permissions on the socket so that nginx is allowed to use it.</p>
+<p>Try:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py --chmod-socket=666 <span class="comment"># (very permissive)</span></span><br></pre></td></tr></table></figure>
+<p>↑This works for me and ↓this does not</p>
+<p>or:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --wsgi-file test.py --chmod-socket=664 <span class="comment"># (more sensible)</span></span><br></pre></td></tr></table></figure>
+<p>You may also have to add your user to nginx’s group (which is probably www-data), or vice-versa, so that nginx can read and write to your socket properly.</p>
+<p>It’s worth keeping the output of the nginx log running in a terminal window so you can easily refer to it while troubleshooting.</p>
+<h2 id="Running-the-Django-application-with-uwsgi-and-nginx"><a href="#Running-the-Django-application-with-uwsgi-and-nginx" class="headerlink" title="Running the Django application with uwsgi and nginx"></a>Running the Django application with uwsgi and nginx</h2><p>Let’s run our Django application:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=666</span><br></pre></td></tr></table></figure>
+<p>Note that in the original docs, this command is</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --socket mysite.sock --module mysite.wsgi --chmod-socket=664</span><br></pre></td></tr></table></figure>
+<p>but it does not work for me.</p>
+<p>Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project.</p>
+<h2 id="Now-uWSGI-and-nginx-should-be-serving-up-not-just-a-“Hello-World”-module-but-your-Django-project"><a href="#Now-uWSGI-and-nginx-should-be-serving-up-not-just-a-“Hello-World”-module-but-your-Django-project" class="headerlink" title="Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project"></a>Now uWSGI and nginx should be serving up not just a “Hello World” module, but your Django project</h2><p>We can put the same options that we used with uWSGI into a file, and then ask uWSGI to run with that file. It makes it easier to manage configurations.</p>
+<p>Create a file called <code>mysite_uwsgi.ini</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mysite_uwsgi.ini file</span></span><br><span class="line">[uwsgi]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Django-related settings</span></span><br><span class="line"><span class="comment"># the base directory (full path)</span></span><br><span class="line">chdir           = /path/to/your/project</span><br><span class="line"><span class="comment"># Django&#x27;s wsgi file</span></span><br><span class="line">module          = project.wsgi</span><br><span class="line"><span class="comment"># the virtualenv (full path)</span></span><br><span class="line">home            = /path/to/virtualenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># process-related settings</span></span><br><span class="line"><span class="comment"># master</span></span><br><span class="line">master          = true</span><br><span class="line"><span class="comment"># maximum number of worker processes</span></span><br><span class="line">processes       = <span class="number">10</span></span><br><span class="line"><span class="comment"># the socket (use the full path to be safe</span></span><br><span class="line">socket          = /path/to/your/project/mysite.sock</span><br><span class="line"><span class="comment"># ... with appropriate permissions - may be needed</span></span><br><span class="line"><span class="comment"># chmod-socket    = 664</span></span><br><span class="line"><span class="comment"># clear environment on exit</span></span><br><span class="line">vacuum          = true</span><br></pre></td></tr></table></figure>
+<p>And run uwsgi using this file:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --ini mysite_uwsgi.ini <span class="comment"># the --ini option is used to specify a file</span></span><br></pre></td></tr></table></figure>
+<p>Once again, test that the Django site works as expected.</p>
+<h2 id="Install-uWSGI-system-wide"><a href="#Install-uWSGI-system-wide" class="headerlink" title="Install uWSGI system-wide"></a>Install uWSGI system-wide</h2><p>So far, uWSGI is only installed in our virtualenv; we’ll need it installed system-wide for deployment purposes.</p>
+<p>Deactivate your virtualenv using command: <code>deactivate</code></p>
+<p>and install uWSGI system-wide:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pip install uwsgi</span><br><span class="line"></span><br><span class="line"><span class="comment"># Or install LTS (long term support).</span></span><br><span class="line">pip install https://projects.unbit.it/downloads/uwsgi-lts.tar.gz</span><br></pre></td></tr></table></figure>
+<p>The uWSGI wiki describes several installation procedures. Before installing uWSGI system-wide, it’s worth considering which version to choose and the most appropriate way of installing it.</p>
+<p>Check again that you can still run uWSGI just like you did before:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">uwsgi --ini mysite_uwsgi.ini <span class="comment"># the --ini option is used to specify a file</span></span><br></pre></td></tr></table></figure>
+<h2 id="Emperor-mode"><a href="#Emperor-mode" class="headerlink" title="Emperor mode"></a>Emperor mode</h2><p>uWSGI can run in ‘emperor’ mode. In this mode it keeps an eye on a directory of uWSGI config files, and will spawn instances (‘vassals’) for each one it finds.</p>
+<p>Whenever a config file is amended, the emperor will automatically restart the vassal.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># create a directory for the vassals</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/uwsgi/vassals</span><br><span class="line"><span class="comment"># symlink from the default config directory to your config file</span></span><br><span class="line">sudo <span class="built_in">ln</span> -s /path/to/your/mysite/mysite_uwsgi.ini /etc/uwsgi/vassals/</span><br><span class="line"><span class="comment"># run the emperor</span></span><br><span class="line">uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data</span><br></pre></td></tr></table></figure>
+<p>You may need to run uWSGI with sudo (I need not)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data</span><br></pre></td></tr></table></figure>
+<p>The options mean:</p>
+<ul>
+<li><code>emperor</code>: where to look for vassals (config files)</li>
+<li><code>uid</code>: the user id of the process once it’s started</li>
+<li><code>gid</code>: the group id of the process once it’s started</li>
+</ul>
+<p>Check the site; it should be running.</p>
+<h2 id="Check-the-site-it-should-be-running"><a href="#Check-the-site-it-should-be-running" class="headerlink" title="Check the site; it should be running"></a>Check the site; it should be running</h2><p>The last step is to make it all happen automatically at system startup time.</p>
+<p>For many systems, the easiest (if not the best) way to do this is to use the <code>rc.local</code> file.</p>
+<p>Edit <code>/etc/rc.local</code> and add:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/local/bin/uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data --daemonize /var/log/uwsgi-emperor.log</span><br></pre></td></tr></table></figure>
+<p>before the line <code>exit 0</code>. <strong>(Important)</strong></p>
+<p>And that should be it!</p>
+<h2 id="Further-configuration"><a href="#Further-configuration" class="headerlink" title="Further configuration"></a>Further configuration</h2><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
+<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
+<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
+<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
+<h3 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a>uWSGI</h3><p>It is important to understand that this has been a tutorial, to get you started. You do need to read the nginx and uWSGI documentation, and study the options available before deployment in a production environment.</p>
+<p>Both nginx and uWSGI benefit from friendly communities, who are able to offer invaluable advice about configuration and usage.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">env = DJANGO_SETTINGS_MODULE=mysite.settings <span class="comment"># set an environment variable</span></span><br><span class="line">safe-pidfile = /tmp/project-master.pid <span class="comment"># create a pidfile</span></span><br><span class="line">harakiri = <span class="number">20</span> <span class="comment"># respawn processes taking more than 20 seconds</span></span><br><span class="line">limit-<span class="keyword">as</span> = <span class="number">128</span> <span class="comment"># limit the project to 128 MB</span></span><br><span class="line"><span class="built_in">max</span>-requests = <span class="number">5000</span> <span class="comment"># respawn processes after serving 5000 requests</span></span><br><span class="line">daemonize = /var/log/uwsgi/yourproject.log <span class="comment"># background the process &amp; log</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Web Dev</tag>
+        <tag>Django</tag>
+        <tag>Backend</tag>
+        <tag>Tutorial</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VSCode Using Notes</title>
     <url>/2022/04/28/VSCode-Using-Notes/</url>
     <content><![CDATA[<h2 id="How-to-add-“Program-Files”-in-VS-Code-settings"><a href="#How-to-add-“Program-Files”-in-VS-Code-settings" class="headerlink" title="How to add “Program Files” in VS Code settings"></a>How to add “Program Files” in VS Code settings</h2><p>Use <code>&quot;C:\Program Files\...&quot;</code> or <code>C:\&quot;Program Files&quot;\...</code></p>
@@ -816,84 +897,6 @@ function result() {
       <tags>
         <tag>Notes</tag>
         <tag>Software Using</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Math is Hard</title>
-    <url>/2022/06/03/Math-is-Hard/</url>
-    <content><![CDATA[<h2 id="Hessian-Matrix"><a href="#Hessian-Matrix" class="headerlink" title="Hessian Matrix"></a>Hessian Matrix</h2><p><a href="https://zh.wikipedia.org/zh-tw/%E9%BB%91%E5%A1%9E%E7%9F%A9%E9%99%A3">Wiki</a></p>
-<script type="math/tex; mode=display">H_{i,j}=\frac{\partial ^2 f}{\partial x_i \partial x_j}</script><script type="math/tex; mode=display">H=\nabla ^2 f</script><h2 id="Determinant"><a href="#Determinant" class="headerlink" title="Determinant"></a>Determinant</h2><p>Properties:</p>
-<h3 id="Property-1"><a href="#Property-1" class="headerlink" title="Property 1"></a>Property 1</h3><p>Let $A\in R^{n\times n}$</p>
-<script type="math/tex; mode=display">
-det(A)=det(A^T)
-\\
-det(A)=(-1)^n det(-A)</script><p>$-1$ can be replaced by any number $c$</p>
-<h3 id="Property-2"><a href="#Property-2" class="headerlink" title="Property 2"></a>Property 2</h3><p>Multiply one column (or one row) by $k$,</p>
-<script type="math/tex; mode=display">
-\left| \begin{matrix}{l}
- a_{11}&  a_{12}&  \cdots&  a_{1n}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- ka_{i1}&  ka_{i2}&  \cdots&  ka_{in}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
-\end{matrix} \right|=k\left| \begin{matrix}{l}
- a_{11}&  a_{12}&  \cdots&  a_{1n}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{i1}&  a_{i2}&  \cdots&  a_{in}\\
- \vdots&  \vdots&  \ddots&  \vdots\\
- a_{n1}&  a_{n2}&  \cdots&  a_{nn}\\
-\end{matrix} \right|</script><p>The determinant of the new matrix is k times the determinant of the original matrix.</p>
-<h2 id="Properties-about-Cross-Product"><a href="#Properties-about-Cross-Product" class="headerlink" title="Properties about Cross Product"></a>Properties about Cross Product</h2><script type="math/tex; mode=display">
-a\cdot \left( b\times c \right) =b\cdot \left( c\times a \right) =c\cdot \left( a\times b \right)
-\\
-a\times a=0
-\\
-(a\times b) \cdot a =0
-\\
-a\times \left( b\times c \right) +b\times \left( c\times a \right) +c\times \left( a\times b \right) =0
-\\
-\left( a\times b \right) \times \left( a\times c \right) =\left( a\cdot \left( b\times c \right) \right) a</script><p>For $a,b,c,d\in \mathbb{R}^3$:</p>
-<script type="math/tex; mode=display">
-a\times \left( b\times c \right) =\left( a\cdot c \right) b-\left( a\cdot c \right) c
-\\
-(a\times b)\times (a\times c)=(a\cdot (b\times c))a=det(a,b,c)a</script><p>which is also know as the vector triple product.</p>
-<script type="math/tex; mode=display">
-(a\times b)\cdot(c\times d)=(a\cdot c)(b\cdot d)-(a\cdot d)(b\cdot c)</script><p>whose proof is given here:</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgqMpn.png" alt="Proof of the Lagrange identity on vector product"></p>
-<h2 id="Property-of-Orthonormal-Matrix"><a href="#Property-of-Orthonormal-Matrix" class="headerlink" title="Property of Orthonormal Matrix"></a>Property of Orthonormal Matrix</h2><script type="math/tex; mode=display">
-Q^TQ=I\\
-Q^T=Q^{-1}</script><h2 id="Linear-Transformation-In-Transformed-Basis"><a href="#Linear-Transformation-In-Transformed-Basis" class="headerlink" title="Linear Transformation In Transformed Basis"></a>Linear Transformation In Transformed Basis</h2><script type="math/tex; mode=display">
-v'=P^{-1}APv</script><p>where $P$ is the basis of the transformed basis (new basis) in the standard basis (our basis) and $A$ is the transformation in the standard basis.</p>
-<p><img src="https://s1.ax1x.com/2022/06/12/XgBGdg.png" alt="Linear transformation in transformed basis"></p>
-<h2 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h2><script type="math/tex; mode=display">
-R=\left[ \begin{matrix}
- \cos \theta&  -\sin \theta&  0\\
- \sin \theta&  \cos \theta&  0\\
- 0&  0&  1\\
-\end{matrix} \right]</script><p>rotates points in the $xy$ plane counterclockwise through an angle $\theta$.</p>
-<h3 id="Judge-whether-a-matrix-is-a-rotation-matrix"><a href="#Judge-whether-a-matrix-is-a-rotation-matrix" class="headerlink" title="Judge whether a matrix is a rotation matrix"></a>Judge whether a matrix is a rotation matrix</h3><p>A matrix is a rotation matrix iff $R^T=R^{-1}$ i.e. $R^TR=I$ and $detR=1$</p>
-<h3 id="Calculate-the-axis-of-the-rotation-matrix"><a href="#Calculate-the-axis-of-the-rotation-matrix" class="headerlink" title="Calculate the axis of the rotation matrix"></a>Calculate the axis of the rotation matrix</h3><p>The axis of the rotation matrix stays unchanged after rotation, i.e. $Rx=x$, $(R-I)x=0$</p>
-<p>Solving the equation and we get the axis of the rotation.</p>
-<h3 id="Calculate-the-rotation-angle-of-the-rotation-matrix"><a href="#Calculate-the-rotation-angle-of-the-rotation-matrix" class="headerlink" title="Calculate the rotation angle of the rotation matrix"></a>Calculate the rotation angle of the rotation matrix</h3><p>Choose a random vector, usually $v=(1,0,0,…,0)$. Therefor, $w=Rv$, i.e. $v$ after rotation, is the actually the first column of $R$ (or you can just do the calculate).</p>
-<p>Let $a$ be the vector representing the axis of the rotation.</p>
-<p>We can use $v’=v-\frac{aa^T}{a^Ta}v$ to get the vector perpendicular to the axis while pointing from the axis to the end of $v$. Similarly, use $w’=w-\frac{aa^T}{a^Ta}w$ to get the vector perpendicular to the axis while pointing from the axis t othe end of $w$.</p>
-<p>It’s easy to find that $Span(v’,w’)$ is perpendicular to the axis $a$. Therefor, the angle between $v’$ and $w’$ is the angle of the rotation, i.e. $\arccos(\frac{<v',w'>}{||v’||||w’||})$</p>
-<h2 id="QR-Factorization"><a href="#QR-Factorization" class="headerlink" title="QR Factorization"></a>QR Factorization</h2><p>Reference: <a href="https://www.youtube.com/watch?v=J41Ypt6Mftc">this video</a> and <a href="https://www.youtube.com/watch?v=0MtwqhIwdrI">this video(better, starts at 25:30)</a></p>
-<script type="math/tex; mode=display">
-q_3=\frac{C}{||C||} \\
-C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matrix"><a href="#Nullity-of-a-Matrix" class="headerlink" title="Nullity of a Matrix"></a>Nullity of a Matrix</h2><p>Basically, the dimension of the null space.</p>
-<h2 id="Null-Space-Kernel-of-a-Matrix"><a href="#Null-Space-Kernel-of-a-Matrix" class="headerlink" title="Null Space / Kernel of a Matrix"></a>Null Space / Kernel of a Matrix</h2><p>Reference: <a href="https://www.youtube.com/watch?v=8o5Cmfpeo6g&amp;t=1692s">this video</a> and <a href="https://www.youtube.com/watch?v=VqP2tREMvt0">this video(talks about how to calc)</a></p>
-<p>The null space of $A$ is all solution $x$ (a vector), s.t. $Ax=0$. Often denoted as $N(A)$ or $ker(A)$</p>
-<h2 id="Rank-of-a-Matrix"><a href="#Rank-of-a-Matrix" class="headerlink" title="Rank of a Matrix"></a>Rank of a Matrix</h2><p>Basically, the dimension of the column space.</p>
-<p>Reference: <a href="https://stattrek.com/matrix-algebra/matrix-rank.aspx">this page</a></p>
-<p>It tell you how to calc the rank of a matrix.</p>
-<h2 id="Projection-Matrix"><a href="#Projection-Matrix" class="headerlink" title="Projection Matrix"></a>Projection Matrix</h2><p>Reference: <a href="http://mlwiki.org/index.php/Projection_onto_Subspaces">this page</a></p>
-<p>Use <code>Ctrl+F</code> to search for the <code>Projection Matrix</code> part, in which you can find how to solve projection matrix onto certain space.</p>
-<p>A projection matrix onto a col space of $Q$ is:</p>
-<script type="math/tex; mode=display">P=Q(Q^TQ)^{-1}Q^T</script><p>Specifically, if $Q$ is a square orthonormal matrix, then $P=I$</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -978,26 +981,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>luoguP1291 [SHOI2002]百事世界杯之旅</title>
-    <url>/2018/11/02/luoguP1291%20%5BSHOI2002%5D%E7%99%BE%E4%BA%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E4%B9%8B%E6%97%85/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1291">题目</a></p>
-<hr>
-<p>假设有n个不同名字</p>
-<p>先抽一次，必定抽出一个新的——ans+1</p>
-<p>再抽第二次，这时有(n-1)/n的概率能抽到新的，所以期望抽n/(n-1)次能抽到新的——ans+n/(n-1)</p>
-<p>再抽第三次，这时有(n-2)/n的概率能抽到新的，所以期望抽n/(n-2)次能抽到新的——ans+n/(n-2)</p>
-<p>……</p>
-<p>以此类推，答案是1+n/(n-1)+n/(n-2)+n/(n-3)+…+n/1</p>
-<p>答案也就是n(1+1/2+1/3+1/4+..1/n)</p>
-<hr>
-<p>另外这题的输出答案方式很清奇，要小心爆ll，要记得%%</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,a=<span class="number">0</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll aa,ll bb)</span></span>&#123;</span><br><span class="line"> ll k=<span class="built_in">gcd</span>(b,bb),ansa,ansb;</span><br><span class="line"> ansb=b/k*bb;ansa=b/k*aa+bb/k*a;</span><br><span class="line"> k=<span class="built_in">gcd</span>(ansa,ansb);</span><br><span class="line"> a=ansa/k;b=ansb/k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">len</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  ans++;x/=<span class="number">10</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  ll aa=n,bb=i,k=<span class="built_in">gcd</span>(aa,bb);</span><br><span class="line">  aa/=k;bb/=k;</span><br><span class="line">  <span class="built_in">add</span>(aa,bb);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(a%b==<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a/b);</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll x=a/b;a-=x*b;ll lx=<span class="built_in">len</span>(x),lb=<span class="built_in">len</span>(b);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,x);<span class="built_in">fsb</span>(i,<span class="number">1</span>,lb)<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>luoguP1363 幻想迷宫</title>
     <url>/2018/10/30/luoguP1363-%E5%B9%BB%E6%83%B3%E8%BF%B7%E5%AE%AB/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1363">题目</a></p>
@@ -1031,6 +1014,17 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <p>至于计算方案数，假设x和y合成z，那么z一共可以有x的方案数乘y的方案数种方案数。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N][N],n,x,y,z,vis[N];</span><br><span class="line">ll d[N],f[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(d[i]),f[i]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">mem</span>(a,<span class="number">255</span>);</span><br><span class="line"> <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x))&#123;</span><br><span class="line">  <span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);x++;y++;z++;a[x][y]=a[y][x]=z;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(T,<span class="number">1</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">  <span class="type">int</span> u=<span class="number">-1</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)</span><br><span class="line">   u=((!vis[i])&amp;&amp;(u==<span class="number">-1</span>||d[u]&gt;d[i]))?i:u;</span><br><span class="line">  vis[u]=<span class="number">1</span>; </span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">   <span class="keyword">if</span>((a[u][i]==<span class="number">-1</span>)||(!vis[i])||d[i]+d[u]&gt;d[a[u][i]])<span class="keyword">continue</span>;</span><br><span class="line">   <span class="keyword">if</span>(d[i]+d[u]==d[a[u][i]])</span><br><span class="line">    f[a[u][i]]+=f[i]*f[u];</span><br><span class="line">   <span class="keyword">if</span>(d[i]+d[u]&lt;d[a[u][i]])&#123;</span><br><span class="line">    d[a[u][i]]=d[i]+d[u];</span><br><span class="line">    f[a[u][i]]=f[u]*f[i];</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,d[<span class="number">1</span>],f[<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码其实有问题，不过数据比较水，没有出现x和x可以合成z的情况。如果这种情况合法，那么对方案数的贡献只有f(x)×(f(x)+1)/2。</p>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP1962 斐波那契数列</title>
+    <url>/2018/10/31/luoguP1962%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1962">题目</a></p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">mt</span>&#123;</span><br><span class="line"> ll a[<span class="number">5</span>][<span class="number">5</span>]; </span><br><span class="line">&#125;s,c;</span><br><span class="line">ll n;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> mt <span class="title">times</span><span class="params">(mt a,mt b)</span></span>&#123;</span><br><span class="line"> mt ans;<span class="built_in">memset</span>(ans.a,<span class="number">0</span>,<span class="built_in">sizeof</span>(ans.a));</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="number">2</span>)<span class="built_in">fsb</span>(j,<span class="number">1</span>,<span class="number">2</span>)<span class="built_in">fsb</span>(k,<span class="number">1</span>,<span class="number">2</span>)ans.a[i][j]=<span class="built_in">md</span>(ans.a[i][j]+a.a[i][k]*b.a[k][j]);</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> mt <span class="title">po</span><span class="params">(mt a,ll y)</span></span>&#123;</span><br><span class="line"> mt ans=a,t=a;y--;</span><br><span class="line"> <span class="keyword">while</span>(y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(y&amp;<span class="number">1</span>)ans=<span class="built_in">times</span>(ans,t);</span><br><span class="line">  t=<span class="built_in">times</span>(t,t);</span><br><span class="line">  y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;n);</span><br><span class="line"> s.a[<span class="number">1</span>][<span class="number">1</span>]=s.a[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"> c.a[<span class="number">1</span>][<span class="number">1</span>]=c.a[<span class="number">1</span>][<span class="number">2</span>]=c.a[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>; </span><br><span class="line"> <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">times</span>(<span class="built_in">po</span>(c,n<span class="number">-2</span>),s).a[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1090,6 +1084,20 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>luoguP2052 [NOI2011]道路修建</title>
+    <url>/2018/10/31/luoguP2052%20%5BNOI2011%5D%E9%81%93%E8%B7%AF%E4%BF%AE%E5%BB%BA/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2052">题目</a></p>
+<hr>
+<p>O(n)用树上DP或者拓扑跑一遍</p>
+<p>拓扑：当度为1时，加入队列，每次f[i]被加时，度—</p>
+<p>代码是树上DP的</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> abs(a) ((a)&gt;0?(a):(-(a)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,mark;</span><br><span class="line">&#125;a[N*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll x,y,z;</span><br><span class="line">&#125;b[N];</span><br><span class="line">ll n,cnt=<span class="number">0</span>,head[N],x,y,z,ans=<span class="number">0</span>,f[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].mark=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(ll u,ll fa)</span></span>&#123;</span><br><span class="line"> f[u]=<span class="number">1</span>;</span><br><span class="line"> <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">  ll v=a[t].p;<span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">  <span class="built_in">dfs</span>(v,u);f[u]+=f[v];ans+=<span class="built_in">abs</span>(n<span class="number">-2</span>*f[v])*b[a[t].mark].z;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,i);<span class="built_in">add</span>(y,x,i);</span><br><span class="line">  b[i]=(node)&#123;x,y,z&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(f,<span class="number">0</span>);<span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>luoguP2115 [USACO14MAR]破坏Sabotage</title>
     <url>/2018/11/07/luoguP2115%20%5BUSACO14MAR%5D%E7%A0%B4%E5%9D%8FSabotage/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2115">题目</a></p>
@@ -1106,6 +1114,40 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>luoguP2327 [SCOI2005]扫雷</title>
+    <url>/2018/10/28/luoguP2327%20%5BSCOI2005%5D%E6%89%AB%E9%9B%B7/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2327">题目</a></p>
+<p>x,y=1:放 0:不放</p>
+<p>calc(p,x,y)计算第p个位置为x 第p+1个位置为y的方案数</p>
+<p>显然第p-1个位置需要为a[p]-x-y才能满足第p个位置</p>
+<p>可见答案只可能是0/1/2</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N],n;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> (x==<span class="number">0</span>)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line"> <span class="type">int</span> t=a[p]-x-y;</span><br><span class="line"> <span class="keyword">if</span>(t&lt;<span class="number">0</span>||t&gt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">calc</span>(p<span class="number">-1</span>,t,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">calc</span>(n,<span class="number">0</span>,<span class="number">0</span>)+<span class="built_in">calc</span>(n,<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP1291 [SHOI2002]百事世界杯之旅</title>
+    <url>/2018/11/02/luoguP1291%20%5BSHOI2002%5D%E7%99%BE%E4%BA%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E4%B9%8B%E6%97%85/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1291">题目</a></p>
+<hr>
+<p>假设有n个不同名字</p>
+<p>先抽一次，必定抽出一个新的——ans+1</p>
+<p>再抽第二次，这时有(n-1)/n的概率能抽到新的，所以期望抽n/(n-1)次能抽到新的——ans+n/(n-1)</p>
+<p>再抽第三次，这时有(n-2)/n的概率能抽到新的，所以期望抽n/(n-2)次能抽到新的——ans+n/(n-2)</p>
+<p>……</p>
+<p>以此类推，答案是1+n/(n-1)+n/(n-2)+n/(n-3)+…+n/1</p>
+<p>答案也就是n(1+1/2+1/3+1/4+..1/n)</p>
+<hr>
+<p>另外这题的输出答案方式很清奇，要小心爆ll，要记得%%</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,a=<span class="number">0</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll aa,ll bb)</span></span>&#123;</span><br><span class="line"> ll k=<span class="built_in">gcd</span>(b,bb),ansa,ansb;</span><br><span class="line"> ansb=b/k*bb;ansa=b/k*aa+bb/k*a;</span><br><span class="line"> k=<span class="built_in">gcd</span>(ansa,ansb);</span><br><span class="line"> a=ansa/k;b=ansb/k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">len</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  ans++;x/=<span class="number">10</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  ll aa=n,bb=i,k=<span class="built_in">gcd</span>(aa,bb);</span><br><span class="line">  aa/=k;bb/=k;</span><br><span class="line">  <span class="built_in">add</span>(aa,bb);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(a%b==<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a/b);</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll x=a/b;a-=x*b;ll lx=<span class="built_in">len</span>(x),lb=<span class="built_in">len</span>(b);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,x);<span class="built_in">fsb</span>(i,<span class="number">1</span>,lb)<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>luoguP2439 [SDOI2005]阶梯教室设备利用</title>
     <url>/2018/10/28/luoguP2439-SDOI2005-%E9%98%B6%E6%A2%AF%E6%95%99%E5%AE%A4%E8%AE%BE%E5%A4%87%E5%88%A9%E7%94%A8/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2439">题目</a></p>
@@ -1116,45 +1158,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <hr>
 <h2 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n+k)"></a>O(n+k)</h2><p>用链式前向星</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 30010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> <span class="type">int</span> s,nt;</span><br><span class="line">&#125;a[N];</span><br><span class="line"><span class="type">int</span> f[M],n,mx,head[M],x,y;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line"> a[i].s=y;a[i].nt=head[x];head[x]=i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);mx=<span class="number">0</span>;<span class="built_in">memset</span>(head,<span class="number">255</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x),<span class="built_in">rll</span>(y);x++;y++;</span><br><span class="line">  <span class="built_in">add</span>(y,x,i);mx=<span class="built_in">max</span>(mx,y);</span><br><span class="line"> &#125;</span><br><span class="line"> f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,mx)&#123;</span><br><span class="line">  f[i]=f[i<span class="number">-1</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> t=head[i];t!=<span class="number">-1</span>;t=a[t].nt)</span><br><span class="line">   f[i]=<span class="built_in">max</span>(f[i],f[a[t].s]+i-a[t].s);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,f[mx]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP1962 斐波那契数列</title>
-    <url>/2018/10/31/luoguP1962%20%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1962">题目</a></p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">mt</span>&#123;</span><br><span class="line"> ll a[<span class="number">5</span>][<span class="number">5</span>]; </span><br><span class="line">&#125;s,c;</span><br><span class="line">ll n;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> mt <span class="title">times</span><span class="params">(mt a,mt b)</span></span>&#123;</span><br><span class="line"> mt ans;<span class="built_in">memset</span>(ans.a,<span class="number">0</span>,<span class="built_in">sizeof</span>(ans.a));</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="number">2</span>)<span class="built_in">fsb</span>(j,<span class="number">1</span>,<span class="number">2</span>)<span class="built_in">fsb</span>(k,<span class="number">1</span>,<span class="number">2</span>)ans.a[i][j]=<span class="built_in">md</span>(ans.a[i][j]+a.a[i][k]*b.a[k][j]);</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> mt <span class="title">po</span><span class="params">(mt a,ll y)</span></span>&#123;</span><br><span class="line"> mt ans=a,t=a;y--;</span><br><span class="line"> <span class="keyword">while</span>(y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(y&amp;<span class="number">1</span>)ans=<span class="built_in">times</span>(ans,t);</span><br><span class="line">  t=<span class="built_in">times</span>(t,t);</span><br><span class="line">  y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;n);</span><br><span class="line"> s.a[<span class="number">1</span>][<span class="number">1</span>]=s.a[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"> c.a[<span class="number">1</span>][<span class="number">1</span>]=c.a[<span class="number">1</span>][<span class="number">2</span>]=c.a[<span class="number">2</span>][<span class="number">1</span>]=<span class="number">1</span>; </span><br><span class="line"> <span class="keyword">if</span>(n&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">times</span>(<span class="built_in">po</span>(c,n<span class="number">-2</span>),s).a[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP2052 [NOI2011]道路修建</title>
-    <url>/2018/10/31/luoguP2052%20%5BNOI2011%5D%E9%81%93%E8%B7%AF%E4%BF%AE%E5%BB%BA/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2052">题目</a></p>
-<hr>
-<p>O(n)用树上DP或者拓扑跑一遍</p>
-<p>拓扑：当度为1时，加入队列，每次f[i]被加时，度—</p>
-<p>代码是树上DP的</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> abs(a) ((a)&gt;0?(a):(-(a)))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,mark;</span><br><span class="line">&#125;a[N*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll x,y,z;</span><br><span class="line">&#125;b[N];</span><br><span class="line">ll n,cnt=<span class="number">0</span>,head[N],x,y,z,ans=<span class="number">0</span>,f[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].mark=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(ll u,ll fa)</span></span>&#123;</span><br><span class="line"> f[u]=<span class="number">1</span>;</span><br><span class="line"> <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">  ll v=a[t].p;<span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">  <span class="built_in">dfs</span>(v,u);f[u]+=f[v];ans+=<span class="built_in">abs</span>(n<span class="number">-2</span>*f[v])*b[a[t].mark].z;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,i);<span class="built_in">add</span>(y,x,i);</span><br><span class="line">  b[i]=(node)&#123;x,y,z&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(f,<span class="number">0</span>);<span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP2327 [SCOI2005]扫雷</title>
-    <url>/2018/10/28/luoguP2327%20%5BSCOI2005%5D%E6%89%AB%E9%9B%B7/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2327">题目</a></p>
-<p>x,y=1:放 0:不放</p>
-<p>calc(p,x,y)计算第p个位置为x 第p+1个位置为y的方案数</p>
-<p>显然第p-1个位置需要为a[p]-x-y才能满足第p个位置</p>
-<p>可见答案只可能是0/1/2</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N],n;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> (x==<span class="number">0</span>)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line"> <span class="type">int</span> t=a[p]-x-y;</span><br><span class="line"> <span class="keyword">if</span>(t&lt;<span class="number">0</span>||t&gt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">calc</span>(p<span class="number">-1</span>,t,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">calc</span>(n,<span class="number">0</span>,<span class="number">0</span>)+<span class="built_in">calc</span>(n,<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1200,24 +1203,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>luoguP2975 [USACO10JAN]轮流Taking Turns</title>
-    <url>/2018/11/06/luoguP2975%20%5BUSACO10JAN%5D%E8%BD%AE%E6%B5%81Taking%20Turns/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2975">题目</a></p>
-<hr>
-<p>$f[i]$表示$i..n$能取到的最大和</p>
-<p>$g[i]$表示$i..n$取到最大和时，最先取到的点</p>
-<p>从后往前跑，对于一个点，考虑它取不取</p>
-<p>​ 如果不取，$f[i]=f[i+1],g[i]=g[i+1]$</p>
-<p>​ 如果取，$f[i]=f[g[i+1]+1]+a[i],g[i]=i$</p>
-<p>因为$g[i+1]$表示$i+1$取最大和时，最先取到的点，如果取i，那么下一头牛就会取$i+1..n$的最大和，也就是取第$g[i+1]$个。那么当前这头牛就只能从$g[i+1]+1$开始取，所以是$f[i]=f[g[i+1]+1]+a[i]$</p>
-<hr>
-<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 700010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,f[N],g[N],a[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);<span class="built_in">mem</span>(f,<span class="number">0</span>);<span class="built_in">mem</span>(g,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fbs</span>(i,n,<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>((g[i+<span class="number">1</span>]==<span class="number">0</span>)||(f[g[i+<span class="number">1</span>]+<span class="number">1</span>]==<span class="number">0</span>))&#123;</span><br><span class="line">   f[i]=a[i];g[i]=i;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   f[i]=a[i]+f[g[i+<span class="number">1</span>]+<span class="number">1</span>];g[i]=i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(f[i+<span class="number">1</span>]&gt;f[i])f[i]=f[i+<span class="number">1</span>],g[i]=g[i+<span class="number">1</span>];</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,f[<span class="number">1</span>],f[g[<span class="number">1</span>]+<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>luoguP3034 [USACO11DEC]牛摄影Cow Photography</title>
     <url>/2018/11/04/luoguP3034%20%5BUSACO11DEC%5D%E7%89%9B%E6%91%84%E5%BD%B1Cow%20Photography/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3034">题目</a></p>
@@ -1256,6 +1241,24 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">7 1</span><br><span class="line">NNFFFNN</span><br></pre></td></tr></table></figure>
 <p>这种数据</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,m,a[N],l,r,mid,b[N],cnt=<span class="number">0</span>;</span><br><span class="line"><span class="type">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">work</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="type">int</span> last=<span class="number">2</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)</span><br><span class="line">  <span class="keyword">if</span>(a[i]!=last)&#123;</span><br><span class="line">   b[++cnt]=<span class="number">1</span>;last=a[i];</span><br><span class="line">  &#125;<span class="keyword">else</span> b[cnt]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">check</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"> <span class="type">int</span> cnt1=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,cnt)cnt1+=b[i]/(x+<span class="number">1</span>);</span><br><span class="line"> <span class="keyword">return</span> cnt1&lt;=m; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)a[i]=s[i]==<span class="string">&#x27;N&#x27;</span>?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">work</span>();</span><br><span class="line"> <span class="type">int</span> cnt2=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="keyword">if</span>(a[i]+(i&amp;<span class="number">1</span>)==<span class="number">1</span>)cnt2++;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(cnt2&lt;=m||n-cnt2&lt;=m)&#123;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">&quot;1&quot;</span>);<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line"> &#125;</span><br><span class="line"> l=<span class="number">2</span>;r=n;</span><br><span class="line"> <span class="keyword">while</span>(l+<span class="number">5</span>&lt;r)&#123;</span><br><span class="line">  mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(<span class="built_in">check</span>(mid))r=mid;<span class="keyword">else</span> l=mid;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,l,r)<span class="keyword">if</span>(<span class="built_in">check</span>(i))&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,i);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP2975 [USACO10JAN]轮流Taking Turns</title>
+    <url>/2018/11/06/luoguP2975%20%5BUSACO10JAN%5D%E8%BD%AE%E6%B5%81Taking%20Turns/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2975">题目</a></p>
+<hr>
+<p>$f[i]$表示$i..n$能取到的最大和</p>
+<p>$g[i]$表示$i..n$取到最大和时，最先取到的点</p>
+<p>从后往前跑，对于一个点，考虑它取不取</p>
+<p>​ 如果不取，$f[i]=f[i+1],g[i]=g[i+1]$</p>
+<p>​ 如果取，$f[i]=f[g[i+1]+1]+a[i],g[i]=i$</p>
+<p>因为$g[i+1]$表示$i+1$取最大和时，最先取到的点，如果取i，那么下一头牛就会取$i+1..n$的最大和，也就是取第$g[i+1]$个。那么当前这头牛就只能从$g[i+1]+1$开始取，所以是$f[i]=f[g[i+1]+1]+a[i]$</p>
+<hr>
+<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 700010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,f[N],g[N],a[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);<span class="built_in">mem</span>(f,<span class="number">0</span>);<span class="built_in">mem</span>(g,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fbs</span>(i,n,<span class="number">1</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>((g[i+<span class="number">1</span>]==<span class="number">0</span>)||(f[g[i+<span class="number">1</span>]+<span class="number">1</span>]==<span class="number">0</span>))&#123;</span><br><span class="line">   f[i]=a[i];g[i]=i;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   f[i]=a[i]+f[g[i+<span class="number">1</span>]+<span class="number">1</span>];g[i]=i;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(f[i+<span class="number">1</span>]&gt;f[i])f[i]=f[i+<span class="number">1</span>],g[i]=g[i+<span class="number">1</span>];</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,f[<span class="number">1</span>],f[g[<span class="number">1</span>]+<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1351,6 +1354,17 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <p>跑出每个点被雪覆盖的时间</p>
 <p>跑dijk，如果到这个点的最短时间超过限制，就置为不连通。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 99999999999999999</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll l[N],n,m,cnt=<span class="number">0</span>,x,y,z,s,t,g,q,head[N],d[N],vis[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,l;</span><br><span class="line">&#125;a[M*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll u,d;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;node&gt;S;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span> &lt;(node a,node b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.d&gt;b.d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].l=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">rll</span>(s);<span class="built_in">rll</span>(t);<span class="built_in">rll</span>(g);<span class="built_in">rll</span>(q);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);l[i]=(i==s||i==t)?(INF):((q==<span class="number">0</span>?INF:(y-x)/q));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,z);<span class="built_in">add</span>(y,x,z);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);<span class="built_in">mem</span>(d,<span class="number">60</span>);d[s]=<span class="number">0</span>;S.<span class="built_in">push</span>((node)&#123;s,<span class="number">0</span>&#125;);</span><br><span class="line"> <span class="keyword">while</span>(!S.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  ll u=S.<span class="built_in">top</span>().u;S.<span class="built_in">pop</span>();</span><br><span class="line">  <span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;</span><br><span class="line">  vis[u]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(d[u]&gt;g)<span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">   ll v=a[t].p;</span><br><span class="line">   <span class="keyword">if</span>(vis[v]||d[u]+a[t].l&gt;d[v]||d[u]+a[t].l&gt;l[v])<span class="keyword">continue</span>;</span><br><span class="line">   d[v]=d[u]+a[t].l;S.<span class="built_in">push</span>((node)&#123;v,d[v]&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(d[t]&gt;g)<span class="built_in">puts</span>(<span class="string">&quot;wtnap wa kotori no oyatsu desu!&quot;</span>);<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,d[t]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP4283 [AHOI2008]Y型项链</title>
+    <url>/2018/11/06/luoguP4283%20%5BAHOI2008%5DY%E5%9E%8B%E9%A1%B9%E9%93%BE/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P4283">题目</a></p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 60</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">char</span> a[N],b[N],c[N];</span><br><span class="line"><span class="type">int</span> la,lb,lc,ab=<span class="number">0</span>,ac=<span class="number">0</span>,bc=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> a[<span class="number">0</span>]=b[<span class="number">0</span>]=c[<span class="number">0</span>]=<span class="string">&#x27;!&#x27;</span>;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;la);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;lb);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,b+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;lc);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,c+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(la,lb))&#123;</span><br><span class="line">  <span class="keyword">if</span>(a[i]==b[i])ab++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(lc,lb))&#123;</span><br><span class="line">  <span class="keyword">if</span>(c[i]==b[i])bc++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(la,lc))&#123;</span><br><span class="line">  <span class="keyword">if</span>(a[i]==c[i])ac++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,ab,bc,ac);</span></span><br><span class="line"> <span class="keyword">if</span>(bc&gt;ab)&#123;</span><br><span class="line">  <span class="built_in">swap</span>(bc,ab);<span class="built_in">swap</span>(lc,la);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(ac&gt;ab)&#123;</span><br><span class="line">  <span class="built_in">swap</span>(ac,ab);<span class="built_in">swap</span>(lc,lb);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,la,lb,lc);</span></span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,ab,ac,bc);</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,la-ab+lb-ab+lc-ac+ab-ac);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1505,14 +1519,42 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>luoguP4283 [AHOI2008]Y型项链</title>
-    <url>/2018/11/06/luoguP4283%20%5BAHOI2008%5DY%E5%9E%8B%E9%A1%B9%E9%93%BE/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P4283">题目</a></p>
-<hr>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 60</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> min(a,b) ((a)&lt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">char</span> a[N],b[N],c[N];</span><br><span class="line"><span class="type">int</span> la,lb,lc,ab=<span class="number">0</span>,ac=<span class="number">0</span>,bc=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> a[<span class="number">0</span>]=b[<span class="number">0</span>]=c[<span class="number">0</span>]=<span class="string">&#x27;!&#x27;</span>;</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;la);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;lb);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,b+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;lc);<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,c+<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(la,lb))&#123;</span><br><span class="line">  <span class="keyword">if</span>(a[i]==b[i])ab++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(lc,lb))&#123;</span><br><span class="line">  <span class="keyword">if</span>(c[i]==b[i])bc++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="built_in">min</span>(la,lc))&#123;</span><br><span class="line">  <span class="keyword">if</span>(a[i]==c[i])ac++;<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,ab,bc,ac);</span></span><br><span class="line"> <span class="keyword">if</span>(bc&gt;ab)&#123;</span><br><span class="line">  <span class="built_in">swap</span>(bc,ab);<span class="built_in">swap</span>(lc,la);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(ac&gt;ab)&#123;</span><br><span class="line">  <span class="built_in">swap</span>(ac,ab);<span class="built_in">swap</span>(lc,lb);</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,la,lb,lc);</span></span><br><span class="line"><span class="comment">// printf(&quot;%10d %d %d\n&quot;,ab,ac,bc);</span></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,la-ab+lb-ab+lc-ac+ab-ac);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>在树莓派上搭建Nextcloud私有云</title>
+    <url>/2019/01/31/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%90%AD%E5%BB%BANextcloud%E7%A7%81%E6%9C%89%E4%BA%91/</url>
+    <content><![CDATA[<h2 id="为什么是Nextcloud？"><a href="#为什么是Nextcloud？" class="headerlink" title="为什么是Nextcloud？"></a>为什么是Nextcloud？</h2><p>在树莓派这个预算下，基本上是owncloud和nextcloud二分天下。而owncloud现在美国德国高层分歧大，技术开发们受不了于是另辟炉灶开发了nextcloud。也就是说，nextcloud是owncloud原班人马建的，这一点可以体现在nextcloud的客户端也兼容owncloud。就目前而言，无论其功能还是美观程度都要甚于owncloud。唯一的不足是汉化不完全，但完全不影响使用。</p>
+<p>nextcloud可以干什么？首先当然是私有云有的功能它都有。除此之外，nextcloud有多用户系统，容量控制系统，共享系统（有连接选项，因此可以共享给非用户）和出色的预览系统和出色的客户端、网页端。</p>
+<p>成果图：</p>
+<p>通过VNC远程桌面连接</p>
+<p><img src="https://s2.ax1x.com/2019/01/31/k3pL6K.png" alt=""></p>
+<p>实体，很小巧</p>
+<p><img src="https://s2.ax1x.com/2019/01/31/k3pql6.jpg" alt=""></p>
+<p>网页登录页面</p>
+<p><img src="https://s2.ax1x.com/2019/01/31/k3pOOO.png" alt=""></p>
+<p>网页端</p>
+<p><img src="https://s2.ax1x.com/2019/01/31/k3pbSx.png" alt=""></p>
+<p><a href="http://1617z38d55.51mypc.cn/">外网访问，可能（高概率）不在线</a></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>树莓派。我的是3b+。树莓派需要联网，并且可以通过SSH或者各种如teamviewer、VNC等进行控制（或者您有钱 直接外接显示屏）。</p>
+<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><p>有很多种方法可以安装nextcloud，比如换nextcloud的iso，比如用命令行纯手工安装。这里选一种最简单最稳的。</p>
+<p>英语强的大佬可以直接看<a href="https://docs.nextcloud.com/server/15/admin_manual/installation/index.html">官方教程</a></p>
+<h3 id="下载安装snap"><a href="#下载安装snap" class="headerlink" title="下载安装snap"></a>下载安装snap</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install snapd</span><br></pre></td></tr></table></figure>
+<h3 id="下载安装Nextcloud"><a href="#下载安装Nextcloud" class="headerlink" title="下载安装Nextcloud"></a>下载安装Nextcloud</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo snap install nextcloud</span><br></pre></td></tr></table></figure>
+<p>下载安装过程时间较长。</p>
+<h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p>完成后，可以在树莓派浏览器上直接localhost:80登录也可以在其他电脑上输入树莓派的IP登录。</p>
+<p>在页面上输入所需的管理员用户名和密码。</p>
+<p>根据官网，这时候会有一个更改储存位置的选项，但我试了好多遍都没有发现，这一点还有待探究。</p>
+<h2 id="花生壳内网穿透"><a href="#花生壳内网穿透" class="headerlink" title="花生壳内网穿透"></a>花生壳内网穿透</h2><p>目前，nextcloud已经可以在内网正常运行了，那么如果想外网访问呢？</p>
+<p>首先要解决的就是动态IP和穿透局域网的问题。</p>
+<p>这里最无脑的就是使用花生壳。</p>
+<p><a href="http://hsk.oray.com/download/download?id=25">deb安装包</a></p>
+<p>cd到下载目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i 文件名</span><br></pre></td></tr></table></figure>
+<p>安装完成后显示SN码、默认密码</p>
+<p>登录<a href="http://b.oray.com/">花生壳</a>，输入SN码和默认密码，并按照提示激活。</p>
+<p>然后可以选择直接选用这个作为账号密码也可以在右上角选择切换用户，登录自己账号后自动绑定。</p>
+<h2 id="分配阿里云域名"><a href="#分配阿里云域名" class="headerlink" title="分配阿里云域名"></a>分配阿里云域名</h2><p>花生壳的默认域名又臭又长，考虑从阿里云的域名跳转过去。由于没满18岁域名无法备案，暂时无法实现。理论上给cloud.xxx.xxx解析一个CNAME就行了吧…</p>
 ]]></content>
       <tags>
-        <tag>OI</tag>
+        <tag>Fun Stuff</tag>
       </tags>
   </entry>
   <entry>
@@ -1568,45 +1610,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 ]]></content>
       <tags>
         <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在树莓派上搭建Nextcloud私有云</title>
-    <url>/2019/01/31/%E5%9C%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E4%B8%8A%E6%90%AD%E5%BB%BANextcloud%E7%A7%81%E6%9C%89%E4%BA%91/</url>
-    <content><![CDATA[<h2 id="为什么是Nextcloud？"><a href="#为什么是Nextcloud？" class="headerlink" title="为什么是Nextcloud？"></a>为什么是Nextcloud？</h2><p>在树莓派这个预算下，基本上是owncloud和nextcloud二分天下。而owncloud现在美国德国高层分歧大，技术开发们受不了于是另辟炉灶开发了nextcloud。也就是说，nextcloud是owncloud原班人马建的，这一点可以体现在nextcloud的客户端也兼容owncloud。就目前而言，无论其功能还是美观程度都要甚于owncloud。唯一的不足是汉化不完全，但完全不影响使用。</p>
-<p>nextcloud可以干什么？首先当然是私有云有的功能它都有。除此之外，nextcloud有多用户系统，容量控制系统，共享系统（有连接选项，因此可以共享给非用户）和出色的预览系统和出色的客户端、网页端。</p>
-<p>成果图：</p>
-<p>通过VNC远程桌面连接</p>
-<p><img src="https://s2.ax1x.com/2019/01/31/k3pL6K.png" alt=""></p>
-<p>实体，很小巧</p>
-<p><img src="https://s2.ax1x.com/2019/01/31/k3pql6.jpg" alt=""></p>
-<p>网页登录页面</p>
-<p><img src="https://s2.ax1x.com/2019/01/31/k3pOOO.png" alt=""></p>
-<p>网页端</p>
-<p><img src="https://s2.ax1x.com/2019/01/31/k3pbSx.png" alt=""></p>
-<p><a href="http://1617z38d55.51mypc.cn/">外网访问，可能（高概率）不在线</a></p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>树莓派。我的是3b+。树莓派需要联网，并且可以通过SSH或者各种如teamviewer、VNC等进行控制（或者您有钱 直接外接显示屏）。</p>
-<h2 id="开始搭建"><a href="#开始搭建" class="headerlink" title="开始搭建"></a>开始搭建</h2><p>有很多种方法可以安装nextcloud，比如换nextcloud的iso，比如用命令行纯手工安装。这里选一种最简单最稳的。</p>
-<p>英语强的大佬可以直接看<a href="https://docs.nextcloud.com/server/15/admin_manual/installation/index.html">官方教程</a></p>
-<h3 id="下载安装snap"><a href="#下载安装snap" class="headerlink" title="下载安装snap"></a>下载安装snap</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install snapd</span><br></pre></td></tr></table></figure>
-<h3 id="下载安装Nextcloud"><a href="#下载安装Nextcloud" class="headerlink" title="下载安装Nextcloud"></a>下载安装Nextcloud</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo snap install nextcloud</span><br></pre></td></tr></table></figure>
-<p>下载安装过程时间较长。</p>
-<h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p>完成后，可以在树莓派浏览器上直接localhost:80登录也可以在其他电脑上输入树莓派的IP登录。</p>
-<p>在页面上输入所需的管理员用户名和密码。</p>
-<p>根据官网，这时候会有一个更改储存位置的选项，但我试了好多遍都没有发现，这一点还有待探究。</p>
-<h2 id="花生壳内网穿透"><a href="#花生壳内网穿透" class="headerlink" title="花生壳内网穿透"></a>花生壳内网穿透</h2><p>目前，nextcloud已经可以在内网正常运行了，那么如果想外网访问呢？</p>
-<p>首先要解决的就是动态IP和穿透局域网的问题。</p>
-<p>这里最无脑的就是使用花生壳。</p>
-<p><a href="http://hsk.oray.com/download/download?id=25">deb安装包</a></p>
-<p>cd到下载目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i 文件名</span><br></pre></td></tr></table></figure>
-<p>安装完成后显示SN码、默认密码</p>
-<p>登录<a href="http://b.oray.com/">花生壳</a>，输入SN码和默认密码，并按照提示激活。</p>
-<p>然后可以选择直接选用这个作为账号密码也可以在右上角选择切换用户，登录自己账号后自动绑定。</p>
-<h2 id="分配阿里云域名"><a href="#分配阿里云域名" class="headerlink" title="分配阿里云域名"></a>分配阿里云域名</h2><p>花生壳的默认域名又臭又长，考虑从阿里云的域名跳转过去。由于没满18岁域名无法备案，暂时无法实现。理论上给cloud.xxx.xxx解析一个CNAME就行了吧…</p>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
       </tags>
   </entry>
   <entry>
