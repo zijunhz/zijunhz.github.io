@@ -873,7 +873,7 @@ pre .javascript .function {
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  border-top-color: #222;
+  border-top-color: #fff;
 }
 .pagination .space {
   margin: 0;
@@ -886,7 +886,7 @@ pre .javascript .function {
   margin-right: 0;
 }
 .pagination .page-number.current {
-  background: #ccc;
+  background: #222;
   border-top-color: #ccc;
   color: #fff;
 }
@@ -905,7 +905,7 @@ pre .javascript .function {
   .pagination .prev:hover,
   .pagination .next:hover,
   .pagination .page-number:hover {
-    border-bottom-color: #222;
+    border-bottom-color: #fff;
   }
 }
 .comments {
@@ -1197,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #391cff;
+  background: #0ab840;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
