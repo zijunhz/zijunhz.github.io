@@ -60,304 +60,14 @@
       </tags>
   </entry>
   <entry>
-    <title>A Number Guessing Game Bot</title>
-    <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
-    <content><![CDATA[<p><div id="guessing_game">
-    <h1>A Guessing Game</h1>
-    <a target="_blank" href="https://baike.baidu.com/item/%E7%8C%9C%E6%95%B0%E5%AD%97/83200?fr=aladdin">Here's the
-      rules.</a><br>
-    <button onclick="init()">Start the Game</button><button onclick="result()">Correct!</button><br>
-    <input id="reA" type="tel">A <input id="reB" type="tel">B<br>
-    <button onclick="kill()">Confirm</button>
-    <p id="inf"></p>
-  </div><br>  <img scr="../images/avatar.png"></p>
-<script>
-let rule_on_show = 0, init1 = 0, tern = 0, ans, first = 1, tot = 0, pre = 0, l = 0, check = 0, G = 0, isright = 0, lA = 0;
-let a = new Array(), b = new Array(), cmp = new Array(), rd = new Array();
-function build() {
-  for (let i = 0; i <= 5; i++)cmp[i] = new Array();
-  for (let i = 0; i <= 9; i++)for (let j = 0; j <= 9; j++)for (let k = 0; k <= 9; k++)for (let l = 0; l <= 9; l++) {
-    if (i == j || i == k || i == l || j == k || j == l || k == l) continue;
-    a[++tot] = i * 1000 + j * 100 + k * 10 + l;
-  }
-}
-function init() {
-  document.getElementById("inf").innerHTML = '';
-  if (first == 1) {
-    build(); first = 0;
-  }
-  for (let i = 1; i <= tot; i++)b[i] = 1;
-  check = 1; init1 = 1; tern = 0; isright = 0; lA = 0;
-  makeguess();
-}
-function getn(x, n) {
-  for (let i = 1; i <= 4 - n; i++)x = Math.floor(x / 10);
-  return x % 10;
-}
-function compA(X, Y) {
-  let x = new Array(), y = new Array(), A = 0;
-  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
-  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
-  for (let i = 1; i <= 4; i++)if (x[i] == y[i]) A++;
-  return A;
-}
-function compB(X, Y) {
-  let x = new Array(), y = new Array(), B = 0;
-  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
-  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
-  for (let i = 1; i <= 4; i++)for (let j = 1; j <= 4; j++)if (i != j && x[i] == y[j]) B++;
-  return B;
-}
-function sqr(x) {
-  return x * x;
-}
-function abS(x) {
-  if (x >= 0) return x; return -x;
-}
-function makeguess() {
-  tern++;
-  if (tern == 1) {
-    G = a[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % tot + 1]; pre = 5040;
-  } else {
-    let bestans = 0, ans; l = 0, eps = 1e-3;
-    pre = 0;
-    for (let i = 1; i <= tot; i++) {
-      pre += b[i]
-    }
-    for (let i = 1; i <= tot; i++) {
-      if (b[i] == 0) continue;
-      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)cmp[j][k] = 0;
-      for (let j = 1; j <= tot; j++)
-        if (b[j] == 1) {
-          cmp[compA(a[j], a[i])][compB(a[j], a[i])]++;
-        }
-      ans = 0;
-      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)
-        if (cmp[j][k] != 0) {
-          ans += Math.log(pre / cmp[j][k]) * cmp[j][k] / pre;//sqr(ave-cmp[j][k]);
-        }
-      //ans/=cnt;ans-=cnt*1.1;
-      if (abS(ans - bestans) <= eps) {
-        rd[++l] = i;
-        console.log(ans + ' ' + a[rd[l]]);
-        continue;
-      }
-      if (ans > bestans) {
-        console.log(ans + ' ' + a[rd[1]])
-        l = 1; rd[1] = i; bestans = ans;
-      }
-    }
-    G = a[rd[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % l + 1]];
-  }
-  let t = '';
-  for (let i = 1; i <= 4; i++)t = t + String(getn(G, i));
-  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + 'Attempt ' + String(tern) + ': ' + t + ' (' + String(pre) + ')';
-  //document.getElementById("inf").innerHTML=String(l);
-}
-function kill() {
-  if (init1 == 0) {
-    document.getElementById("inf").innerHTML = 'Game has not started'; return;
-  }
-  if (isright == 1) {
-    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
-    return;
-  }
-  let gusA = document.getElementById("reA").value, gusB = document.getElementById("reB").value, A, B, ill = 0;
-  if (isNaN(gusA) || isNaN(gusB) || gusA == '' || gusB == '') ill = 1;
-  else {
-    A = Number(gusA); B = Number(gusB);
-    if (A < 0 || B < 0 || A > 4 || B > 4 || A + B > 4) ill = 1;
-  }
-  if (ill == 1) {
-    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; return;
-  }
-  lA = A;
-  if (A == 4) {
-    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
-    return;
-  }
-  let count = 0;
-  for (let i = 1; i <= tot; i++) {
-    if (b[i] == 1 && ((compA(a[i], G) != A || compB(a[i], G) != B) || a[i] == G)) b[i] = 0;
-    if (b[i] == 1) count++;
-  }
-  if (count == 0) {
-    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; init1 = 0; return;
-  }
-  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + ' ' + String(gusA) + 'A ' + String(gusB) + 'B<br>';
-  makeguess();
-}
-function result() {
-  isright = 1;
-  kill();
-}
-</script>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2014-10-24 NOIP欢乐赛</title>
-    <url>/2018/11/08/2014-10-24%20NOIP%E6%AC%A2%E4%B9%90%E8%B5%9B/</url>
-    <content><![CDATA[<h1 id="分火腿"><a href="#分火腿" class="headerlink" title="分火腿"></a>分火腿</h1><p>1s，64MB</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>小月言要过四岁生日了，她的妈妈为她准备了n根火腿，她想将这些火腿均分给m位小朋友，所以她可能需要切火腿。为了省事，小月言想切最少的刀数，使这n根火腿分成均等的m份。请问最少要切几刀？</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行一个整数T，表示有T组数据。<br>接下来T组数据，每组共一行，有两个数字n，m。</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>每组数据一行，输出最少要切的刀数。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">2 6</span><br><span class="line">6 2</span><br></pre></td></tr></table></figure>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<h2 id="提示-amp-约定"><a href="#提示-amp-约定" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>100%的数据保证T&lt;=1000；n,m&lt;=2147483647。</p>
-<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><p>考虑把所有的火腿连成一根，那么一定会切m-1刀</p>
-<p>什么情况下可以少切呢？在某些需要切刀的地方，火腿由两根火腿拼接，比如分成6段，有2根火腿，则切成3-3中间这刀不用切。</p>
-<p>经过观察发现少切的刀数是$gcd(n,m)$</p>
-<p>所以答案为$m-gcd(n,m)$</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,a,b,T;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;hdogs.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;hdogs.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,T)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(a);<span class="built_in">rll</span>(b);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b-<span class="built_in">gcd</span>(a,b));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="无聊的会议"><a href="#无聊的会议" class="headerlink" title="无聊的会议"></a>无聊的会议</h1><p>1s，128MB</p>
-<h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>土豪学长作为一名光荣的学生会干部，每天要参加很多无聊的会议。他发现：他开会的会议桌一定是正n边形，n个干部坐在这个多边形顶点上。因为太无聊了，所以他想要数出所有的“完全”等腰三角形——这种等腰三角形的三个顶点一定全是给出n多边形的顶点，且三个顶点上坐的干部性别相同。<br>土豪学长是土豪，他用1000000000%10的佣金雇用你，让你帮他数。PS：如果两个“完全”等腰三角形三个顶点相同，计算时只算一个。</p>
-<h2 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h2><p>第一行一个数字T，表示有T组数据。<br>接下来有T组数据，每组数据共一行。这一行给出一个长度为n的字符串，表示正n边形n个顶点上干部的性别。1为男，0为女。</p>
-<h2 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h2><p>对于第i组数据：输出”Case i: ans”(不带引号)，ans为“完全”等腰三角形的数量。</p>
-<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">0001</span><br><span class="line">01</span><br><span class="line">10001</span><br><span class="line">1101010</span><br><span class="line">111010</span><br></pre></td></tr></table></figure>
-<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Case 1: 1</span><br><span class="line">Case 2: 0</span><br><span class="line">Case 3: 1</span><br><span class="line">Case 4: 3</span><br><span class="line">Case 5: 2</span><br></pre></td></tr></table></figure>
-<h2 id="提示-amp-约定-1"><a href="#提示-amp-约定-1" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>40%的数据保证n&lt;=20<br>100%的数据保证 n&lt;=10^6<br>所有数据保证T&lt;=10</p>
-<h2 id="solution-1"><a href="#solution-1" class="headerlink" title="solution"></a>solution</h2><p>这个题有点有趣。</p>
-<p>考试的时候我只会$n^2$</p>
-<p>考虑怎么搞正解。</p>
-<h5 id="首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的"><a href="#首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的" class="headerlink" title="首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的"></a>首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的</h5><p><img src="https://i.loli.net/2018/11/08/5be3df02d9d91.png" alt=""></p>
-<p>选中一个点，剩下的点关于它两两对称，可以组成$(n-1)/2$（下取整）对。因此共有$n·((n-1)/2)$个等腰三角形。</p>
-<p>考虑去掉等边三角形重复，所以共有$n·((n-1)/2)-(n\%3==0?n/3*2:0)$个等腰三角形。</p>
-<h5 id="接下来去掉颜色不同的等腰三角形"><a href="#接下来去掉颜色不同的等腰三角形" class="headerlink" title="接下来去掉颜色不同的等腰三角形"></a>接下来去掉颜色不同的等腰三角形</h5><p>要分点数为奇偶两种情况讨论（因为如果选中两个点为底，他们能构成的等腰三角形个数与点的奇偶有关）。</p>
-<p>奇数</p>
-<p><img src="http://zheli.org/data/f_33766170.png" alt=""></p>
-<p>对于一对颜色不同的点，他们被多计算了3次（能构成3个等腰三角形），因此统计白点数s0，黑点数s1，总共多计算$s0 · s1 · 3$次。</p>
-<p>但是对于一个等边三角形应该只多计算了一次，因此如果$n\%3==0$，总共多计算$s0 · s1 · 3 - n/3·2$次。</p>
-<p>偶数</p>
-<p>有两种情况，一种是这样的</p>
-<p><img src="http://zheli.org/data/f_99062976.png" alt=""></p>
-<p>一对颜色不同的点被多算了2次。</p>
-<p>另一种是</p>
-<p><img src="http://zheli.org/data/f_91965516.png" alt=""></p>
-<p>一对不同颜色的点被多算了4次。</p>
-<p>我们发现这和编号奇偶性有关，分别记</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>编号偶</th>
-<th>编号奇</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>颜色0</td>
-<td>s00</td>
-<td>s10</td>
-</tr>
-<tr>
-<td>颜色1</td>
-<td>s01</td>
-<td>s11</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>总共多算了$2(s00·s11+s10·s01)+4(s01·s00+s10·s11)$（记为ans）次。</p>
-<p>考虑n是3的倍数，若n是3的倍数，总共多算了$ans-n/3·2$次</p>
-<p>n为偶数时还有一种不成立的情况，即底边为0。</p>
-<p>因此对于每一对相对（如0号点和(n+1)/2号点)的点，如果颜色不一样，则ans—</p>
-<h5 id="最后，无论n是奇数还是偶数"><a href="#最后，无论n是奇数还是偶数" class="headerlink" title="最后，无论n是奇数还是偶数"></a>最后，无论n是奇数还是偶数</h5><p>点A和点B会算一次重复，点B和点A会再算一次，因此ans/=2</p>
-<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)&lt;n?(a):((a)-n))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,T;</span><br><span class="line"><span class="type">char</span> a[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> n*((n<span class="number">-1</span>)/<span class="number">2</span>)-(n%<span class="number">3</span>==<span class="number">0</span>?n/<span class="number">3</span>*<span class="number">2</span>:<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mi</span><span class="params">()</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">if</span>(n&amp;<span class="number">1</span>)&#123;</span><br><span class="line">  ll s0=<span class="number">0</span>,s1=<span class="number">0</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s0++;<span class="keyword">else</span> s1++;</span><br><span class="line">  ans=s0*s1*<span class="number">3</span>;</span><br><span class="line">  <span class="keyword">if</span>(n%<span class="number">3</span>==<span class="number">0</span>)&#123;</span><br><span class="line">   ll s0=n/<span class="number">3</span>,s1=s0*<span class="number">2</span>;</span><br><span class="line">   <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s0)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s1)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll s00=<span class="number">0</span>,s01=<span class="number">0</span>,s10=<span class="number">0</span>,s11=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i+=<span class="number">2</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s00++;<span class="keyword">else</span> s01++;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i+=<span class="number">2</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s10++;<span class="keyword">else</span> s11++;</span><br><span class="line">  ans=s00*s11*<span class="number">2</span>+s10*s01*<span class="number">2</span>+s10*s11*<span class="number">4</span>+s01*s00*<span class="number">4</span>;</span><br><span class="line">  ll t=n/<span class="number">2</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)ans-=a[i]!=a[<span class="built_in">md</span>(i+t)]?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(n%<span class="number">3</span>==<span class="number">0</span>)&#123;</span><br><span class="line">   s00=n/<span class="number">3</span>;s01=s00*<span class="number">2</span>;</span><br><span class="line">   <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s00)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s01)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;meeting.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;meeting.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="built_in">fsb</span>(TT,<span class="number">1</span>,T)&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a);n=<span class="built_in">strlen</span>(a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Case %d: %lld\n&quot;</span>,TT,<span class="built_in">calc</span>()-<span class="built_in">mi</span>());</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="comment">#define ll long long</span></span><br><span class="line"><span class="comment">#define N 1000010</span></span><br><span class="line"><span class="comment">#define fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="comment">#define fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">int T,n;</span></span><br><span class="line"><span class="comment">ll ans=0,tr;</span></span><br><span class="line"><span class="comment">char a[N];</span></span><br><span class="line"><span class="comment">template&lt;typename qw&gt;inline void rll(qw &amp;x)&#123;</span></span><br><span class="line"><span class="comment"> qw f=1;x=0;char c=getchar();</span></span><br><span class="line"><span class="comment"> while(!isdigit(c))f=c==&#x27;-&#x27;?-1:f,c=getchar();</span></span><br><span class="line"><span class="comment"> while(isdigit(c))x=x*10+c-&#x27;0&#x27;,c=getchar();</span></span><br><span class="line"><span class="comment"> x*=f;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int main()&#123;</span></span><br><span class="line"><span class="comment"> freopen(&quot;meeting.in&quot;,&quot;r&quot;,stdin);freopen(&quot;meeting.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment"> rll(T);a[0]=&#x27;!&#x27;;</span></span><br><span class="line"><span class="comment"> fsb(TT,1,T)&#123;</span></span><br><span class="line"><span class="comment">  scanf(&quot;%s&quot;,a+1);n=strlen(a)-1;</span></span><br><span class="line"><span class="comment">  if(n&gt;20&amp;&amp;T==7)&#123;</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 1: 53273886&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 2: 32550364&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 3: 108279576&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 4: 125560903&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 5: 36293022&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 6: 113840807&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 7: 54270037&quot;);</span></span><br><span class="line"><span class="comment">   return 0;</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">//  printf(&quot;%s\n&quot;,a+1);</span></span><br><span class="line"><span class="comment">  ans=tr=0;</span></span><br><span class="line"><span class="comment">  fsb(i,1,n)&#123;</span></span><br><span class="line"><span class="comment">   fsb(l,1,(n-1)/2)&#123;</span></span><br><span class="line"><span class="comment">    int j=(i-l&gt;0)?(i-l):(i-l+n),k=(i+l&lt;=n)?(i+l):(i+l-n);</span></span><br><span class="line"><span class="comment">    if(a[i]==a[j]&amp;&amp;a[j]==a[k])&#123;</span></span><br><span class="line"><span class="comment">//     printf(&quot;%20d %d %d\n&quot;,i,j,k);</span></span><br><span class="line"><span class="comment">     if(l*3!=n)ans++;else tr++;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">   &#125;</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">//  printf(&quot;%10lld %lld\n&quot;,ans,tr);</span></span><br><span class="line"><span class="comment">  printf(&quot;Case %d: %lld\n&quot;,TT,ans+tr/3);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<h1 id="班服"><a href="#班服" class="headerlink" title="班服"></a>班服</h1><p>1s，128MB</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>要开运动会了，神犇学校的n个班级要选班服，班服共有100种样式，编号1~100。现在每个班都挑出了一些样式待选，每个班最多有100个待选的样式。要求每个班最终选定一种样式作为班服，且该班的样式不能与其他班级的相同，求所有可能方案的总数，由于方案总数可能很大，所以要求输出mod 1000000007后的答案。</p>
-<h2 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h2><p>共有T组数据。<br>对于每组数据，第一行为一个整数n，表示有n个班级。<br>2~n+1行，每行有最多100个数字，表示第i-1班待选班服的编号。</p>
-<h2 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h2><p>对于每组数据，输出方案总数 mod 1000000007后的答案。</p>
-<h2 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br><span class="line">5 100 1</span><br><span class="line">2</span><br><span class="line">5 100</span><br><span class="line">2</span><br><span class="line">3 5</span><br><span class="line">8 100</span><br></pre></td></tr></table></figure>
-<h2 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<h2 id="提示-amp-约定-2"><a href="#提示-amp-约定-2" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>对于30%的数据，1&lt;=T&lt;=3, 1&lt;=n&lt;=3，每班待选样式不超过10种。<br>对于50%的数据，1&lt;=T&lt;=5, 1&lt;=n&lt;=5，每班待选样式不超过50种。<br>对于100%的数据，1&lt;=T&lt;=10, 1&lt;=n&lt;=10，每班待选样式不超过100种。</p>
-<h2 id="solution-2"><a href="#solution-2" class="headerlink" title="solution"></a>solution</h2><p>考虑到拿衣服匹配班级和拿班级匹配衣服是一样的，一个是10一个是100，于是对10搞状压DP</p>
-<p>$f[i][j]$表示前i种衣服，班级穿衣状态为j的方案数</p>
-<p>答案：$f[100][mx],mx=(1&lt;&lt;n)-1$，即所有衣服下，每个班级都有衣服的方案数。</p>
-<p>初始化：显然$f[i][0]=1$，即不管你给多少衣服，没有一个班级穿衣服的方案数为1.</p>
-<p>转移：考虑新加进一件衣服i，枚举班级j（班级j必须能穿i），枚举状态k（班级j在状态k中必须不穿衣服）</p>
-<p>给班级j穿i。即$f[i][k+1&lt;&lt;j]+=f[i-1][k]$</p>
-<h2 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> T,n,a[<span class="number">20</span>][<span class="number">110</span>],x,flag=<span class="number">0</span>,mx;</span><br><span class="line">ll f[<span class="number">110</span>][<span class="number">1100</span>];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))&#123;</span><br><span class="line">  f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f;c=<span class="built_in">getchar</span>();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line"> <span class="keyword">if</span>(c==<span class="string">&#x27;\n&#x27;</span>||c==<span class="string">&#x27;\r&#x27;</span>)&#123;</span><br><span class="line">  flag=<span class="number">1</span>;<span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;shirt.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;shirt.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(n);mx=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">   flag=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">rll</span>(x);a[i][x]=<span class="number">1</span>;</span><br><span class="line"><span class="comment">//    printf(&quot;%10d\n&quot;,x);</span></span><br><span class="line">    <span class="keyword">if</span>(flag)<span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="built_in">sizeof</span>(f));</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">100</span>)f[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="number">100</span>)&#123;</span><br><span class="line">   <span class="built_in">fsb</span>(j,<span class="number">0</span>,mx)f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">   <span class="built_in">fsb</span>(j,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a[j][i])<span class="keyword">continue</span>;</span><br><span class="line">    <span class="built_in">fsb</span>(k,<span class="number">0</span>,mx)&#123;</span><br><span class="line">     <span class="keyword">if</span>(k&amp;(<span class="number">1</span>&lt;&lt;j))<span class="keyword">continue</span>;</span><br><span class="line">     f[i][k+(<span class="number">1</span>&lt;&lt;j)]=<span class="built_in">md</span>(f[i][k+(<span class="number">1</span>&lt;&lt;j)]+f[i<span class="number">-1</span>][k]);</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">100</span>][mx]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="comment">#define ll long long</span></span><br><span class="line"><span class="comment">#define N 110</span></span><br><span class="line"><span class="comment">#define fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="comment">#define fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">ll T,n,x,t1,n1,x1,a[200];</span></span><br><span class="line"><span class="comment">template&lt;typename qw&gt;inline void rll(qw &amp;x)&#123;</span></span><br><span class="line"><span class="comment"> qw f=1;x=0;char c=getchar();</span></span><br><span class="line"><span class="comment"> while(!isdigit(c))f=c==&#x27;-&#x27;?-1:f,c=getchar();</span></span><br><span class="line"><span class="comment"> while(isdigit(c))x=x*10+c-&#x27;0&#x27;,c=getchar();</span></span><br><span class="line"><span class="comment"> x*=f;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">inline int check()&#123;</span></span><br><span class="line"><span class="comment"> return t1==T&amp;&amp;n==n1&amp;&amp;x==x1;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int main()&#123;</span></span><br><span class="line"><span class="comment"> freopen(&quot;shirt.in&quot;,&quot;r&quot;,stdin);freopen(&quot;shirt.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment"> rll(T);rll(n);rll(x);</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt0.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt0.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt1.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt2.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt2.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt3.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt3.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt4.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt4.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt5.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt5.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt6.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt6.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt7.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt7.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt8.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt8.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt9.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt9.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> fsb(i,1,T)printf(&quot;%lld\n&quot;,a[i]);</span></span><br><span class="line"><span class="comment"> return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
-<ol>
-<li><code>git checkout main</code> to switch the local branch to main.</li>
-<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
-<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
-<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
-<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
-<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
-</ol>
-</li>
-<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
-<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
-</ol>
-<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
-<p>Try the following commands to fix this problem:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
-<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<p>e.g. <code>feat(homepage): add register button</code></p>
-<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><p>If you want to delete a local branch:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
-<p>If you want to delete a remote branch:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d nameOfRemoteBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
-<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
-<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Frontend Learning Notes</title>
     <url>/2022/05/03/Frontend-Learning-Notes/</url>
     <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
         <tag>Frontend</tag>
         <tag>Web Dev</tag>
+        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -437,6 +147,68 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
+<ol>
+<li><code>git checkout main</code> to switch the local branch to main.</li>
+<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
+<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
+<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
+<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
+<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
+</ol>
+</li>
+<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
+<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
+</ol>
+<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
+<p>Try the following commands to fix this problem:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
+<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<p>e.g. <code>feat(homepage): add register button</code></p>
+<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><p>If you want to delete a local branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
+<p>If you want to delete a remote branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d nameOfRemoteBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
+<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>God of Avalon</title>
     <url>/2022/05/03/God-of-Avalon/</url>
     <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
@@ -446,23 +218,11 @@ function result() {
 <h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
 ]]></content>
       <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
         <tag>Web Dev</tag>
+        <tag>Project</tag>
+        <tag>Fun Stuff</tag>
         <tag>Django</tag>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Goodbye World</title>
-    <url>/2022/04/26/Goodbye-World/</url>
-    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
-<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
-<p>Test images:</p>
-<p><img src="/images/avatar.png" alt="avatar"></p>
-]]></content>
-      <tags>
-        <tag>Others</tag>
       </tags>
   </entry>
   <entry>
@@ -471,8 +231,8 @@ function result() {
     <content><![CDATA[<p>Client &lt;——&gt; CloudFlare &lt;——&gt; VPS</p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
         <tag>Web Dev</tag>
+        <tag>Notes</tag>
         <tag>Maintenance</tag>
       </tags>
   </entry>
@@ -625,6 +385,157 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Goodbye World</title>
+    <url>/2022/04/26/Goodbye-World/</url>
+    <content><![CDATA[<h2 id="This-is-my-First-Hexo-Blog"><a href="#This-is-my-First-Hexo-Blog" class="headerlink" title="This is my First Hexo Blog"></a>This is my First Hexo Blog</h2><p>Goodbye world! (Why not ‘Hello World!’, you might ask. That’s what people in the industry do. Well, that’s the reason. )</p>
+<p>Test formula: $ \frac{x_1^2} {\sqrt{y_2^2} } $</p>
+<p>Test images:</p>
+<p><img src="/images/avatar.png" alt="avatar"></p>
+]]></content>
+      <tags>
+        <tag>Others</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A Number Guessing Game Bot</title>
+    <url>/2022/04/28/A-Number-Guessing-Game-Bot/</url>
+    <content><![CDATA[<p><div id="guessing_game">
+    <h1>A Guessing Game</h1>
+    <a target="_blank" href="https://baike.baidu.com/item/%E7%8C%9C%E6%95%B0%E5%AD%97/83200?fr=aladdin">Here's the
+      rules.</a><br>
+    <button onclick="init()">Start the Game</button><button onclick="result()">Correct!</button><br>
+    <input id="reA" type="tel">A <input id="reB" type="tel">B<br>
+    <button onclick="kill()">Confirm</button>
+    <p id="inf"></p>
+  </div><br>  <img scr="../images/avatar.png"></p>
+<script>
+let rule_on_show = 0, init1 = 0, tern = 0, ans, first = 1, tot = 0, pre = 0, l = 0, check = 0, G = 0, isright = 0, lA = 0;
+let a = new Array(), b = new Array(), cmp = new Array(), rd = new Array();
+function build() {
+  for (let i = 0; i <= 5; i++)cmp[i] = new Array();
+  for (let i = 0; i <= 9; i++)for (let j = 0; j <= 9; j++)for (let k = 0; k <= 9; k++)for (let l = 0; l <= 9; l++) {
+    if (i == j || i == k || i == l || j == k || j == l || k == l) continue;
+    a[++tot] = i * 1000 + j * 100 + k * 10 + l;
+  }
+}
+function init() {
+  document.getElementById("inf").innerHTML = '';
+  if (first == 1) {
+    build(); first = 0;
+  }
+  for (let i = 1; i <= tot; i++)b[i] = 1;
+  check = 1; init1 = 1; tern = 0; isright = 0; lA = 0;
+  makeguess();
+}
+function getn(x, n) {
+  for (let i = 1; i <= 4 - n; i++)x = Math.floor(x / 10);
+  return x % 10;
+}
+function compA(X, Y) {
+  let x = new Array(), y = new Array(), A = 0;
+  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
+  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
+  for (let i = 1; i <= 4; i++)if (x[i] == y[i]) A++;
+  return A;
+}
+function compB(X, Y) {
+  let x = new Array(), y = new Array(), B = 0;
+  for (let i = 1; i <= 4; i++)x[i] = getn(X, i);
+  for (let i = 1; i <= 4; i++)y[i] = getn(Y, i);
+  for (let i = 1; i <= 4; i++)for (let j = 1; j <= 4; j++)if (i != j && x[i] == y[j]) B++;
+  return B;
+}
+function sqr(x) {
+  return x * x;
+}
+function abS(x) {
+  if (x >= 0) return x; return -x;
+}
+function makeguess() {
+  tern++;
+  if (tern == 1) {
+    G = a[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % tot + 1]; pre = 5040;
+  } else {
+    let bestans = 0, ans; l = 0, eps = 1e-3;
+    pre = 0;
+    for (let i = 1; i <= tot; i++) {
+      pre += b[i]
+    }
+    for (let i = 1; i <= tot; i++) {
+      if (b[i] == 0) continue;
+      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)cmp[j][k] = 0;
+      for (let j = 1; j <= tot; j++)
+        if (b[j] == 1) {
+          cmp[compA(a[j], a[i])][compB(a[j], a[i])]++;
+        }
+      ans = 0;
+      for (let j = 0; j <= 4; j++)for (let k = 0; k <= 4 - j; k++)
+        if (cmp[j][k] != 0) {
+          ans += Math.log(pre / cmp[j][k]) * cmp[j][k] / pre;//sqr(ave-cmp[j][k]);
+        }
+      //ans/=cnt;ans-=cnt*1.1;
+      if (abS(ans - bestans) <= eps) {
+        rd[++l] = i;
+        console.log(ans + ' ' + a[rd[l]]);
+        continue;
+      }
+      if (ans > bestans) {
+        console.log(ans + ' ' + a[rd[1]])
+        l = 1; rd[1] = i; bestans = ans;
+      }
+    }
+    G = a[rd[Math.ceil(Math.random() * Math.random() * tot * tot * tot) % l + 1]];
+  }
+  let t = '';
+  for (let i = 1; i <= 4; i++)t = t + String(getn(G, i));
+  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + 'Attempt ' + String(tern) + ': ' + t + ' (' + String(pre) + ')';
+  //document.getElementById("inf").innerHTML=String(l);
+}
+function kill() {
+  if (init1 == 0) {
+    document.getElementById("inf").innerHTML = 'Game has not started'; return;
+  }
+  if (isright == 1) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
+    return;
+  }
+  let gusA = document.getElementById("reA").value, gusB = document.getElementById("reB").value, A, B, ill = 0;
+  if (isNaN(gusA) || isNaN(gusB) || gusA == '' || gusB == '') ill = 1;
+  else {
+    A = Number(gusA); B = Number(gusB);
+    if (A < 0 || B < 0 || A > 4 || B > 4 || A + B > 4) ill = 1;
+  }
+  if (ill == 1) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; return;
+  }
+  lA = A;
+  if (A == 4) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Hit the answer in ' + String(tern) + ' steps!'; init1 = 0;
+    return;
+  }
+  let count = 0;
+  for (let i = 1; i <= tot; i++) {
+    if (b[i] == 1 && ((compA(a[i], G) != A || compB(a[i], G) != B) || a[i] == G)) b[i] = 0;
+    if (b[i] == 1) count++;
+  }
+  if (count == 0) {
+    document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + '<br>Wrong Input!<br>'; init1 = 0; return;
+  }
+  document.getElementById("inf").innerHTML = document.getElementById("inf").innerHTML + ' ' + String(gusA) + 'A ' + String(gusB) + 'B<br>';
+  makeguess();
+}
+function result() {
+  isright = 1;
+  kill();
+}
+</script>
+]]></content>
+      <tags>
+        <tag>Project</tag>
+        <tag>Fun Stuff</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux Using Notes</title>
     <url>/2022/05/10/Linux-Using-Notes/</url>
     <content><![CDATA[<h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br></pre></td></tr></table></figure>
@@ -736,6 +647,16 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 ]]></content>
       <tags>
         <tag>Notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python Learning Notes</title>
+    <url>/2022/05/03/Python-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -892,16 +813,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Python Learning Notes</title>
-    <url>/2022/05/03/Python-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tank War Game with CLI</title>
     <url>/2022/08/03/Tank-War-Game-with-CLI/</url>
     <content><![CDATA[<p><a href="https://github.com/zijunhz/tank-war-game">Github Repo</a></p>
@@ -958,8 +869,8 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <p>The overall result that I can never win it shows that the AI is quite powerful.</p>
 ]]></content>
       <tags>
-        <tag>Fun Stuff</tag>
         <tag>Project</tag>
+        <tag>Fun Stuff</tag>
       </tags>
   </entry>
   <entry>
@@ -1033,6 +944,28 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>Vue Learning Notes</title>
+    <url>/2022/04/27/Vue-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
+<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
+<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Frontend</tag>
+        <tag>Web Dev</tag>
+        <tag>Notes</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue+Django CORS and CSRF</title>
     <url>/2022/04/27/Vue-Django-CORS-and-CSRF/</url>
     <content><![CDATA[<h2 id="Backend-Django-Part"><a href="#Backend-Django-Part" class="headerlink" title="Backend (Django) Part"></a>Backend (Django) Part</h2><p>Docs: <a href="https://pypi.org/project/django-cors-headers/">django-cors-headers</a>, <a href="https://docs.djangoproject.com/en/4.0/ref/settings/#csrf-cookie-secure">django core settings</a></p>
@@ -1064,42 +997,89 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Vue Learning Notes</title>
-    <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
-<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
-<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
-<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
-<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP1291 [SHOI2002]百事世界杯之旅</title>
-    <url>/2018/11/02/luoguP1291%20%5BSHOI2002%5D%E7%99%BE%E4%BA%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E4%B9%8B%E6%97%85/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1291">题目</a></p>
-<hr>
-<p>假设有n个不同名字</p>
-<p>先抽一次，必定抽出一个新的——ans+1</p>
-<p>再抽第二次，这时有(n-1)/n的概率能抽到新的，所以期望抽n/(n-1)次能抽到新的——ans+n/(n-1)</p>
-<p>再抽第三次，这时有(n-2)/n的概率能抽到新的，所以期望抽n/(n-2)次能抽到新的——ans+n/(n-2)</p>
-<p>……</p>
-<p>以此类推，答案是1+n/(n-1)+n/(n-2)+n/(n-3)+…+n/1</p>
-<p>答案也就是n(1+1/2+1/3+1/4+..1/n)</p>
-<hr>
-<p>另外这题的输出答案方式很清奇，要小心爆ll，要记得%%</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,a=<span class="number">0</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll aa,ll bb)</span></span>&#123;</span><br><span class="line"> ll k=<span class="built_in">gcd</span>(b,bb),ansa,ansb;</span><br><span class="line"> ansb=b/k*bb;ansa=b/k*aa+bb/k*a;</span><br><span class="line"> k=<span class="built_in">gcd</span>(ansa,ansb);</span><br><span class="line"> a=ansa/k;b=ansb/k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">len</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  ans++;x/=<span class="number">10</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  ll aa=n,bb=i,k=<span class="built_in">gcd</span>(aa,bb);</span><br><span class="line">  aa/=k;bb/=k;</span><br><span class="line">  <span class="built_in">add</span>(aa,bb);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(a%b==<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a/b);</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll x=a/b;a-=x*b;ll lx=<span class="built_in">len</span>(x),lb=<span class="built_in">len</span>(b);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,x);<span class="built_in">fsb</span>(i,<span class="number">1</span>,lb)<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>2014-10-24 NOIP欢乐赛</title>
+    <url>/2018/11/08/2014-10-24%20NOIP%E6%AC%A2%E4%B9%90%E8%B5%9B/</url>
+    <content><![CDATA[<h1 id="分火腿"><a href="#分火腿" class="headerlink" title="分火腿"></a>分火腿</h1><p>1s，64MB</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>小月言要过四岁生日了，她的妈妈为她准备了n根火腿，她想将这些火腿均分给m位小朋友，所以她可能需要切火腿。为了省事，小月言想切最少的刀数，使这n根火腿分成均等的m份。请问最少要切几刀？</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行一个整数T，表示有T组数据。<br>接下来T组数据，每组共一行，有两个数字n，m。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>每组数据一行，输出最少要切的刀数。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">2 6</span><br><span class="line">6 2</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h2 id="提示-amp-约定"><a href="#提示-amp-约定" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>100%的数据保证T&lt;=1000；n,m&lt;=2147483647。</p>
+<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><p>考虑把所有的火腿连成一根，那么一定会切m-1刀</p>
+<p>什么情况下可以少切呢？在某些需要切刀的地方，火腿由两根火腿拼接，比如分成6段，有2根火腿，则切成3-3中间这刀不用切。</p>
+<p>经过观察发现少切的刀数是$gcd(n,m)$</p>
+<p>所以答案为$m-gcd(n,m)$</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,a,b,T;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;hdogs.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;hdogs.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,T)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(a);<span class="built_in">rll</span>(b);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b-<span class="built_in">gcd</span>(a,b));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="无聊的会议"><a href="#无聊的会议" class="headerlink" title="无聊的会议"></a>无聊的会议</h1><p>1s，128MB</p>
+<h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>土豪学长作为一名光荣的学生会干部，每天要参加很多无聊的会议。他发现：他开会的会议桌一定是正n边形，n个干部坐在这个多边形顶点上。因为太无聊了，所以他想要数出所有的“完全”等腰三角形——这种等腰三角形的三个顶点一定全是给出n多边形的顶点，且三个顶点上坐的干部性别相同。<br>土豪学长是土豪，他用1000000000%10的佣金雇用你，让你帮他数。PS：如果两个“完全”等腰三角形三个顶点相同，计算时只算一个。</p>
+<h2 id="输入-1"><a href="#输入-1" class="headerlink" title="输入"></a>输入</h2><p>第一行一个数字T，表示有T组数据。<br>接下来有T组数据，每组数据共一行。这一行给出一个长度为n的字符串，表示正n边形n个顶点上干部的性别。1为男，0为女。</p>
+<h2 id="输出-1"><a href="#输出-1" class="headerlink" title="输出"></a>输出</h2><p>对于第i组数据：输出”Case i: ans”(不带引号)，ans为“完全”等腰三角形的数量。</p>
+<h2 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">0001</span><br><span class="line">01</span><br><span class="line">10001</span><br><span class="line">1101010</span><br><span class="line">111010</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Case 1: 1</span><br><span class="line">Case 2: 0</span><br><span class="line">Case 3: 1</span><br><span class="line">Case 4: 3</span><br><span class="line">Case 5: 2</span><br></pre></td></tr></table></figure>
+<h2 id="提示-amp-约定-1"><a href="#提示-amp-约定-1" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>40%的数据保证n&lt;=20<br>100%的数据保证 n&lt;=10^6<br>所有数据保证T&lt;=10</p>
+<h2 id="solution-1"><a href="#solution-1" class="headerlink" title="solution"></a>solution</h2><p>这个题有点有趣。</p>
+<p>考试的时候我只会$n^2$</p>
+<p>考虑怎么搞正解。</p>
+<h5 id="首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的"><a href="#首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的" class="headerlink" title="首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的"></a>首先我们可以搞出所有等腰三角形，然后减去这些三角形中颜色不一样的</h5><p><img src="https://i.loli.net/2018/11/08/5be3df02d9d91.png" alt=""></p>
+<p>选中一个点，剩下的点关于它两两对称，可以组成$(n-1)/2$（下取整）对。因此共有$n·((n-1)/2)$个等腰三角形。</p>
+<p>考虑去掉等边三角形重复，所以共有$n·((n-1)/2)-(n\%3==0?n/3*2:0)$个等腰三角形。</p>
+<h5 id="接下来去掉颜色不同的等腰三角形"><a href="#接下来去掉颜色不同的等腰三角形" class="headerlink" title="接下来去掉颜色不同的等腰三角形"></a>接下来去掉颜色不同的等腰三角形</h5><p>要分点数为奇偶两种情况讨论（因为如果选中两个点为底，他们能构成的等腰三角形个数与点的奇偶有关）。</p>
+<p>奇数</p>
+<p><img src="http://zheli.org/data/f_33766170.png" alt=""></p>
+<p>对于一对颜色不同的点，他们被多计算了3次（能构成3个等腰三角形），因此统计白点数s0，黑点数s1，总共多计算$s0 · s1 · 3$次。</p>
+<p>但是对于一个等边三角形应该只多计算了一次，因此如果$n\%3==0$，总共多计算$s0 · s1 · 3 - n/3·2$次。</p>
+<p>偶数</p>
+<p>有两种情况，一种是这样的</p>
+<p><img src="http://zheli.org/data/f_99062976.png" alt=""></p>
+<p>一对颜色不同的点被多算了2次。</p>
+<p>另一种是</p>
+<p><img src="http://zheli.org/data/f_91965516.png" alt=""></p>
+<p>一对不同颜色的点被多算了4次。</p>
+<p>我们发现这和编号奇偶性有关，分别记</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>编号偶</th>
+<th>编号奇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>颜色0</td>
+<td>s00</td>
+<td>s10</td>
+</tr>
+<tr>
+<td>颜色1</td>
+<td>s01</td>
+<td>s11</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>总共多算了$2(s00·s11+s10·s01)+4(s01·s00+s10·s11)$（记为ans）次。</p>
+<p>考虑n是3的倍数，若n是3的倍数，总共多算了$ans-n/3·2$次</p>
+<p>n为偶数时还有一种不成立的情况，即底边为0。</p>
+<p>因此对于每一对相对（如0号点和(n+1)/2号点)的点，如果颜色不一样，则ans—</p>
+<h5 id="最后，无论n是奇数还是偶数"><a href="#最后，无论n是奇数还是偶数" class="headerlink" title="最后，无论n是奇数还是偶数"></a>最后，无论n是奇数还是偶数</h5><p>点A和点B会算一次重复，点B和点A会再算一次，因此ans/=2</p>
+<h2 id="code-1"><a href="#code-1" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1000010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)&lt;n?(a):((a)-n))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,T;</span><br><span class="line"><span class="type">char</span> a[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">calc</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> n*((n<span class="number">-1</span>)/<span class="number">2</span>)-(n%<span class="number">3</span>==<span class="number">0</span>?n/<span class="number">3</span>*<span class="number">2</span>:<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">mi</span><span class="params">()</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">if</span>(n&amp;<span class="number">1</span>)&#123;</span><br><span class="line">  ll s0=<span class="number">0</span>,s1=<span class="number">0</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s0++;<span class="keyword">else</span> s1++;</span><br><span class="line">  ans=s0*s1*<span class="number">3</span>;</span><br><span class="line">  <span class="keyword">if</span>(n%<span class="number">3</span>==<span class="number">0</span>)&#123;</span><br><span class="line">   ll s0=n/<span class="number">3</span>,s1=s0*<span class="number">2</span>;</span><br><span class="line">   <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s0)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s1)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll s00=<span class="number">0</span>,s01=<span class="number">0</span>,s10=<span class="number">0</span>,s11=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i+=<span class="number">2</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s00++;<span class="keyword">else</span> s01++;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i+=<span class="number">2</span>)<span class="keyword">if</span>(a[i]==<span class="string">&#x27;0&#x27;</span>)s10++;<span class="keyword">else</span> s11++;</span><br><span class="line">  ans=s00*s11*<span class="number">2</span>+s10*s01*<span class="number">2</span>+s10*s11*<span class="number">4</span>+s01*s00*<span class="number">4</span>;</span><br><span class="line">  ll t=n/<span class="number">2</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)ans-=a[i]!=a[<span class="built_in">md</span>(i+t)]?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(n%<span class="number">3</span>==<span class="number">0</span>)&#123;</span><br><span class="line">   s00=n/<span class="number">3</span>;s01=s00*<span class="number">2</span>;</span><br><span class="line">   <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s00)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">    ans-=(a[i]!=a[<span class="built_in">md</span>(i+s01)])?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans/<span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;meeting.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;meeting.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="built_in">fsb</span>(TT,<span class="number">1</span>,T)&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a);n=<span class="built_in">strlen</span>(a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Case %d: %lld\n&quot;</span>,TT,<span class="built_in">calc</span>()-<span class="built_in">mi</span>());</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="comment">#define ll long long</span></span><br><span class="line"><span class="comment">#define N 1000010</span></span><br><span class="line"><span class="comment">#define fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="comment">#define fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">int T,n;</span></span><br><span class="line"><span class="comment">ll ans=0,tr;</span></span><br><span class="line"><span class="comment">char a[N];</span></span><br><span class="line"><span class="comment">template&lt;typename qw&gt;inline void rll(qw &amp;x)&#123;</span></span><br><span class="line"><span class="comment"> qw f=1;x=0;char c=getchar();</span></span><br><span class="line"><span class="comment"> while(!isdigit(c))f=c==&#x27;-&#x27;?-1:f,c=getchar();</span></span><br><span class="line"><span class="comment"> while(isdigit(c))x=x*10+c-&#x27;0&#x27;,c=getchar();</span></span><br><span class="line"><span class="comment"> x*=f;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int main()&#123;</span></span><br><span class="line"><span class="comment"> freopen(&quot;meeting.in&quot;,&quot;r&quot;,stdin);freopen(&quot;meeting.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment"> rll(T);a[0]=&#x27;!&#x27;;</span></span><br><span class="line"><span class="comment"> fsb(TT,1,T)&#123;</span></span><br><span class="line"><span class="comment">  scanf(&quot;%s&quot;,a+1);n=strlen(a)-1;</span></span><br><span class="line"><span class="comment">  if(n&gt;20&amp;&amp;T==7)&#123;</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 1: 53273886&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 2: 32550364&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 3: 108279576&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 4: 125560903&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 5: 36293022&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 6: 113840807&quot;);</span></span><br><span class="line"><span class="comment">   puts(&quot;Case 7: 54270037&quot;);</span></span><br><span class="line"><span class="comment">   return 0;</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">//  printf(&quot;%s\n&quot;,a+1);</span></span><br><span class="line"><span class="comment">  ans=tr=0;</span></span><br><span class="line"><span class="comment">  fsb(i,1,n)&#123;</span></span><br><span class="line"><span class="comment">   fsb(l,1,(n-1)/2)&#123;</span></span><br><span class="line"><span class="comment">    int j=(i-l&gt;0)?(i-l):(i-l+n),k=(i+l&lt;=n)?(i+l):(i+l-n);</span></span><br><span class="line"><span class="comment">    if(a[i]==a[j]&amp;&amp;a[j]==a[k])&#123;</span></span><br><span class="line"><span class="comment">//     printf(&quot;%20d %d %d\n&quot;,i,j,k);</span></span><br><span class="line"><span class="comment">     if(l*3!=n)ans++;else tr++;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">   &#125;</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">//  printf(&quot;%10lld %lld\n&quot;,ans,tr);</span></span><br><span class="line"><span class="comment">  printf(&quot;Case %d: %lld\n&quot;,TT,ans+tr/3);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="班服"><a href="#班服" class="headerlink" title="班服"></a>班服</h1><p>1s，128MB</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>要开运动会了，神犇学校的n个班级要选班服，班服共有100种样式，编号1~100。现在每个班都挑出了一些样式待选，每个班最多有100个待选的样式。要求每个班最终选定一种样式作为班服，且该班的样式不能与其他班级的相同，求所有可能方案的总数，由于方案总数可能很大，所以要求输出mod 1000000007后的答案。</p>
+<h2 id="输入-2"><a href="#输入-2" class="headerlink" title="输入"></a>输入</h2><p>共有T组数据。<br>对于每组数据，第一行为一个整数n，表示有n个班级。<br>2~n+1行，每行有最多100个数字，表示第i-1班待选班服的编号。</p>
+<h2 id="输出-2"><a href="#输出-2" class="headerlink" title="输出"></a>输出</h2><p>对于每组数据，输出方案总数 mod 1000000007后的答案。</p>
+<h2 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2</span><br><span class="line">3</span><br><span class="line">5 100 1</span><br><span class="line">2</span><br><span class="line">5 100</span><br><span class="line">2</span><br><span class="line">3 5</span><br><span class="line">8 100</span><br></pre></td></tr></table></figure>
+<h2 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">4</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h2 id="提示-amp-约定-2"><a href="#提示-amp-约定-2" class="headerlink" title="提示&amp;约定"></a>提示&amp;约定</h2><p>对于30%的数据，1&lt;=T&lt;=3, 1&lt;=n&lt;=3，每班待选样式不超过10种。<br>对于50%的数据，1&lt;=T&lt;=5, 1&lt;=n&lt;=5，每班待选样式不超过50种。<br>对于100%的数据，1&lt;=T&lt;=10, 1&lt;=n&lt;=10，每班待选样式不超过100种。</p>
+<h2 id="solution-2"><a href="#solution-2" class="headerlink" title="solution"></a>solution</h2><p>考虑到拿衣服匹配班级和拿班级匹配衣服是一样的，一个是10一个是100，于是对10搞状压DP</p>
+<p>$f[i][j]$表示前i种衣服，班级穿衣状态为j的方案数</p>
+<p>答案：$f[100][mx],mx=(1&lt;&lt;n)-1$，即所有衣服下，每个班级都有衣服的方案数。</p>
+<p>初始化：显然$f[i][0]=1$，即不管你给多少衣服，没有一个班级穿衣服的方案数为1.</p>
+<p>转移：考虑新加进一件衣服i，枚举班级j（班级j必须能穿i），枚举状态k（班级j在状态k中必须不穿衣服）</p>
+<p>给班级j穿i。即$f[i][k+1&lt;&lt;j]+=f[i-1][k]$</p>
+<h2 id="code-2"><a href="#code-2" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) ((a)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> T,n,a[<span class="number">20</span>][<span class="number">110</span>],x,flag=<span class="number">0</span>,mx;</span><br><span class="line">ll f[<span class="number">110</span>][<span class="number">1100</span>];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))&#123;</span><br><span class="line">  f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f;c=<span class="built_in">getchar</span>();</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line"> <span class="keyword">if</span>(c==<span class="string">&#x27;\n&#x27;</span>||c==<span class="string">&#x27;\r&#x27;</span>)&#123;</span><br><span class="line">  flag=<span class="number">1</span>;<span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">freopen</span>(<span class="string">&quot;shirt.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);<span class="built_in">freopen</span>(<span class="string">&quot;shirt.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"> <span class="built_in">rll</span>(T);</span><br><span class="line"> <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(n);mx=(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>;<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a));</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">   flag=<span class="number">0</span>;</span><br><span class="line">   <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="built_in">rll</span>(x);a[i][x]=<span class="number">1</span>;</span><br><span class="line"><span class="comment">//    printf(&quot;%10d\n&quot;,x);</span></span><br><span class="line">    <span class="keyword">if</span>(flag)<span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="built_in">sizeof</span>(f));</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">100</span>)f[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,<span class="number">100</span>)&#123;</span><br><span class="line">   <span class="built_in">fsb</span>(j,<span class="number">0</span>,mx)f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">   <span class="built_in">fsb</span>(j,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!a[j][i])<span class="keyword">continue</span>;</span><br><span class="line">    <span class="built_in">fsb</span>(k,<span class="number">0</span>,mx)&#123;</span><br><span class="line">     <span class="keyword">if</span>(k&amp;(<span class="number">1</span>&lt;&lt;j))<span class="keyword">continue</span>;</span><br><span class="line">     f[i][k+(<span class="number">1</span>&lt;&lt;j)]=<span class="built_in">md</span>(f[i][k+(<span class="number">1</span>&lt;&lt;j)]+f[i<span class="number">-1</span>][k]);</span><br><span class="line">    &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,f[<span class="number">100</span>][mx]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="comment">#define ll long long</span></span><br><span class="line"><span class="comment">#define N 110</span></span><br><span class="line"><span class="comment">#define fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="comment">#define fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">ll T,n,x,t1,n1,x1,a[200];</span></span><br><span class="line"><span class="comment">template&lt;typename qw&gt;inline void rll(qw &amp;x)&#123;</span></span><br><span class="line"><span class="comment"> qw f=1;x=0;char c=getchar();</span></span><br><span class="line"><span class="comment"> while(!isdigit(c))f=c==&#x27;-&#x27;?-1:f,c=getchar();</span></span><br><span class="line"><span class="comment"> while(isdigit(c))x=x*10+c-&#x27;0&#x27;,c=getchar();</span></span><br><span class="line"><span class="comment"> x*=f;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">inline int check()&#123;</span></span><br><span class="line"><span class="comment"> return t1==T&amp;&amp;n==n1&amp;&amp;x==x1;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int main()&#123;</span></span><br><span class="line"><span class="comment"> freopen(&quot;shirt.in&quot;,&quot;r&quot;,stdin);freopen(&quot;shirt.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment"> rll(T);rll(n);rll(x);</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt0.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt0.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt1.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt2.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt2.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt3.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt3.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt4.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt4.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt5.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt5.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt6.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt6.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt7.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt7.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt8.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt8.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> freopen(&quot;C:\\Temp\\data\\shirt9.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment"> rll(t1);rll(n1);rll(x1);</span></span><br><span class="line"><span class="comment"> if(check())&#123;</span></span><br><span class="line"><span class="comment">  freopen(&quot;C:\\Temp\\data\\shirt9.out&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">  fsb(i,1,T)rll(a[i]);</span></span><br><span class="line"><span class="comment"> &#125;</span></span><br><span class="line"><span class="comment"> fsb(i,1,T)printf(&quot;%lld\n&quot;,a[i]);</span></span><br><span class="line"><span class="comment"> return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1139,6 +1119,26 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <p>至于计算方案数，假设x和y合成z，那么z一共可以有x的方案数乘y的方案数种方案数。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N][N],n,x,y,z,vis[N];</span><br><span class="line">ll d[N],f[N];</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(d[i]),f[i]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">mem</span>(a,<span class="number">255</span>);</span><br><span class="line"> <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;x))&#123;</span><br><span class="line">  <span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);x++;y++;z++;a[x][y]=a[y][x]=z;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(T,<span class="number">1</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">  <span class="type">int</span> u=<span class="number">-1</span>;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)</span><br><span class="line">   u=((!vis[i])&amp;&amp;(u==<span class="number">-1</span>||d[u]&gt;d[i]))?i:u;</span><br><span class="line">  vis[u]=<span class="number">1</span>; </span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">   <span class="keyword">if</span>((a[u][i]==<span class="number">-1</span>)||(!vis[i])||d[i]+d[u]&gt;d[a[u][i]])<span class="keyword">continue</span>;</span><br><span class="line">   <span class="keyword">if</span>(d[i]+d[u]==d[a[u][i]])</span><br><span class="line">    f[a[u][i]]+=f[i]*f[u];</span><br><span class="line">   <span class="keyword">if</span>(d[i]+d[u]&lt;d[a[u][i]])&#123;</span><br><span class="line">    d[a[u][i]]=d[i]+d[u];</span><br><span class="line">    f[a[u][i]]=f[u]*f[i];</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%lld %lld\n&quot;</span>,d[<span class="number">1</span>],f[<span class="number">1</span>]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码其实有问题，不过数据比较水，没有出现x和x可以合成z的情况。如果这种情况合法，那么对方案数的贡献只有f(x)×(f(x)+1)/2。</p>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP1291 [SHOI2002]百事世界杯之旅</title>
+    <url>/2018/11/02/luoguP1291%20%5BSHOI2002%5D%E7%99%BE%E4%BA%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E4%B9%8B%E6%97%85/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P1291">题目</a></p>
+<hr>
+<p>假设有n个不同名字</p>
+<p>先抽一次，必定抽出一个新的——ans+1</p>
+<p>再抽第二次，这时有(n-1)/n的概率能抽到新的，所以期望抽n/(n-1)次能抽到新的——ans+n/(n-1)</p>
+<p>再抽第三次，这时有(n-2)/n的概率能抽到新的，所以期望抽n/(n-2)次能抽到新的——ans+n/(n-2)</p>
+<p>……</p>
+<p>以此类推，答案是1+n/(n-1)+n/(n-2)+n/(n-3)+…+n/1</p>
+<p>答案也就是n(1+1/2+1/3+1/4+..1/n)</p>
+<hr>
+<p>另外这题的输出答案方式很清奇，要小心爆ll，要记得%%</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,a=<span class="number">0</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll aa,ll bb)</span></span>&#123;</span><br><span class="line"> ll k=<span class="built_in">gcd</span>(b,bb),ansa,ansb;</span><br><span class="line"> ansb=b/k*bb;ansa=b/k*aa+bb/k*a;</span><br><span class="line"> k=<span class="built_in">gcd</span>(ansa,ansb);</span><br><span class="line"> a=ansa/k;b=ansb/k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">len</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll ans=<span class="number">0</span>;</span><br><span class="line"> <span class="keyword">while</span>(x&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  ans++;x/=<span class="number">10</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  ll aa=n,bb=i,k=<span class="built_in">gcd</span>(aa,bb);</span><br><span class="line">  aa/=k;bb/=k;</span><br><span class="line">  <span class="built_in">add</span>(aa,bb);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(a%b==<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a/b);</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  ll x=a/b;a-=x*b;ll lx=<span class="built_in">len</span>(x),lb=<span class="built_in">len</span>(b);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,a);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,x);<span class="built_in">fsb</span>(i,<span class="number">1</span>,lb)<span class="built_in">printf</span>(<span class="string">&quot;-&quot;</span>);<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,lx)<span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,b);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1269,22 +1269,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>luoguP2845 [USACO15DEC]Switching on the Lights 开关灯</title>
-    <url>/2018/11/05/luoguP2845%20%5BUSACO15DEC%5DSwitching%20on%20the%20Lights%20%E5%BC%80%E5%85%B3%E7%81%AF/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2845">题目</a></p>
-<hr>
-<p>函数1：用于点亮(x,y)能开的灯，假设能开(xx,yy)，将(xx,yy)交至函数2</p>
-<p>函数2：判断(x,y)是否能被<em>走到</em>（即4个方向有被访问到的点相邻），如果能，将(x,y)交至函数1，遍历(x,y)的4个方向，如果有亮着灯但没有被访问的点(xx,yy)，将(xx,yy)交至函数2</p>
-<p>主程序：(1,1) —&gt; 函数1</p>
-<hr>
-<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 110</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 200010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> <span class="type">int</span> x,y,nt;</span><br><span class="line">&#125;a[M];</span><br><span class="line"><span class="type">int</span> n,m,x,y,xx,yy,cnt=<span class="number">0</span>,head[N][N],li[N][N],vi[N][N],ans=<span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> dx[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;,dy[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> xx,<span class="type">int</span> yy)</span></span>&#123;</span><br><span class="line"> a[++cnt]=(edge)&#123;xx,yy,head[x][y]&#125;;head[x][y]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="type">int</span> flag=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">3</span>)<span class="keyword">if</span>(vi[x+dx[i]][y+dy[i]])flag=<span class="number">1</span>;</span><br><span class="line"> <span class="keyword">if</span>(flag==<span class="number">0</span>)<span class="keyword">return</span>;</span><br><span class="line"> vi[x][y]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">dfs</span>(x,y);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">3</span>)&#123;</span><br><span class="line">  <span class="type">int</span> xx=x+dx[i],yy=y+dy[i];</span><br><span class="line">  <span class="keyword">if</span>((!vi[xx][yy])&amp;&amp;(li[xx][yy]))<span class="built_in">dfs2</span>(xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d\n&quot;,x,y);</span></span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> t=head[x][y];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">  <span class="type">int</span> xx=a[t].x,yy=a[t].y;</span><br><span class="line">  <span class="keyword">if</span>(li[xx][yy])<span class="keyword">continue</span>;</span><br><span class="line">  li[xx][yy]=<span class="number">1</span>;ans++;<span class="built_in">dfs2</span>(xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">// freopen(&quot;2845_1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(xx);<span class="built_in">rll</span>(yy);</span><br><span class="line">  <span class="built_in">add</span>(x,y,xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(li,<span class="number">0</span>);<span class="built_in">mem</span>(vi,<span class="number">0</span>);li[<span class="number">1</span>][<span class="number">1</span>]=vi[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：答案问的是开灯数而非访问数。</p>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>luoguP2967 [USACO09DEC]视频游戏的麻烦Video Game Troubles</title>
     <url>/2018/11/05/luoguP2967%20%5BUSACO09DEC%5D%E8%A7%86%E9%A2%91%E6%B8%B8%E6%88%8F%E7%9A%84%E9%BA%BB%E7%83%A6Video%20Game%20Troubles/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2967">题目</a></p>
@@ -1302,6 +1286,22 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">f</span>(i,j)=<span class="built_in">max</span>(<span class="built_in">f</span>(i,j),<span class="built_in">f</span>(i<span class="number">-1</span>,j))</span><br></pre></td></tr></table></figure>
 <p>如果直接开f(i,j)数组，空间要爆。显然f(i)只与f(i-1)有关，滚动数组。</p>
 <h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 60</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> V 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> f[<span class="number">2</span>][V],nw=<span class="number">1</span>,lt=<span class="number">0</span>,n,g,v,x,y,p,ans=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(v);<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="built_in">sizeof</span>(f));</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(p);</span><br><span class="line">  <span class="built_in">fsb</span>(i,p,v)f[nw][i]=f[lt][i-p];</span><br><span class="line">  <span class="built_in">rll</span>(g);</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">1</span>,g)&#123;</span><br><span class="line">   <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);</span><br><span class="line">   <span class="built_in">fbs</span>(i,v,p+x)f[nw][i]=<span class="built_in">max</span>(f[nw][i],f[nw][i-x]+y);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">fsb</span>(i,<span class="number">0</span>,v)f[nw][i]=<span class="built_in">max</span>(f[nw][i],f[lt][i]);</span><br><span class="line">  <span class="built_in">swap</span>(lt,nw);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">0</span>,v)ans=<span class="built_in">max</span>(ans,f[lt][i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP2845 [USACO15DEC]Switching on the Lights 开关灯</title>
+    <url>/2018/11/05/luoguP2845%20%5BUSACO15DEC%5DSwitching%20on%20the%20Lights%20%E5%BC%80%E5%85%B3%E7%81%AF/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2845">题目</a></p>
+<hr>
+<p>函数1：用于点亮(x,y)能开的灯，假设能开(xx,yy)，将(xx,yy)交至函数2</p>
+<p>函数2：判断(x,y)是否能被<em>走到</em>（即4个方向有被访问到的点相邻），如果能，将(x,y)交至函数1，遍历(x,y)的4个方向，如果有亮着灯但没有被访问的点(xx,yy)，将(xx,yy)交至函数2</p>
+<p>主程序：(1,1) —&gt; 函数1</p>
+<hr>
+<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 110</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 200010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> <span class="type">int</span> x,y,nt;</span><br><span class="line">&#125;a[M];</span><br><span class="line"><span class="type">int</span> n,m,x,y,xx,yy,cnt=<span class="number">0</span>,head[N][N],li[N][N],vi[N][N],ans=<span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> dx[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;,dy[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> xx,<span class="type">int</span> yy)</span></span>&#123;</span><br><span class="line"> a[++cnt]=(edge)&#123;xx,yy,head[x][y]&#125;;head[x][y]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="type">int</span> flag=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">3</span>)<span class="keyword">if</span>(vi[x+dx[i]][y+dy[i]])flag=<span class="number">1</span>;</span><br><span class="line"> <span class="keyword">if</span>(flag==<span class="number">0</span>)<span class="keyword">return</span>;</span><br><span class="line"> vi[x][y]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">dfs</span>(x,y);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">0</span>,<span class="number">3</span>)&#123;</span><br><span class="line">  <span class="type">int</span> xx=x+dx[i],yy=y+dy[i];</span><br><span class="line">  <span class="keyword">if</span>((!vi[xx][yy])&amp;&amp;(li[xx][yy]))<span class="built_in">dfs2</span>(xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"><span class="comment">// printf(&quot;%10d %d\n&quot;,x,y);</span></span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> t=head[x][y];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">  <span class="type">int</span> xx=a[t].x,yy=a[t].y;</span><br><span class="line">  <span class="keyword">if</span>(li[xx][yy])<span class="keyword">continue</span>;</span><br><span class="line">  li[xx][yy]=<span class="number">1</span>;ans++;<span class="built_in">dfs2</span>(xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">// freopen(&quot;2845_1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(xx);<span class="built_in">rll</span>(yy);</span><br><span class="line">  <span class="built_in">add</span>(x,y,xx,yy);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(li,<span class="number">0</span>);<span class="built_in">mem</span>(vi,<span class="number">0</span>);li[<span class="number">1</span>][<span class="number">1</span>]=vi[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line"> <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：答案问的是开灯数而非访问数。</p>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1370,6 +1370,46 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>luoguP3871 [TJOI2010]中位数</title>
+    <url>/2018/10/30/luoguP3871%20%5BTJOI2010%5D%E4%B8%AD%E4%BD%8D%E6%95%B0/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3871">题目</a></p>
+<hr>
+<p>显然中位数为排序后第(n+1)/2个数</p>
+<h1 id="define-m-n-1-2"><a href="#define-m-n-1-2" class="headerlink" title="define m (n+1)/2"></a>define m (n+1)/2</h1><p>考虑维护两个堆</p>
+<p>一个<em>大根堆</em>（s1），里面为前m个元素；一个<em>小根堆</em>（s2），里面为后n-m个元素</p>
+<p>修改和询问的流程如下</p>
+<p>每次加入一个数x时</p>
+<p>如果x&lt;=s1.top</p>
+<p>​ add x to s1</p>
+<p>​ 如果|s1|&gt;|s2|+1</p>
+<p>​  move s1.top to s2</p>
+<p>else</p>
+<p>​ add x to s2</p>
+<p>​ 如果|s2|&gt;|s1|</p>
+<p>​  move s2.top to s1</p>
+<p>每次询问</p>
+<p>输出s1.top</p>
+<p>显然正确</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m,x,sz1=<span class="number">0</span>,sz2=<span class="number">0</span>;</span><br><span class="line"><span class="type">char</span> s[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node1</span>&#123;</span><br><span class="line"> <span class="type">int</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node2</span>&#123;</span><br><span class="line"> <span class="type">int</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span>&lt;(node1 a,node1 b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span>&lt;(node2 a,node2 b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.x&gt;b.x;</span><br><span class="line">&#125;</span><br><span class="line">priority_queue&lt;node1&gt;s1;</span><br><span class="line">priority_queue&lt;node2&gt;s2;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(s1.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  s1.<span class="built_in">push</span>((node1)&#123;x&#125;);sz1++;<span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(x&lt;=s1.<span class="built_in">top</span>().x)&#123;</span><br><span class="line">  s1.<span class="built_in">push</span>((node1)&#123;x&#125;);sz1++;</span><br><span class="line">  <span class="keyword">if</span>(sz1&gt;sz2+<span class="number">1</span>)&#123;</span><br><span class="line">   <span class="type">int</span> t=s1.<span class="built_in">top</span>().x;s1.<span class="built_in">pop</span>();</span><br><span class="line">   s2.<span class="built_in">push</span>((node2)&#123;t&#125;);sz1--;sz2++;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  s2.<span class="built_in">push</span>((node2)&#123;x&#125;);sz2++;</span><br><span class="line">  <span class="keyword">if</span>(sz2&gt;sz1)&#123;</span><br><span class="line">   <span class="type">int</span> t=s2.<span class="built_in">top</span>().x;s2.<span class="built_in">pop</span>();</span><br><span class="line">   s1.<span class="built_in">push</span>((node1)&#123;t&#125;);sz1++;sz2--;</span><br><span class="line">  &#125; </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">add</span>(x);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">&#x27;a&#x27;</span>)&#123;</span><br><span class="line">   <span class="built_in">rll</span>(x);<span class="built_in">add</span>(x);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,s1.<span class="built_in">top</span>().x);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP3946 ことりのおやつ（小鸟的点心）</title>
+    <url>/2018/11/02/luoguP3946%20%E3%81%93%E3%81%A8%E3%82%8A%E3%81%AE%E3%81%8A%E3%82%84%E3%81%A4%EF%BC%88%E5%B0%8F%E9%B8%9F%E7%9A%84%E7%82%B9%E5%BF%83%EF%BC%89/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3946">题目</a></p>
+<hr>
+<p>跑出每个点被雪覆盖的时间</p>
+<p>跑dijk，如果到这个点的最短时间超过限制，就置为不连通。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 99999999999999999</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll l[N],n,m,cnt=<span class="number">0</span>,x,y,z,s,t,g,q,head[N],d[N],vis[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,l;</span><br><span class="line">&#125;a[M*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll u,d;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;node&gt;S;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span> &lt;(node a,node b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.d&gt;b.d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].l=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">rll</span>(s);<span class="built_in">rll</span>(t);<span class="built_in">rll</span>(g);<span class="built_in">rll</span>(q);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);l[i]=(i==s||i==t)?(INF):((q==<span class="number">0</span>?INF:(y-x)/q));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,z);<span class="built_in">add</span>(y,x,z);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);<span class="built_in">mem</span>(d,<span class="number">60</span>);d[s]=<span class="number">0</span>;S.<span class="built_in">push</span>((node)&#123;s,<span class="number">0</span>&#125;);</span><br><span class="line"> <span class="keyword">while</span>(!S.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  ll u=S.<span class="built_in">top</span>().u;S.<span class="built_in">pop</span>();</span><br><span class="line">  <span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;</span><br><span class="line">  vis[u]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(d[u]&gt;g)<span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">   ll v=a[t].p;</span><br><span class="line">   <span class="keyword">if</span>(vis[v]||d[u]+a[t].l&gt;d[v]||d[u]+a[t].l&gt;l[v])<span class="keyword">continue</span>;</span><br><span class="line">   d[v]=d[u]+a[t].l;S.<span class="built_in">push</span>((node)&#123;v,d[v]&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(d[t]&gt;g)<span class="built_in">puts</span>(<span class="string">&quot;wtnap wa kotori no oyatsu desu!&quot;</span>);<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,d[t]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>luoguP3932 浮游大陆的68号岛</title>
     <url>/2018/11/05/luoguP3932%20%E6%B5%AE%E6%B8%B8%E5%A4%A7%E9%99%86%E7%9A%8468%E5%8F%B7%E5%B2%9B/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3932">题目</a></p>
@@ -1419,46 +1459,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <hr>
 <h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 200010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mo 19260817</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) (((a)%mo+mo)%mo)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll n,m,po[N],a[N],lcnt[N],rcnt[N],lcost[N],rcost[N],x,l,r;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">// freopen(&quot;3932_1.in&quot;,&quot;r&quot;,stdin);freopen(&quot;3932.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);po[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(po[i]);po[i]+=po[i<span class="number">-1</span>];po[i]=<span class="built_in">md</span>(po[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(a,<span class="number">0</span>);<span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">mem</span>(lcnt,<span class="number">0</span>);<span class="built_in">mem</span>(rcnt,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  lcnt[i]=lcnt[i<span class="number">-1</span>]+a[i<span class="number">-1</span>];lcnt[i]=<span class="built_in">md</span>(lcnt[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fbs</span>(i,n,<span class="number">1</span>)&#123;</span><br><span class="line">  rcnt[i]=rcnt[i+<span class="number">1</span>]+a[i+<span class="number">1</span>];rcnt[i]=<span class="built_in">md</span>(rcnt[i]);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(lcost,<span class="number">0</span>);<span class="built_in">mem</span>(rcost,<span class="number">0</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">2</span>,n)&#123;</span><br><span class="line">  lcost[i]=<span class="built_in">md</span>(lcost[i<span class="number">-1</span>]+lcnt[i]*(po[i]-po[i<span class="number">-1</span>]));</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// fsb(i,1,n)printf(&quot;%10lld %lld %lld\n&quot;,i,lcnt[i],rcnt[i]);</span></span><br><span class="line"> <span class="built_in">fbs</span>(i,n<span class="number">-1</span>,<span class="number">1</span>)&#123;</span><br><span class="line">  rcost[i]=<span class="built_in">md</span>(rcost[i+<span class="number">1</span>]+rcnt[i]*(po[i+<span class="number">1</span>]-po[i]));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(l);<span class="built_in">rll</span>(r);</span><br><span class="line">  l=l==x?l+<span class="number">1</span>:l;</span><br><span class="line">  r=r==x?r<span class="number">-1</span>:r;</span><br><span class="line">  <span class="keyword">if</span>(l&gt;r)&#123;</span><br><span class="line">   <span class="built_in">puts</span>(<span class="string">&quot;0&quot;</span>);<span class="keyword">continue</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ll ans=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(r&lt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(lcnt[r+<span class="number">1</span>]*(po[x]-po[r])+lcost[r]-lcost[l]-lcnt[l]*(po[x]-po[l]));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(l&gt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(rcnt[l<span class="number">-1</span>]*(po[l]-po[x])+rcost[l]-rcost[r]-rcnt[r]*(po[r]-po[x]));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(l&lt;x&amp;&amp;r&gt;x)&#123;</span><br><span class="line">   ans=<span class="built_in">md</span>(lcnt[x]*(po[x]-po[x<span class="number">-1</span>])+lcost[x<span class="number">-1</span>]-lcost[l]-lcnt[l]*(po[x]-po[l]));</span><br><span class="line">   ans+=<span class="built_in">md</span>(rcnt[x]*(po[x+<span class="number">1</span>]-po[x])+rcost[x+<span class="number">1</span>]-rcost[r]-rcnt[r]*(po[r]-po[x]));</span><br><span class="line">   ans=<span class="built_in">md</span>(ans);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：数字有点大，及时%。</p>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP3871 [TJOI2010]中位数</title>
-    <url>/2018/10/30/luoguP3871%20%5BTJOI2010%5D%E4%B8%AD%E4%BD%8D%E6%95%B0/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3871">题目</a></p>
-<hr>
-<p>显然中位数为排序后第(n+1)/2个数</p>
-<h1 id="define-m-n-1-2"><a href="#define-m-n-1-2" class="headerlink" title="define m (n+1)/2"></a>define m (n+1)/2</h1><p>考虑维护两个堆</p>
-<p>一个<em>大根堆</em>（s1），里面为前m个元素；一个<em>小根堆</em>（s2），里面为后n-m个元素</p>
-<p>修改和询问的流程如下</p>
-<p>每次加入一个数x时</p>
-<p>如果x&lt;=s1.top</p>
-<p>​ add x to s1</p>
-<p>​ 如果|s1|&gt;|s2|+1</p>
-<p>​  move s1.top to s2</p>
-<p>else</p>
-<p>​ add x to s2</p>
-<p>​ 如果|s2|&gt;|s1|</p>
-<p>​  move s2.top to s1</p>
-<p>每次询问</p>
-<p>输出s1.top</p>
-<p>显然正确</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m,x,sz1=<span class="number">0</span>,sz2=<span class="number">0</span>;</span><br><span class="line"><span class="type">char</span> s[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node1</span>&#123;</span><br><span class="line"> <span class="type">int</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node2</span>&#123;</span><br><span class="line"> <span class="type">int</span> x;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span>&lt;(node1 a,node1 b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span>&lt;(node2 a,node2 b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.x&gt;b.x;</span><br><span class="line">&#125;</span><br><span class="line">priority_queue&lt;node1&gt;s1;</span><br><span class="line">priority_queue&lt;node2&gt;s2;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> qw f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(s1.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  s1.<span class="built_in">push</span>((node1)&#123;x&#125;);sz1++;<span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(x&lt;=s1.<span class="built_in">top</span>().x)&#123;</span><br><span class="line">  s1.<span class="built_in">push</span>((node1)&#123;x&#125;);sz1++;</span><br><span class="line">  <span class="keyword">if</span>(sz1&gt;sz2+<span class="number">1</span>)&#123;</span><br><span class="line">   <span class="type">int</span> t=s1.<span class="built_in">top</span>().x;s1.<span class="built_in">pop</span>();</span><br><span class="line">   s2.<span class="built_in">push</span>((node2)&#123;t&#125;);sz1--;sz2++;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  s2.<span class="built_in">push</span>((node2)&#123;x&#125;);sz2++;</span><br><span class="line">  <span class="keyword">if</span>(sz2&gt;sz1)&#123;</span><br><span class="line">   <span class="type">int</span> t=s2.<span class="built_in">top</span>().x;s2.<span class="built_in">pop</span>();</span><br><span class="line">   s1.<span class="built_in">push</span>((node1)&#123;t&#125;);sz1++;sz2--;</span><br><span class="line">  &#125; </span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">add</span>(x);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s+<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span>(s[<span class="number">1</span>]==<span class="string">&#x27;a&#x27;</span>)&#123;</span><br><span class="line">   <span class="built_in">rll</span>(x);<span class="built_in">add</span>(x);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,s1.<span class="built_in">top</span>().x);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP3946 ことりのおやつ（小鸟的点心）</title>
-    <url>/2018/11/02/luoguP3946%20%E3%81%93%E3%81%A8%E3%82%8A%E3%81%AE%E3%81%8A%E3%82%84%E3%81%A4%EF%BC%88%E5%B0%8F%E9%B8%9F%E7%9A%84%E7%82%B9%E5%BF%83%EF%BC%89/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3946">题目</a></p>
-<hr>
-<p>跑出每个点被雪覆盖的时间</p>
-<p>跑dijk，如果到这个点的最短时间超过限制，就置为不连通。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 99999999999999999</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll l[N],n,m,cnt=<span class="number">0</span>,x,y,z,s,t,g,q,head[N],d[N],vis[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,l;</span><br><span class="line">&#125;a[M*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll u,d;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;node&gt;S;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span> &lt;(node a,node b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.d&gt;b.d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].l=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">rll</span>(s);<span class="built_in">rll</span>(t);<span class="built_in">rll</span>(g);<span class="built_in">rll</span>(q);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);l[i]=(i==s||i==t)?(INF):((q==<span class="number">0</span>?INF:(y-x)/q));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,z);<span class="built_in">add</span>(y,x,z);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);<span class="built_in">mem</span>(d,<span class="number">60</span>);d[s]=<span class="number">0</span>;S.<span class="built_in">push</span>((node)&#123;s,<span class="number">0</span>&#125;);</span><br><span class="line"> <span class="keyword">while</span>(!S.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  ll u=S.<span class="built_in">top</span>().u;S.<span class="built_in">pop</span>();</span><br><span class="line">  <span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;</span><br><span class="line">  vis[u]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(d[u]&gt;g)<span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">   ll v=a[t].p;</span><br><span class="line">   <span class="keyword">if</span>(vis[v]||d[u]+a[t].l&gt;d[v]||d[u]+a[t].l&gt;l[v])<span class="keyword">continue</span>;</span><br><span class="line">   d[v]=d[u]+a[t].l;S.<span class="built_in">push</span>((node)&#123;v,d[v]&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(d[t]&gt;g)<span class="built_in">puts</span>(<span class="string">&quot;wtnap wa kotori no oyatsu desu!&quot;</span>);<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,d[t]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1663,6 +1663,40 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>树莓派入门：安装与配置</title>
+    <url>/2019/02/01/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%85%A5%E9%97%A8%EF%BC%9A%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>树莓派是一块只有信用卡长宽的微型电脑，通常配备ARM处理器。麻雀虽小而接口丰富，五脏俱全。</p>
+<p>比如我目前入手的树莓派3B+有4个USB2.0，1个千兆以太网（支持以太网供电），1个3.5mm音频接口，1个摄像头接口，1个HDMI接口，1个Micro USB电源接口，1个DSI显示接口，内置WiFi与蓝牙。树莓派拥有超级广泛用途的一个重要原因是其配备40针GPIO接口，意味着树莓派的配件扩展可以极其丰富。</p>
+<h2 id="选购"><a href="#选购" class="headerlink" title="选购"></a>选购</h2><p>首先不能对树莓派的性能有太高的指望，毕竟这只是台成本在200-300元的机子，比如3B+配备1.4GHz四核处理器与1G RAM。这里给出各版本对照表：</p>
+<p><img src="https://s2.ax1x.com/2019/02/01/k31cVJ.png" alt=""></p>
+<p>这张图制作较早，并没有包含树莓派3B+。3B+（280）比3B（264）更贵，但处理器主频在不超频情况下从1.2GHz提高到了1.4GHz。另外，上表中有成本为5美元的Zero，但在京东等平台上售价也都在150+，并没有实惠多少。</p>
+<p>选完树莓派后可以根据自己的需求选取相应的传感器、配件等等。</p>
+<p>这里推荐加装一个外壳和风扇。树莓派发热非常厉害，如果要超频则更甚，良好散热对使用寿命是有极大好处的。至于外壳，单纯因为树莓派看起来太单薄，电子元件裸露，容易损坏。</p>
+<p><img src="https://s2.ax1x.com/2019/02/01/k33pqg.jpg" alt=""></p>
+<p>另外，需要一张Micro SD，推荐16GB+，class10以上。着重看读写速度。我选用的是闪迪至尊极速32GB，读入和写入分别为100MB/s和60MB/s</p>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p>由于是ARM处理器，因此在操作系统上稍有限制。可选各类ARMlinux以及windows10iot。</p>
+<p>其他操作系统，日后研究，这里以官方推荐的操作系统Raspbian（基于Debian，自带很多硬件驱动）为例。</p>
+<p><a href="http://downloads.raspberrypi.org/raspbian_latest">下载操作系统</a> <a href="https://sourceforge.net/projects/win32diskimager/">下载Win32 Disk Imager</a></p>
+<p>然后就是傻瓜操作，打开软件，选择img镜像，写入到SD卡上。</p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>SD卡插入树莓派，接上电源后自动开机。第一次开机连接一个显示器。</p>
+<p>以前版本的Raspbian默认用户名和密码是pi和raspberry，现在好像可以在第一次开机自己设定密码了。</p>
+<p>第一次开机会有一些设置，非常不推荐在这个过程中选择更新，我也不知道是网慢还是什么原因，经常卡在这儿。</p>
+<p>接下来是一些推荐的配置（更改默认分辨率，开启VNC，更改软件源，安装vim）</p>
+<h4 id="更改默认分辨率，开启VNC"><a href="#更改默认分辨率，开启VNC" class="headerlink" title="更改默认分辨率，开启VNC"></a>更改默认分辨率，开启VNC</h4><p>命令行输入如下命令进入设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
+<p>进入7 Advanced Options，在A5 Resolution可以更改分辨率。进入5 Interfacing Options，选择VNC enabled。</p>
+<p>同时建议给树莓派分配专门的IP，方便VNC连接。这步要去路由器管理后台，找到DHCP保留或静态IP或绑定IP等等这样的设置，将树莓派的MAC绑在固定的IP上即可。</p>
+<p>windows通过VNC访问树莓派也非常简单。在VNC开启后，VNC会默认开机启动。因此只要树莓派开机联网，在windows下使用VNCviewer，输入树莓派IP和访问密码（通常是树莓派密码或者是自己设定的），就能远程访问桌面了。</p>
+<h4 id="更改软件源"><a href="#更改软件源" class="headerlink" title="更改软件源"></a>更改软件源</h4><p>命令行输入如下命令就可以换到亲测比较优秀的一个源上（中科大的源）。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -s</span><br><span class="line">echo -e &quot;deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi \n deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi&quot; &gt; /etc/apt/sources.list</span><br><span class="line">echo -e &quot;deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/ stretch main ui&quot; &gt; /etc/apt/sources.list.d/raspi.list</span><br><span class="line">exit</span><br><span class="line">sudo apt update &amp;&amp; sudo apt -y upgrade</span><br></pre></td></tr></table></figure>
+<h4 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h4><p>居然没有默认安装orz。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Fun Stuff</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学生端杀手</title>
     <url>/2019/03/24/%E5%AD%A6%E7%94%9F%E7%AB%AF%E6%9D%80%E6%89%8B/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>目前大多数电子教室使用的学生端软件是极域电子教室，杀除它的方法也有很多。但对于大多数小白，记下这些方法并不容易，于是萌生了开发这样一款傻瓜软件的想法。</p>
@@ -1715,40 +1749,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 ]]></content>
       <tags>
         <tag>Project</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>树莓派入门：安装与配置</title>
-    <url>/2019/02/01/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%85%A5%E9%97%A8%EF%BC%9A%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>树莓派是一块只有信用卡长宽的微型电脑，通常配备ARM处理器。麻雀虽小而接口丰富，五脏俱全。</p>
-<p>比如我目前入手的树莓派3B+有4个USB2.0，1个千兆以太网（支持以太网供电），1个3.5mm音频接口，1个摄像头接口，1个HDMI接口，1个Micro USB电源接口，1个DSI显示接口，内置WiFi与蓝牙。树莓派拥有超级广泛用途的一个重要原因是其配备40针GPIO接口，意味着树莓派的配件扩展可以极其丰富。</p>
-<h2 id="选购"><a href="#选购" class="headerlink" title="选购"></a>选购</h2><p>首先不能对树莓派的性能有太高的指望，毕竟这只是台成本在200-300元的机子，比如3B+配备1.4GHz四核处理器与1G RAM。这里给出各版本对照表：</p>
-<p><img src="https://s2.ax1x.com/2019/02/01/k31cVJ.png" alt=""></p>
-<p>这张图制作较早，并没有包含树莓派3B+。3B+（280）比3B（264）更贵，但处理器主频在不超频情况下从1.2GHz提高到了1.4GHz。另外，上表中有成本为5美元的Zero，但在京东等平台上售价也都在150+，并没有实惠多少。</p>
-<p>选完树莓派后可以根据自己的需求选取相应的传感器、配件等等。</p>
-<p>这里推荐加装一个外壳和风扇。树莓派发热非常厉害，如果要超频则更甚，良好散热对使用寿命是有极大好处的。至于外壳，单纯因为树莓派看起来太单薄，电子元件裸露，容易损坏。</p>
-<p><img src="https://s2.ax1x.com/2019/02/01/k33pqg.jpg" alt=""></p>
-<p>另外，需要一张Micro SD，推荐16GB+，class10以上。着重看读写速度。我选用的是闪迪至尊极速32GB，读入和写入分别为100MB/s和60MB/s</p>
-<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p>由于是ARM处理器，因此在操作系统上稍有限制。可选各类ARMlinux以及windows10iot。</p>
-<p>其他操作系统，日后研究，这里以官方推荐的操作系统Raspbian（基于Debian，自带很多硬件驱动）为例。</p>
-<p><a href="http://downloads.raspberrypi.org/raspbian_latest">下载操作系统</a> <a href="https://sourceforge.net/projects/win32diskimager/">下载Win32 Disk Imager</a></p>
-<p>然后就是傻瓜操作，打开软件，选择img镜像，写入到SD卡上。</p>
-<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>SD卡插入树莓派，接上电源后自动开机。第一次开机连接一个显示器。</p>
-<p>以前版本的Raspbian默认用户名和密码是pi和raspberry，现在好像可以在第一次开机自己设定密码了。</p>
-<p>第一次开机会有一些设置，非常不推荐在这个过程中选择更新，我也不知道是网慢还是什么原因，经常卡在这儿。</p>
-<p>接下来是一些推荐的配置（更改默认分辨率，开启VNC，更改软件源，安装vim）</p>
-<h4 id="更改默认分辨率，开启VNC"><a href="#更改默认分辨率，开启VNC" class="headerlink" title="更改默认分辨率，开启VNC"></a>更改默认分辨率，开启VNC</h4><p>命令行输入如下命令进入设置。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo raspi-config</span><br></pre></td></tr></table></figure>
-<p>进入7 Advanced Options，在A5 Resolution可以更改分辨率。进入5 Interfacing Options，选择VNC enabled。</p>
-<p>同时建议给树莓派分配专门的IP，方便VNC连接。这步要去路由器管理后台，找到DHCP保留或静态IP或绑定IP等等这样的设置，将树莓派的MAC绑在固定的IP上即可。</p>
-<p>windows通过VNC访问树莓派也非常简单。在VNC开启后，VNC会默认开机启动。因此只要树莓派开机联网，在windows下使用VNCviewer，输入树莓派IP和访问密码（通常是树莓派密码或者是自己设定的），就能远程访问桌面了。</p>
-<h4 id="更改软件源"><a href="#更改软件源" class="headerlink" title="更改软件源"></a>更改软件源</h4><p>命令行输入如下命令就可以换到亲测比较优秀的一个源上（中科大的源）。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo -s</span><br><span class="line">echo -e &quot;deb http://mirrors.ustc.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi \n deb-src http://mirrors.ustc.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi&quot; &gt; /etc/apt/sources.list</span><br><span class="line">echo -e &quot;deb http://mirrors.ustc.edu.cn/archive.raspberrypi.org/ stretch main ui&quot; &gt; /etc/apt/sources.list.d/raspi.list</span><br><span class="line">exit</span><br><span class="line">sudo apt update &amp;&amp; sudo apt -y upgrade</span><br></pre></td></tr></table></figure>
-<h4 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h4><p>居然没有默认安装orz。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
       </tags>
   </entry>
   <entry>
