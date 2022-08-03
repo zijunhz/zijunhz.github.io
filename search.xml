@@ -288,6 +288,68 @@ function result() {
       </tags>
   </entry>
   <entry>
+    <title>Git Learning Notes</title>
+    <url>/2022/04/28/Git-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
+<ol>
+<li><code>git checkout main</code> to switch the local branch to main.</li>
+<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
+<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
+<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
+<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
+<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
+</ol>
+</li>
+<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
+<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
+</ol>
+<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
+<p>Try the following commands to fix this problem:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
+<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>type:</p>
+<ul>
+<li><p><code>feat</code>: add a new feature</p>
+</li>
+<li><p><code>fix</code>: fix a bug</p>
+</li>
+<li><p><code>style</code>: change the coding style without any other functional changes</p>
+</li>
+<li><p><code>refactor</code>: rewrite</p>
+</li>
+<li><p><code>test</code>: everything related to testing</p>
+</li>
+<li><p><code>docs</code>: everything related to documentation</p>
+</li>
+<li><p><code>chore</code>: regular maintenance</p>
+</li>
+</ul>
+<p>e.g. <code>feat(homepage): add register button</code></p>
+<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
+<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><p>If you want to delete a local branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
+<p>If you want to delete a remote branch:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d nameOfRemoteBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
+<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
+<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
+<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C and C++ Learning Notes</title>
     <url>/2022/06/25/C-and-C-Learning-Notes/</url>
     <content><![CDATA[<h2 id="Dynamic-allocation"><a href="#Dynamic-allocation" class="headerlink" title="Dynamic allocation"></a>Dynamic allocation</h2><p>Use <code>new</code> to new things.</p>
@@ -359,98 +421,8 @@ function result() {
 <p>where <code>argv</code> is a 2-D char array whose every row represents a char array.</p>
 ]]></content>
       <tags>
+        <tag>Notes</tag>
         <tag>C &amp; C++</tag>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Frontend Learning Notes</title>
-    <url>/2022/05/03/Frontend-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git Learning Notes</title>
-    <url>/2022/04/28/Git-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><p>When using git to collaborate with others, the following workflow should be taken:</p>
-<ol>
-<li><code>git checkout main</code> to switch the local branch to main.</li>
-<li><code>git pull origin main</code> to pull the remote main branch to the local branch to catch up the work.</li>
-<li><code>git checkout -b newLocalBranchName</code> to create a new local branch that you are going to work on. Usually the name of the branch is related what you are going to do.</li>
-<li>Coding. <code>git add .</code> and <code>git commit -m &quot;blablabla&quot;</code></li>
-<li><code>git push origin newRemoteBranchName</code> to create a new remote branch that you are going to commit your work to. Usually the remote branch name is the same as the local branch name.<ol>
-<li>In this step, you might commit several time and it’s tedious to type a long git push command. Therefore, you can use <code>git push --set-upstream origin newRemoteBranchName</code> to link the local branch with the remote branch, so that next time you want to commit and push to the remote branch, you can simply use the command <code>git push</code>.</li>
-</ol>
-</li>
-<li>Create a <code>git pull</code> request in <code>github</code> or whatever git platform you use and merge the new remote branch to the remote main branch.</li>
-<li>Repeat 1~6 if you are going to work on a different thing in this project.</li>
-</ol>
-<h2 id="Init"><a href="#Init" class="headerlink" title="Init"></a>Init</h2><h3 id="Create-a-New-Repository"><a href="#Create-a-New-Repository" class="headerlink" title="Create a New Repository"></a>Create a New Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h3 id="Push-an-Existing-Repository"><a href="#Push-an-Existing-Repository" class="headerlink" title="Push an Existing Repository"></a>Push an Existing Repository</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;whatever ssh repository address&gt;</span><br><span class="line">git branch -M main <span class="comment"># This is how you rename a branch&#x27;s name. &quot;Main&quot; is preferred because &quot;master&quot; can be offending.</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>The <code>.gitignore</code> file can fail to work from time to time, especially when you want to ignore a file that has been tracked before.</p>
-<p>Try the following commands to fix this problem:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r --cached .</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Untracked files issue resolved to fix .gitignore&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<p>What these commands do is that they clear all the cache and reestablish the track during which <code>.gitignore</code> is loaded.</p>
-<h2 id="Git-Commit-Messages-in-Appropriate-Formatting"><a href="#Git-Commit-Messages-in-Appropriate-Formatting" class="headerlink" title="Git Commit Messages in Appropriate Formatting"></a>Git Commit Messages in Appropriate Formatting</h2><p>Reference: <a href="https://www.freecodecamp.org/news/writing-good-commit-messages-a-practical-guide/">How to Write Good Commit Messages: A Practical Git Guide</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;&lt;type&gt;: &lt;verb&gt; &lt;object&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>type:</p>
-<ul>
-<li><p><code>feat</code>: add a new feature</p>
-</li>
-<li><p><code>fix</code>: fix a bug</p>
-</li>
-<li><p><code>style</code>: change the coding style without any other functional changes</p>
-</li>
-<li><p><code>refactor</code>: rewrite</p>
-</li>
-<li><p><code>test</code>: everything related to testing</p>
-</li>
-<li><p><code>docs</code>: everything related to documentation</p>
-</li>
-<li><p><code>chore</code>: regular maintenance</p>
-</li>
-</ul>
-<p>e.g. <code>feat(homepage): add register button</code></p>
-<p>If you are working on something not related to software development, say a lab report, then there’s no such thing as adding a feature. In this case, just use verb+object to describe your work. e.g. <code>add data sheet</code></p>
-<h2 id="Branch-Related"><a href="#Branch-Related" class="headerlink" title="Branch Related"></a>Branch Related</h2><h3 id="Rename-a-branch"><a href="#Rename-a-branch" class="headerlink" title="Rename a branch"></a>Rename a branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -m newNameForBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Delete-branch"><a href="#Delete-branch" class="headerlink" title="Delete branch"></a>Delete branch</h3><p>If you want to delete a local branch:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d nameOfYourBranch</span><br></pre></td></tr></table></figure>
-<p>If you want to delete a remote branch:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin -d nameOfRemoteBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Clone-from-certain-branch"><a href="#Clone-from-certain-branch" class="headerlink" title="Clone from certain branch"></a>Clone from certain branch</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch &lt;branchname&gt; &lt;remote-repo-url&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Create-new-branch-and-switch-to-it"><a href="#Create-new-branch-and-switch-to-it" class="headerlink" title="Create new branch and switch to it"></a>Create new branch and switch to it</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b anyNameYouLike</span><br></pre></td></tr></table></figure>
-<h3 id="List-all-branches"><a href="#List-all-branches" class="headerlink" title="List all branches"></a>List all branches</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h3 id="Switch-between-different-branches-locally"><a href="#Switch-between-different-branches-locally" class="headerlink" title="Switch between different branches locally"></a>Switch between different branches locally</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout nameOfTargetedBranch</span><br></pre></td></tr></table></figure>
-<h2 id="Push-Related"><a href="#Push-Related" class="headerlink" title="Push Related"></a>Push Related</h2><h3 id="Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one"><a href="#Push-to-certain-branch-in-the-upstream-if-not-exist-one-create-one" class="headerlink" title="Push to certain branch in the upstream (if not exist one, create one)"></a>Push to certain branch in the upstream (if not exist one, create one)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-<h3 id="Set-change-upstream"><a href="#Set-change-upstream" class="headerlink" title="Set/change upstream"></a>Set/change upstream</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin nameOfUpStream</span><br></pre></td></tr></table></figure>
-<h2 id="Pull-Related"><a href="#Pull-Related" class="headerlink" title="Pull Related"></a>Pull Related</h2><p>Pull from certain branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull origin nameOfTheUpstreamBranch</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>God of Avalon</title>
-    <url>/2022/05/03/God-of-Avalon/</url>
-    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
-<p><del>I haven’t deployed it to any VPS, but I do have the plan.</del></p>
-<p>Update: it has been deployed to a VPS. Visit <a href="https://goa.zpatronus.top">this site</a> to enjoy it.</p>
-<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
-<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-        <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -472,8 +444,19 @@ function result() {
 ]]></content>
       <tags>
         <tag>Notes</tag>
-        <tag>Web Dev</tag>
         <tag>Maintenance</tag>
+        <tag>Web Dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Frontend Learning Notes</title>
+    <url>/2022/05/03/Frontend-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="SHA1-SHA256-and-SHA512-Implementation-in-JavaScript"><a href="#SHA1-SHA256-and-SHA512-Implementation-in-JavaScript" class="headerlink" title="SHA1, SHA256 and SHA512 Implementation in JavaScript"></a>SHA1, SHA256 and SHA512 Implementation in JavaScript</h2><p>Docs: <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string">MDN SubtleCrypto.digest()</a></p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Frontend</tag>
       </tags>
   </entry>
   <entry>
@@ -618,10 +601,63 @@ function result() {
 ]]></content>
       <tags>
         <tag>Web Dev</tag>
-        <tag>Django</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
         <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>God of Avalon</title>
+    <url>/2022/05/03/God-of-Avalon/</url>
+    <content><![CDATA[<p>If you are in SJTU campus/using an SJTU vpn (as long as you has an SJTU ip), you can visit <a href="http://59.78.35.89:7998/">this site</a> to enjoy the online Avalon god.</p>
+<p><del>I haven’t deployed it to any VPS, but I do have the plan.</del></p>
+<p>Update: it has been deployed to a VPS. Visit <a href="https://goa.zpatronus.top">this site</a> to enjoy it.</p>
+<h2 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-frontend">Frontend Repository</a></p>
+<h2 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h2><p><a href="https://github.com/zijunhz/GodOfAvalon-backend">Backend Repository</a></p>
+]]></content>
+      <tags>
+        <tag>Fun Stuff</tag>
+        <tag>Project</tag>
+        <tag>Web Dev</tag>
+        <tag>Django</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux Using Notes</title>
+    <url>/2022/05/10/Linux-Using-Notes/</url>
+    <content><![CDATA[<h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br></pre></td></tr></table></figure>
+<h2 id="tzselect-Set-Timezone"><a href="#tzselect-Set-Timezone" class="headerlink" title="tzselect | Set Timezone"></a>tzselect | Set Timezone</h2><p>A simple, user-friendly timezone settings guider.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tzselect</span><br></pre></td></tr></table></figure>
+<p>Remember to add a line in <code>~/.profile</code> according to instructions given by <code>tzselect</code>.</p>
+<h2 id="clean-Clear-Terminal-Screen"><a href="#clean-Clear-Terminal-Screen" class="headerlink" title="clean | Clear Terminal Screen"></a>clean | Clear Terminal Screen</h2><p>A simple command to clear the terminal screen.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
+<h2 id="screen-A-Terminal-Multiplexer"><a href="#screen-A-Terminal-Multiplexer" class="headerlink" title="screen | A Terminal Multiplexer"></a>screen | A Terminal Multiplexer</h2><h3 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h3><p>There are several cases you want to use screen to manage your terminals.</p>
+<ul>
+<li>You are connecting to your Linux machine using ssh, but the job is time-consuming. You don’t want to keep the ssh window open, but killing it will also kill the process.</li>
+<li>You are using Linux desktop. You want to hide a terminal when you not need it and resume to the status right before you hide it.</li>
+</ul>
+<p>screen does the job perfectly. It serve as a layer between the terminal users see and the actual processes.</p>
+<h3 id="How-to-Use-it"><a href="#How-to-Use-it" class="headerlink" title="How to Use it"></a>How to Use it</h3><p>To create a new screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S whateverNameYouLike</span><br></pre></td></tr></table></figure>
+<p>To list all screens:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p>To reattach to a screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theNameOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theIdOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
+<p>To end a screen:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S screenIdYouWantToKill -X quit</span><br></pre></td></tr></table></figure>
+<p>If you are in a screen, you can do the following operations:</p>
+<p>I will use <code>@</code> to refer to <code>Ctrl+A</code></p>
+<p>To detach the screen: press <code>@+D</code>.</p>
+<p>To create a window in a screen: press <code>@+C</code>.</p>
+<p>To navigate to the previous/next window in a screen: press <code>@+P/N</code></p>
+<p>To list all windows in a screen: press <code>@+W</code>.</p>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
       </tags>
   </entry>
   <entry>
@@ -866,104 +902,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Tank War Game with CLI</title>
-    <url>/2022/08/03/Tank-War-Game-with-CLI/</url>
-    <content><![CDATA[<p><a href="https://github.com/zijunhz/tank-war-game">Github Repo</a></p>
-<p>A simple tank war game with CLI that supports PVP, PVE and DEMO.</p>
-<h2 id="Compile-the-program"><a href="#Compile-the-program" class="headerlink" title="Compile the program"></a>Compile the program</h2><p>To compile it, you need to install:</p>
-<ul>
-<li><code>g++</code>, a cpp compiler. Remember to add it to PATH if you are using Windows.</li>
-<li><code>CMake</code>, a build process manager.</li>
-<li><code>GNU Make</code>, a tool which controls the generation of executables and other non-source files of a program from the program’s source files.</li>
-</ul>
-<p>or you can use IDEs such as <code>CLion</code>.</p>
-<h3 id="The-recommended-way"><a href="#The-recommended-way" class="headerlink" title="The recommended way"></a>The recommended way</h3><p>The recommended way of compiling it (also the way I compile it) is with the help of a plug-in in <code>VSCode</code> called <code>CMake Tools</code>.</p>
-<p>If you open the project folder in <code>VSCode</code> and you have successfully install <code>g++</code>, <code>CMake</code> and <code>CMake Tools</code>, you can find a <code>build</code> button in the bottom bar. By clicking it, the executable will be compiled under <code>./build/tankwar.exe</code>.</p>
-<h3 id="Other-ways"><a href="#Other-ways" class="headerlink" title="Other ways"></a>Other ways</h3><p>You may refer to <a href="https://cmake.org/cmake/help/latest/manual/cmake.1.html">docs for CMake command line</a> to checkout how to compile it with command line (it should be <code>cmake -b build</code>, <code>cd build</code> and <code>make</code>, I believe).</p>
-<p>Or, you may refer to <a href="https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html">docs for CMake in CLion</a> to checkout how to compile it in <code>CLion</code>.</p>
-<h2 id="Run-the-program"><a href="#Run-the-program" class="headerlink" title="Run the program"></a>Run the program</h2><p>This is a command line game so you can run it in terminal.</p>
-<p>I’ll take how it can be run in <code>Linux Mint</code> as an example.</p>
-<p>After generate the executable <code>tankwar</code>, type <code>./tankwar</code> in the terminal to enter the default mode which is PVP and has the default life of 5 and default log file <code>tankwar.log</code>.</p>
-<p>You can type <code>./tankwar -h</code> to check the help page of the game and learn how to have access to other mode and how to change the life and log file.</p>
-<p>The game-play instruction is built into the game itself and you can see it during the game.</p>
-<p>The game’s interface has colored texts so you need to run it in a supported terminal. In Windows, for example, you need to run it in <code>Windows Terminal</code> or the terminal in <code>VSCode</code>.</p>
-<h2 id="Layer-of-the-program"><a href="#Layer-of-the-program" class="headerlink" title="Layer of the program"></a>Layer of the program</h2><p>The program consists of 5 layers listed from low level to high level:</p>
-<ul>
-<li><code>Object</code> layer. It includes every player, bullet and the whole game. It is responsible for some basic tasks like moving a tank or a bullet or judge collision. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
-<li><code>Game processing</code> layer. It includes the logic of the game. By utilizing the <code>object</code> layer, it is responsible for how the game goes on, such as processing one turn and printing the result. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
-<li><code>Input</code> layer. The <code>game processing</code> layer needs input actions to process one turn, and to the <code>game processing</code> layer, human input and AI input are of no difference. The <code>input</code> layer gathers input actions from human and/or AI based on game mode and passes the information to the <code>game processing</code> layer. This part of the program is primarily in <code>gameControl.cpp</code>.</li>
-<li><code>AI</code> layer. This layer takes in a game status and returns the best action for a particular player. This part of the program is primarily in <code>tankai.cpp</code>.</li>
-<li><code>Global control</code> layer. This layer handles the command line arguments and organizes the whole program. This part of the program is primarily in <code>gameControl.cpp</code> and <code>tankwar.cpp</code>.</li>
-</ul>
-<h2 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h2><p>Three objects are defined in the game’s program.</p>
-<h3 id="Bullet"><a href="#Bullet" class="headerlink" title="Bullet"></a><code>Bullet</code></h3><p>It contains all the information of one bullet, including its coordinates and direction.</p>
-<p>The method <code>init</code> is used to initialize a bullet.</p>
-<p>You can find its declaration in <code>gameProcess.h</code>.</p>
-<h3 id="Player"><a href="#Player" class="headerlink" title="Player"></a><code>Player</code></h3><p>It contains all the information of one player, including its coordinates, direction and life.</p>
-<p>The method:</p>
-<p><code>turn</code> is used to turn the player in place;</p>
-<p><code>move</code> is used to move the player straight forward;</p>
-<p><code>init</code> is used to initialize the playher.</p>
-<p>You can find its declaration in <code>gameProcess.h</code>.</p>
-<h3 id="Game"><a href="#Game" class="headerlink" title="Game"></a><code>Game</code></h3><p>It contains all the information of a game status, including two players and all the bullets.</p>
-<p>The number of methods of this class is too large, but you can check out comments in <code>gameProcess.cpp</code> to see what each method do.</p>
-<p>You can find the declaration of <code>Game</code> in <code>gameProcess.h</code>.</p>
-<h2 id="I-O-format"><a href="#I-O-format" class="headerlink" title="I/O format"></a>I/O format</h2><p>The I/O format of this tank war game has three features to improve user experience.</p>
-<p>(img hidden until Aug. 5th)</p>
-<ol>
-<li>hidden until Aug. 5th</li>
-<li>hidden until Aug. 5th</li>
-<li>hidden until Aug. 5th</li>
-</ol>
-<h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><p>The strategy of the AI is quite conservative for it assume its opponent is cleaver enough.</p>
-<p>Every turn, AI can take one action and so does its opponent. The AI will take the action that the minimal <code>scores</code> when its opponent takes one action is the highest.</p>
-<p><code>score</code> is measured by a quite complex algorithm involving searching tree. It evaluates whether an action will lead to the end of the game, cause damage and result in a either good or bad situation.</p>
-<p>Also, it’s often boring to see two tanks with the same life collide with each other resulting in a draw. So I also add some deduction in score for this kind of behavior. But the AI won’t stay away from its component because of another evaluation standard that rewards aggressive behavior.</p>
-<p>The overall result that I can never win it shows that the AI is quite powerful.</p>
-]]></content>
-      <tags>
-        <tag>Fun Stuff</tag>
-        <tag>Project</tag>
-        <tag>C &amp; C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux Using Notes</title>
-    <url>/2022/05/10/Linux-Using-Notes/</url>
-    <content><![CDATA[<h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br></pre></td></tr></table></figure>
-<h2 id="tzselect-Set-Timezone"><a href="#tzselect-Set-Timezone" class="headerlink" title="tzselect | Set Timezone"></a>tzselect | Set Timezone</h2><p>A simple, user-friendly timezone settings guider.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tzselect</span><br></pre></td></tr></table></figure>
-<p>Remember to add a line in <code>~/.profile</code> according to instructions given by <code>tzselect</code>.</p>
-<h2 id="clean-Clear-Terminal-Screen"><a href="#clean-Clear-Terminal-Screen" class="headerlink" title="clean | Clear Terminal Screen"></a>clean | Clear Terminal Screen</h2><p>A simple command to clear the terminal screen.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure>
-<h2 id="screen-A-Terminal-Multiplexer"><a href="#screen-A-Terminal-Multiplexer" class="headerlink" title="screen | A Terminal Multiplexer"></a>screen | A Terminal Multiplexer</h2><h3 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h3><p>There are several cases you want to use screen to manage your terminals.</p>
-<ul>
-<li>You are connecting to your Linux machine using ssh, but the job is time-consuming. You don’t want to keep the ssh window open, but killing it will also kill the process.</li>
-<li>You are using Linux desktop. You want to hide a terminal when you not need it and resume to the status right before you hide it.</li>
-</ul>
-<p>screen does the job perfectly. It serve as a layer between the terminal users see and the actual processes.</p>
-<h3 id="How-to-Use-it"><a href="#How-to-Use-it" class="headerlink" title="How to Use it"></a>How to Use it</h3><p>To create a new screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S whateverNameYouLike</span><br></pre></td></tr></table></figure>
-<p>To list all screens:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -<span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-<p>To reattach to a screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theNameOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -r theIdOfTheScreen (and <span class="keyword">then</span> hit tab to complete it)</span><br></pre></td></tr></table></figure>
-<p>To end a screen:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">screen -S screenIdYouWantToKill -X quit</span><br></pre></td></tr></table></figure>
-<p>If you are in a screen, you can do the following operations:</p>
-<p>I will use <code>@</code> to refer to <code>Ctrl+A</code></p>
-<p>To detach the screen: press <code>@+D</code>.</p>
-<p>To create a window in a screen: press <code>@+C</code>.</p>
-<p>To navigate to the previous/next window in a screen: press <code>@+P/N</code></p>
-<p>To list all windows in a screen: press <code>@+W</code>.</p>
-]]></content>
-      <tags>
-        <tag>Notes</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tech Life Hacks</title>
     <url>/2022/05/10/Tech-Life-Hacks/</url>
     <content><![CDATA[<h2 id="Life-Saver-When-Fixing-Someone’s-Internet"><a href="#Life-Saver-When-Fixing-Someone’s-Internet" class="headerlink" title="Life Saver When Fixing Someone’s Internet"></a>Life Saver When Fixing Someone’s Internet</h2><h3 id="How-to-get-MAC-address"><a href="#How-to-get-MAC-address" class="headerlink" title="How to get MAC address?"></a>How to get MAC address?</h3><p>Method 1. On Windows, open terminal and type in <code>getmac -V</code></p>
@@ -1034,25 +972,65 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>Vue Learning Notes</title>
-    <url>/2022/04/27/Vue-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
-<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
-<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
-<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
-<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
-<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>In <code>view</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Tank War Game with CLI</title>
+    <url>/2022/08/03/Tank-War-Game-with-CLI/</url>
+    <content><![CDATA[<p><a href="https://github.com/zijunhz/tank-war-game">Github Repo</a></p>
+<p>A simple tank war game with CLI that supports PVP, PVE and DEMO.</p>
+<h2 id="Compile-the-program"><a href="#Compile-the-program" class="headerlink" title="Compile the program"></a>Compile the program</h2><p>To compile it, you need to install:</p>
+<ul>
+<li><code>g++</code>, a cpp compiler. Remember to add it to PATH if you are using Windows.</li>
+<li><code>CMake</code>, a build process manager.</li>
+<li><code>GNU Make</code>, a tool which controls the generation of executables and other non-source files of a program from the program’s source files.</li>
+</ul>
+<p>or you can use IDEs such as <code>CLion</code>.</p>
+<h3 id="The-recommended-way"><a href="#The-recommended-way" class="headerlink" title="The recommended way"></a>The recommended way</h3><p>The recommended way of compiling it (also the way I compile it) is with the help of a plug-in in <code>VSCode</code> called <code>CMake Tools</code>.</p>
+<p>If you open the project folder in <code>VSCode</code> and you have successfully install <code>g++</code>, <code>CMake</code> and <code>CMake Tools</code>, you can find a <code>build</code> button in the bottom bar. By clicking it, the executable will be compiled under <code>./build/tankwar.exe</code>.</p>
+<h3 id="Other-ways"><a href="#Other-ways" class="headerlink" title="Other ways"></a>Other ways</h3><p>You may refer to <a href="https://cmake.org/cmake/help/latest/manual/cmake.1.html">docs for CMake command line</a> to checkout how to compile it with command line (it should be <code>cmake -b build</code>, <code>cd build</code> and <code>make</code>, I believe).</p>
+<p>Or, you may refer to <a href="https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html">docs for CMake in CLion</a> to checkout how to compile it in <code>CLion</code>.</p>
+<h2 id="Run-the-program"><a href="#Run-the-program" class="headerlink" title="Run the program"></a>Run the program</h2><p>This is a command line game so you can run it in terminal.</p>
+<p>I’ll take how it can be run in <code>Linux Mint</code> as an example.</p>
+<p>After generate the executable <code>tankwar</code>, type <code>./tankwar</code> in the terminal to enter the default mode which is PVP and has the default life of 5 and default log file <code>tankwar.log</code>.</p>
+<p>You can type <code>./tankwar -h</code> to check the help page of the game and learn how to have access to other mode and how to change the life and log file.</p>
+<p>The game-play instruction is built into the game itself and you can see it during the game.</p>
+<p>The game’s interface has colored texts so you need to run it in a supported terminal. In Windows, for example, you need to run it in <code>Windows Terminal</code> or the terminal in <code>VSCode</code>.</p>
+<h2 id="Layer-of-the-program"><a href="#Layer-of-the-program" class="headerlink" title="Layer of the program"></a>Layer of the program</h2><p>The program consists of 5 layers listed from low level to high level:</p>
+<ul>
+<li><code>Object</code> layer. It includes every player, bullet and the whole game. It is responsible for some basic tasks like moving a tank or a bullet or judge collision. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
+<li><code>Game processing</code> layer. It includes the logic of the game. By utilizing the <code>object</code> layer, it is responsible for how the game goes on, such as processing one turn and printing the result. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
+<li><code>Input</code> layer. The <code>game processing</code> layer needs input actions to process one turn, and to the <code>game processing</code> layer, human input and AI input are of no difference. The <code>input</code> layer gathers input actions from human and/or AI based on game mode and passes the information to the <code>game processing</code> layer. This part of the program is primarily in <code>gameControl.cpp</code>.</li>
+<li><code>AI</code> layer. This layer takes in a game status and returns the best action for a particular player. This part of the program is primarily in <code>tankai.cpp</code>.</li>
+<li><code>Global control</code> layer. This layer handles the command line arguments and organizes the whole program. This part of the program is primarily in <code>gameControl.cpp</code> and <code>tankwar.cpp</code>.</li>
+</ul>
+<h2 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h2><p>Three objects are defined in the game’s program.</p>
+<h3 id="Bullet"><a href="#Bullet" class="headerlink" title="Bullet"></a><code>Bullet</code></h3><p>It contains all the information of one bullet, including its coordinates and direction.</p>
+<p>The method <code>init</code> is used to initialize a bullet.</p>
+<p>You can find its declaration in <code>gameProcess.h</code>.</p>
+<h3 id="Player"><a href="#Player" class="headerlink" title="Player"></a><code>Player</code></h3><p>It contains all the information of one player, including its coordinates, direction and life.</p>
+<p>The method:</p>
+<p><code>turn</code> is used to turn the player in place;</p>
+<p><code>move</code> is used to move the player straight forward;</p>
+<p><code>init</code> is used to initialize the playher.</p>
+<p>You can find its declaration in <code>gameProcess.h</code>.</p>
+<h3 id="Game"><a href="#Game" class="headerlink" title="Game"></a><code>Game</code></h3><p>It contains all the information of a game status, including two players and all the bullets.</p>
+<p>The number of methods of this class is too large, but you can check out comments in <code>gameProcess.cpp</code> to see what each method do.</p>
+<p>You can find the declaration of <code>Game</code> in <code>gameProcess.h</code>.</p>
+<h2 id="I-O-format"><a href="#I-O-format" class="headerlink" title="I/O format"></a>I/O format</h2><p>The I/O format of this tank war game has three features to improve user experience.</p>
+<p>(img hidden until Aug. 5th)</p>
+<ol>
+<li>hidden until Aug. 5th</li>
+<li>hidden until Aug. 5th</li>
+<li>hidden until Aug. 5th</li>
+</ol>
+<h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><p>The strategy of the AI is quite conservative for it assume its opponent is cleaver enough.</p>
+<p>Every turn, AI can take one action and so does its opponent. The AI will take the action that the minimal <code>scores</code> when its opponent takes one action is the highest.</p>
+<p><code>score</code> is measured by a quite complex algorithm involving searching tree. It evaluates whether an action will lead to the end of the game, cause damage and result in a either good or bad situation.</p>
+<p>Also, it’s often boring to see two tanks with the same life collide with each other resulting in a draw. So I also add some deduction in score for this kind of behavior. But the AI won’t stay away from its component because of another evaluation standard that rewards aggressive behavior.</p>
+<p>The overall result that I can never win it shows that the AI is quite powerful.</p>
 ]]></content>
       <tags>
-        <tag>Notes</tag>
-        <tag>Frontend</tag>
-        <tag>Web Dev</tag>
-        <tag>Vue</tag>
+        <tag>Fun Stuff</tag>
+        <tag>Project</tag>
+        <tag>C &amp; C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1078,12 +1056,34 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//django use cookies to varify csrf</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueCookies</span> <span class="keyword">from</span> <span class="string">&#x27;vue-cookies&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueCookies</span>)</span><br><span class="line"><span class="comment">//`withCredentials` indicates whether or not cross-site Access-Control requests should be made using credentials</span></span><br><span class="line">axios.<span class="property">defaults</span>.<span class="property">withCredentials</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">token</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123;</span><br><span class="line">        <span class="comment">//get token function</span></span><br><span class="line">        <span class="title function_">gettoken</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/get_csrf_token/`</span>,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span></span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">this</span>.<span class="property">token</span> = res.<span class="property">data</span>.<span class="property">token</span></span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//POST</span></span><br><span class="line">        <span class="title function_">tryPOST</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="title function_">axios</span>(&#123;</span><br><span class="line">                <span class="attr">headers</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;X-CSRFToken&#x27;</span>: <span class="variable language_">this</span>.<span class="property">token</span>,</span><br><span class="line">                    <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">withCredentials</span>: <span class="literal">true</span>,</span><br><span class="line">                <span class="attr">url</span>: <span class="string">`http://backend.com/whateverURL`</span>,</span><br><span class="line">                <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">                <span class="attr">data</span>: &#123;</span><br><span class="line">                    <span class="string">&#x27;data1&#x27;</span>: <span class="string">&#x27;data2&#x27;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">                .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">mounted</span>:<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="comment">//get token when page loads</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">gettoken</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Frontend</tag>
         <tag>Web Dev</tag>
-        <tag>Django</tag>
-        <tag>Vue</tag>
+        <tag>Frontend</tag>
         <tag>Backend</tag>
+        <tag>Django</tag>
         <tag>Tutorial</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue Learning Notes</title>
+    <url>/2022/04/27/Vue-Learning-Notes/</url>
+    <content><![CDATA[<h2 id="Style-Related"><a href="#Style-Related" class="headerlink" title="Style Related"></a>Style Related</h2><h3 id="Add-Style-to-the-Chosen-Router-Link"><a href="#Add-Style-to-the-Chosen-Router-Link" class="headerlink" title="Add Style to the Chosen Router Link"></a>Add Style to the Chosen Router Link</h3><p>The chosen router link has a class <code>.router-link-exact-active</code></p>
+<h2 id="Vue-Router-Related"><a href="#Vue-Router-Related" class="headerlink" title="Vue Router Related"></a>Vue Router Related</h2><h3 id="Navigation-Guard"><a href="#Navigation-Guard" class="headerlink" title="Navigation Guard"></a>Navigation Guard</h3><p>Docs: <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html">Navigation Guards</a></p>
+<p>As the name suggests, the navigation guards provided by Vue router are primarily used to guard navigations either by redirecting it or canceling it.</p>
+<p>To put it in other words, navigation guards allows you to know the urls of the jump-out page and the jump-in page.</p>
+<p>To get url of the jump-out page, in <code>whateverName.vue</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            <span class="attr">lastURL</span>:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">beforeRouteEnter</span>(<span class="params">to, <span class="keyword">from</span>, next</span>) &#123;</span><br><span class="line">    <span class="title function_">next</span>(<span class="function">(<span class="params">vw</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">from</span>)</span><br><span class="line">      vw.<span class="property">lastUrl</span> = <span class="keyword">from</span>.<span class="property">fullPath</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Back-to-previous-route"><a href="#Back-to-previous-route" class="headerlink" title="Back to previous route"></a>Back to previous route</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-Related"><a href="#Vuex-Related" class="headerlink" title="Vuex Related"></a>Vuex Related</h2><h3 id="Get-Variables"><a href="#Get-Variables" class="headerlink" title="Get Variables"></a>Get Variables</h3><p>In <code>/store/index.js</code>, add:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">    <span class="attr">state</span>: &#123;</span><br><span class="line">        <span class="attr">variableName</span>:<span class="string">&#x27;this is a global variable&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>In <code>view</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;</span><br><span class="line">    <span class="attr">computed</span>:&#123;</span><br><span class="line">        <span class="title function_">anyNameYourLike</span>(<span class="params"></span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="property">state</span>.<span class="property">variableName</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Notes</tag>
+        <tag>Web Dev</tag>
+        <tag>Frontend</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -1240,6 +1240,20 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
+    <title>luoguP2327 [SCOI2005]扫雷</title>
+    <url>/2018/10/28/luoguP2327%20%5BSCOI2005%5D%E6%89%AB%E9%9B%B7/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2327">题目</a></p>
+<p>x,y=1:放 0:不放</p>
+<p>calc(p,x,y)计算第p个位置为x 第p+1个位置为y的方案数</p>
+<p>显然第p-1个位置需要为a[p]-x-y才能满足第p个位置</p>
+<p>可见答案只可能是0/1/2</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N],n;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> (x==<span class="number">0</span>)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line"> <span class="type">int</span> t=a[p]-x-y;</span><br><span class="line"> <span class="keyword">if</span>(t&lt;<span class="number">0</span>||t&gt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">calc</span>(p<span class="number">-1</span>,t,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">calc</span>(n,<span class="number">0</span>,<span class="number">0</span>)+<span class="built_in">calc</span>(n,<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>luoguP2439 [SDOI2005]阶梯教室设备利用</title>
     <url>/2018/10/28/luoguP2439-SDOI2005-%E9%98%B6%E6%A2%AF%E6%95%99%E5%AE%A4%E8%AE%BE%E5%A4%87%E5%88%A9%E7%94%A8/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2439">题目</a></p>
@@ -1250,20 +1264,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <hr>
 <h2 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n+k)"></a>O(n+k)</h2><p>用链式前向星</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 30010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> max(a,b) ((a)&gt;(b)?(a):(b))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> <span class="type">int</span> s,nt;</span><br><span class="line">&#125;a[N];</span><br><span class="line"><span class="type">int</span> f[M],n,mx,head[M],x,y;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line"> a[i].s=y;a[i].nt=head[x];head[x]=i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);mx=<span class="number">0</span>;<span class="built_in">memset</span>(head,<span class="number">255</span>,<span class="built_in">sizeof</span>(head));</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x),<span class="built_in">rll</span>(y);x++;y++;</span><br><span class="line">  <span class="built_in">add</span>(y,x,i);mx=<span class="built_in">max</span>(mx,y);</span><br><span class="line"> &#125;</span><br><span class="line"> f[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,mx)&#123;</span><br><span class="line">  f[i]=f[i<span class="number">-1</span>];</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> t=head[i];t!=<span class="number">-1</span>;t=a[t].nt)</span><br><span class="line">   f[i]=<span class="built_in">max</span>(f[i],f[a[t].s]+i-a[t].s);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,f[mx]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>luoguP2327 [SCOI2005]扫雷</title>
-    <url>/2018/10/28/luoguP2327%20%5BSCOI2005%5D%E6%89%AB%E9%9B%B7/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P2327">题目</a></p>
-<p>x,y=1:放 0:不放</p>
-<p>calc(p,x,y)计算第p个位置为x 第p+1个位置为y的方案数</p>
-<p>显然第p-1个位置需要为a[p]-x-y才能满足第p个位置</p>
-<p>可见答案只可能是0/1/2</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 10010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(int a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(int a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[N],n;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line"> T f=<span class="number">1</span>;x=<span class="number">0</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> p,<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(p==<span class="number">0</span>) <span class="keyword">return</span> (x==<span class="number">0</span>)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line"> <span class="type">int</span> t=a[p]-x-y;</span><br><span class="line"> <span class="keyword">if</span>(t&lt;<span class="number">0</span>||t&gt;<span class="number">1</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">calc</span>(p<span class="number">-1</span>,t,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)<span class="built_in">rll</span>(a[i]);</span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">calc</span>(n,<span class="number">0</span>,<span class="number">0</span>)+<span class="built_in">calc</span>(n,<span class="number">1</span>,<span class="number">0</span>));</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1453,19 +1453,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>luoguP4047 [JSOI2010]部落划分</title>
-    <url>/2018/11/05/luoguP4047%20%5BJSOI2010%5D%E9%83%A8%E8%90%BD%E5%88%92%E5%88%86/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P4047">题目</a></p>
-<hr>
-<p>考虑将两两点之间的距离算出来并从小到大排序。</p>
-<p>显然，应该优先合并距离小且不在一个部落中点对。因为如果不合并，则最小距离就是这两个点间的距离了。</p>
-<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sqr(a) ((a)*(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> <span class="type">int</span> x,y;</span><br><span class="line">&#125;a[N],b[N*N];</span><br><span class="line"><span class="type">int</span> n,m,cnt=<span class="number">0</span>,fa[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">double</span> <span class="title">getdis</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">sqrt</span>(<span class="built_in">sqr</span>(a[i].x-a[j].x)+<span class="built_in">sqr</span>(a[i].y-a[j].y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">getdis</span>(a.x,a.y)&lt;<span class="built_in">getdis</span>(b.x,b.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getf</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> x==fa[x]?x:fa[x]=<span class="built_in">getf</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(a[i].x);<span class="built_in">rll</span>(a[i].y);</span><br><span class="line">  <span class="built_in">fsb</span>(j,<span class="number">1</span>,i<span class="number">-1</span>)b[++cnt]=(node)&#123;j,i&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">sort</span>(b+<span class="number">1</span>,b+<span class="number">1</span>+cnt,cmp);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)fa[i]=i;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,cnt)&#123;</span><br><span class="line">  <span class="type">int</span> fax=<span class="built_in">getf</span>(b[i].x),fay=<span class="built_in">getf</span>(b[i].y);</span><br><span class="line">  <span class="keyword">if</span>(fax==fay)<span class="keyword">continue</span>;</span><br><span class="line">  <span class="keyword">if</span>(n==m)&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%0.2lf&quot;</span>,<span class="built_in">getdis</span>(b[i].x,b[i].y));</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  fa[fay]=fax;</span><br><span class="line">  n--;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>luoguP3946 ことりのおやつ（小鸟的点心）</title>
     <url>/2018/11/02/luoguP3946%20%E3%81%93%E3%81%A8%E3%82%8A%E3%81%AE%E3%81%8A%E3%82%84%E3%81%A4%EF%BC%88%E5%B0%8F%E9%B8%9F%E7%9A%84%E7%82%B9%E5%BF%83%EF%BC%89/</url>
     <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P3946">题目</a></p>
@@ -1473,6 +1460,19 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 <p>跑出每个点被雪覆盖的时间</p>
 <p>跑dijk，如果到这个点的最短时间超过限制，就置为不连通。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 100010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> M 500010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 99999999999999999</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mem(a,b) memset(a,b,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(ll a=b;a&lt;=c;a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(ll a=b;a&gt;=c;a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll l[N],n,m,cnt=<span class="number">0</span>,x,y,z,s,t,g,q,head[N],d[N],vis[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">edge</span>&#123;</span><br><span class="line"> ll p,nt,l;</span><br><span class="line">&#125;a[M*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> ll u,d;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;node&gt;S;</span><br><span class="line"><span class="type">int</span> <span class="keyword">operator</span> &lt;(node a,node b)&#123;</span><br><span class="line"> <span class="keyword">return</span> a.d&gt;b.d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line"> x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(ll x,ll y,ll z)</span></span>&#123;</span><br><span class="line"> a[++cnt].p=y;a[cnt].nt=head[x];head[x]=cnt;a[cnt].l=z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);<span class="built_in">rll</span>(s);<span class="built_in">rll</span>(t);<span class="built_in">rll</span>(g);<span class="built_in">rll</span>(q);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);l[i]=(i==s||i==t)?(INF):((q==<span class="number">0</span>?INF:(y-x)/q));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(head,<span class="number">255</span>);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,m)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(x);<span class="built_in">rll</span>(y);<span class="built_in">rll</span>(z);<span class="built_in">add</span>(x,y,z);<span class="built_in">add</span>(y,x,z);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">mem</span>(vis,<span class="number">0</span>);<span class="built_in">mem</span>(d,<span class="number">60</span>);d[s]=<span class="number">0</span>;S.<span class="built_in">push</span>((node)&#123;s,<span class="number">0</span>&#125;);</span><br><span class="line"> <span class="keyword">while</span>(!S.<span class="built_in">empty</span>())&#123;</span><br><span class="line">  ll u=S.<span class="built_in">top</span>().u;S.<span class="built_in">pop</span>();</span><br><span class="line">  <span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;</span><br><span class="line">  vis[u]=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span>(d[u]&gt;g)<span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">for</span>(ll t=head[u];t!=<span class="number">-1</span>;t=a[t].nt)&#123;</span><br><span class="line">   ll v=a[t].p;</span><br><span class="line">   <span class="keyword">if</span>(vis[v]||d[u]+a[t].l&gt;d[v]||d[u]+a[t].l&gt;l[v])<span class="keyword">continue</span>;</span><br><span class="line">   d[v]=d[u]+a[t].l;S.<span class="built_in">push</span>((node)&#123;v,d[v]&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span>(d[t]&gt;g)<span class="built_in">puts</span>(<span class="string">&quot;wtnap wa kotori no oyatsu desu!&quot;</span>);<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,d[t]);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>OI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>luoguP4047 [JSOI2010]部落划分</title>
+    <url>/2018/11/05/luoguP4047%20%5BJSOI2010%5D%E9%83%A8%E8%90%BD%E5%88%92%E5%88%86/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.org/problemnew/show/P4047">题目</a></p>
+<hr>
+<p>考虑将两两点之间的距离算出来并从小到大排序。</p>
+<p>显然，应该优先合并距离小且不在一个部落中点对。因为如果不合并，则最小距离就是这两个点间的距离了。</p>
+<h5 id="code"><a href="#code" class="headerlink" title="code"></a>code</h5><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 1010</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sqr(a) ((a)*(a))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fsb(a,b,c) for(register int a=b;a&lt;=(c);a++)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fbs(a,b,c) for(register int a=b;a&gt;=(c);a--)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line"> <span class="type">int</span> x,y;</span><br><span class="line">&#125;a[N],b[N*N];</span><br><span class="line"><span class="type">int</span> n,m,cnt=<span class="number">0</span>,fa[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">double</span> <span class="title">getdis</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">sqrt</span>(<span class="built_in">sqr</span>(a[i].x-a[j].x)+<span class="built_in">sqr</span>(a[i].y-a[j].y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="built_in">getdis</span>(a.x,a.y)&lt;<span class="built_in">getdis</span>(b.x,b.y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getf</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line"> <span class="keyword">return</span> x==fa[x]?x:fa[x]=<span class="built_in">getf</span>(fa[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> qw&gt;<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">rll</span><span class="params">(qw &amp;x)</span></span>&#123;</span><br><span class="line"> x=<span class="number">0</span>;qw f=<span class="number">1</span>;<span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))f=c==<span class="string">&#x27;-&#x27;</span>?<span class="number">-1</span>:f,c=<span class="built_in">getchar</span>();</span><br><span class="line"> <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>,c=<span class="built_in">getchar</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> <span class="built_in">rll</span>(n);<span class="built_in">rll</span>(m);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">  <span class="built_in">rll</span>(a[i].x);<span class="built_in">rll</span>(a[i].y);</span><br><span class="line">  <span class="built_in">fsb</span>(j,<span class="number">1</span>,i<span class="number">-1</span>)b[++cnt]=(node)&#123;j,i&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">sort</span>(b+<span class="number">1</span>,b+<span class="number">1</span>+cnt,cmp);</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,n)fa[i]=i;</span><br><span class="line"> <span class="built_in">fsb</span>(i,<span class="number">1</span>,cnt)&#123;</span><br><span class="line">  <span class="type">int</span> fax=<span class="built_in">getf</span>(b[i].x),fay=<span class="built_in">getf</span>(b[i].y);</span><br><span class="line">  <span class="keyword">if</span>(fax==fay)<span class="keyword">continue</span>;</span><br><span class="line">  <span class="keyword">if</span>(n==m)&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%0.2lf&quot;</span>,<span class="built_in">getdis</span>(b[i].x,b[i].y));</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  fa[fay]=fax;</span><br><span class="line">  n--;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>OI</tag>
@@ -1719,18 +1719,6 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
       </tags>
   </entry>
   <entry>
-    <title>模板/知识库</title>
-    <url>/2018/10/27/%E6%A8%A1%E6%9D%BF%E7%9F%A5%E8%AF%86%E5%BA%93/</url>
-    <content><![CDATA[<h1 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h1><p>求x在%p意义下的逆元</p>
-<p>即x^(p-2)</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) (((a)%p+p)%p)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">po</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll y=mo<span class="number">-3</span>,ans=x,t=x;</span><br><span class="line"> <span class="keyword">while</span>(y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(y&amp;<span class="number">1</span>)ans=<span class="built_in">md</span>(ans*t);</span><br><span class="line">  y=y&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  t=<span class="built_in">md</span>(t*t);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p><img src="https://s1.ax1x.com/2018/10/29/igtmn0.png" alt="位运算"></p>
-]]></content>
-      <tags>
-        <tag>OI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>树莓派入门：安装与配置</title>
     <url>/2019/02/01/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%85%A5%E9%97%A8%EF%BC%9A%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>树莓派是一块只有信用卡长宽的微型电脑，通常配备ARM处理器。麻雀虽小而接口丰富，五脏俱全。</p>
@@ -1762,6 +1750,18 @@ C=c-\frac{A^T c}{A^T A}A-\frac{B^T c}{B^T B}B</script><h2 id="Nullity-of-a-Matri
 ]]></content>
       <tags>
         <tag>Fun Stuff</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模板/知识库</title>
+    <url>/2018/10/27/%E6%A8%A1%E6%9D%BF%E7%9F%A5%E8%AF%86%E5%BA%93/</url>
+    <content><![CDATA[<h1 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h1><p>求x在%p意义下的逆元</p>
+<p>即x^(p-2)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> md(a) (((a)%p+p)%p)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">po</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line"> ll y=mo<span class="number">-3</span>,ans=x,t=x;</span><br><span class="line"> <span class="keyword">while</span>(y&gt;<span class="number">0</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>(y&amp;<span class="number">1</span>)ans=<span class="built_in">md</span>(ans*t);</span><br><span class="line">  y=y&gt;&gt;<span class="number">1</span>;</span><br><span class="line">  t=<span class="built_in">md</span>(t*t);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p><img src="https://s1.ax1x.com/2018/10/29/igtmn0.png" alt="位运算"></p>
+]]></content>
+      <tags>
+        <tag>OI</tag>
       </tags>
   </entry>
 </search>

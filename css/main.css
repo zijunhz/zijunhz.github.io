@@ -725,13 +725,13 @@ pre .javascript .function {
   border-bottom: 1px solid transparent;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
-  border-top: 3px solid #fc6423;
+  border-top: 3px solid #ccc;
 }
 @media (max-width: 413px) {
   .post-body .tabs ul.nav-tabs li.tab.active,
   .tabs-comment ul.nav-tabs li.tab.active {
     border-bottom: 1px solid #ddd;
-    border-left: 3px solid #fc6423;
+    border-left: 3px solid #ccc;
     border-right: 1px solid #ddd;
     border-top: 1px solid #ddd;
   }
@@ -1015,7 +1015,7 @@ pre .javascript .function {
 }
 .headband {
   background: #191919;
-  height: 10px;
+  height: 0px;
 }
 .site-meta {
   flex-grow: 1;
@@ -1216,7 +1216,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #5ec7ff;
+  background: #4eac99;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1229,9 +1229,9 @@ pre .javascript .function {
   margin-top: 15px;
 }
 .sidebar-button a {
-  border: 1px solid #fc6423;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  color: #fc6423;
+  color: #ccc;
   display: inline-block;
   padding: 0 15px;
 }
@@ -1242,8 +1242,8 @@ pre .javascript .function {
   margin-right: 5px;
 }
 .sidebar-button a:hover {
-  background: #fc6423;
-  border: 1px solid #fc6423;
+  background: #ccc;
+  border: 1px solid #ccc;
   color: #fff;
 }
 .sidebar-button a:hover .fa,
