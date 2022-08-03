@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideUpIn","post_body":"slideUpIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Notes taken while learning Python">
+  <meta name="description" content="A simple tank war game with CLI that supports PVP, PVE and DEMO mode.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python Learning Notes">
-<meta property="og:url" content="http://example.com/2022/05/03/Python-Learning-Notes/index.html">
+<meta property="og:title" content="Tank War Game with CLI">
+<meta property="og:url" content="http://example.com/2022/08/03/Tank-War-Game-with-CLI/index.html">
 <meta property="og:site_name" content="zPatronus&#39;s blog">
-<meta property="og:description" content="Notes taken while learning Python">
+<meta property="og:description" content="A simple tank war game with CLI that supports PVP, PVE and DEMO mode.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-03T10:26:34.000Z">
-<meta property="article:modified_time" content="2022-05-13T01:47:51.364Z">
+<meta property="article:published_time" content="2022-08-03T07:43:09.000Z">
+<meta property="article:modified_time" content="2022-08-03T07:55:12.210Z">
 <meta property="article:author" content="zPatronus">
-<meta property="article:tag" content="Notes">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Fun Stuff">
+<meta property="article:tag" content="Project">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/05/03/Python-Learning-Notes/">
+<link rel="canonical" href="http://example.com/2022/08/03/Tank-War-Game-with-CLI/">
 
 
 <script id="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>Python Learning Notes | zPatronus's blog</title>
+  <title>Tank War Game with CLI | zPatronus's blog</title>
   
 
 
@@ -189,7 +189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/03/Python-Learning-Notes/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/03/Tank-War-Game-with-CLI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python Learning Notes
+          Tank War Game with CLI
         </h1>
 
         <div class="post-meta">
@@ -211,19 +211,13 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-05-03 18:26:34" itemprop="dateCreated datePublished" datetime="2022-05-03T18:26:34+08:00">2022-05-03</time>
+              <time title="Created: 2022-08-03 15:43:09 / Modified: 15:55:12" itemprop="dateCreated datePublished" datetime="2022-08-03T15:43:09+08:00">2022-08-03</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-05-13 09:47:51" itemprop="dateModified" datetime="2022-05-13T09:47:51+08:00">2022-05-13</time>
-              </span>
 
           
-            <div class="post-description">Notes taken while learning Python</div>
+            <div class="post-description">A simple tank war game with CLI that supports PVP, PVE and DEMO mode.</div>
 
         </div>
       </header>
@@ -234,7 +228,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Secure-Hashes-and-Message-Digests"><a href="#Secure-Hashes-and-Message-Digests" class="headerlink" title="Secure Hashes and Message Digests"></a>Secure Hashes and Message Digests</h2><p>Docs: <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/hashlib.html">hashlib</a></p>
+        <p><a target="_blank" rel="noopener" href="https://github.com/zijunhz/tank-war-game">Github Repo</a></p>
+<h2 id="Compile-the-program"><a href="#Compile-the-program" class="headerlink" title="Compile the program"></a>Compile the program</h2><p>To compile it, you need to install:</p>
+<ul>
+<li><code>g++</code>, a cpp compiler. Remember to add it to PATH if you are using Windows.</li>
+<li><code>CMake</code>, a build process manager.</li>
+<li><code>GNU Make</code>, a tool which controls the generation of executables and other non-source files of a program from the program’s source files.</li>
+</ul>
+<p>or you can use IDEs such as <code>CLion</code>.</p>
+<h3 id="The-recommended-way"><a href="#The-recommended-way" class="headerlink" title="The recommended way"></a>The recommended way</h3><p>The recommended way of compiling it (also the way I compile it) is with the help of a plug-in in <code>VSCode</code> called <code>CMake Tools</code>.</p>
+<p>If you open the project folder in <code>VSCode</code> and you have successfully install <code>g++</code>, <code>CMake</code> and <code>CMake Tools</code>, you can find a <code>build</code> button in the bottom bar. By clicking it, the executable will be compiled under <code>./build/tankwar.exe</code>.</p>
+<h3 id="Other-ways"><a href="#Other-ways" class="headerlink" title="Other ways"></a>Other ways</h3><p>You may refer to <a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/latest/manual/cmake.1.html">docs for CMake command line</a> to checkout how to compile it with command line (it should be <code>cmake -b build</code>, <code>cd build</code> and <code>make</code>, I believe).</p>
+<p>Or, you may refer to <a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html">docs for CMake in CLion</a> to checkout how to compile it in <code>CLion</code>.</p>
+<h2 id="Run-the-program"><a href="#Run-the-program" class="headerlink" title="Run the program"></a>Run the program</h2><p>This is a command line game so you can run it in terminal.</p>
+<p>I’ll take how it can be run in <code>Linux Mint</code> as an example.</p>
+<p>After generate the executable <code>tankwar</code>, type <code>./tankwar</code> in the terminal to enter the default mode which is PVP and has the default life of 5 and default log file <code>tankwar.log</code>.</p>
+<p>You can type <code>./tankwar -h</code> to check the help page of the game and learn how to have access to other mode and how to change the life and log file.</p>
+<p>The game-play instruction is built into the game itself and you can see it during the game.</p>
+<p>The game’s interface has colored texts so you need to run it in a supported terminal. In Windows, for example, you need to run it in <code>Windows Terminal</code> or the terminal in <code>VSCode</code>.</p>
+<h2 id="Layer-of-the-program"><a href="#Layer-of-the-program" class="headerlink" title="Layer of the program"></a>Layer of the program</h2><p>The program consists of 5 layers listed from low level to high level:</p>
+<ul>
+<li><code>Object</code> layer. It includes every player, bullet and the whole game. It is responsible for some basic tasks like moving a tank or a bullet or judge collision. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
+<li><code>Game processing</code> layer. It includes the logic of the game. By utilizing the <code>object</code> layer, it is responsible for how the game goes on, such as processing one turn and printing the result. This part of the program is primarily in <code>gameProcess.cpp</code>.</li>
+<li><code>Input</code> layer. The <code>game processing</code> layer needs input actions to process one turn, and to the <code>game processing</code> layer, human input and AI input are of no difference. The <code>input</code> layer gathers input actions from human and/or AI based on game mode and passes the information to the <code>game processing</code> layer. This part of the program is primarily in <code>gameControl.cpp</code>.</li>
+<li><code>AI</code> layer. This layer takes in a game status and returns the best action for a particular player. This part of the program is primarily in <code>tankai.cpp</code>.</li>
+<li><code>Global control</code> layer. This layer handles the command line arguments and organizes the whole program. This part of the program is primarily in <code>gameControl.cpp</code> and <code>tankwar.cpp</code>.</li>
+</ul>
+<h2 id="Objects"><a href="#Objects" class="headerlink" title="Objects"></a>Objects</h2><p>Three objects are defined in the game’s program.</p>
+<h3 id="Bullet"><a href="#Bullet" class="headerlink" title="Bullet"></a><code>Bullet</code></h3><p>It contains all the information of one bullet, including its coordinates and direction.</p>
+<p>The method <code>init</code> is used to initialize a bullet.</p>
+<p>You can find its declaration in <code>gameProcess.h</code>.</p>
+<h3 id="Player"><a href="#Player" class="headerlink" title="Player"></a><code>Player</code></h3><p>It contains all the information of one player, including its coordinates, direction and life.</p>
+<p>The method:</p>
+<p><code>turn</code> is used to turn the player in place;</p>
+<p><code>move</code> is used to move the player straight forward;</p>
+<p><code>init</code> is used to initialize the playher.</p>
+<p>You can find its declaration in <code>gameProcess.h</code>.</p>
+<h3 id="Game"><a href="#Game" class="headerlink" title="Game"></a><code>Game</code></h3><p>It contains all the information of a game status, including two players and all the bullets.</p>
+<p>The number of methods of this class is too large, but you can check out comments in <code>gameProcess.cpp</code> to see what each method do.</p>
+<p>You can find the declaration of <code>Game</code> in <code>gameProcess.h</code>.</p>
+<h2 id="I-O-format"><a href="#I-O-format" class="headerlink" title="I/O format"></a>I/O format</h2><p>The I/O format of this tank war game has three feature to improve user experience.</p>
+<p>(img hidden until Aug. 5th)</p>
+<ol>
+<li>hidden until Aug. 5th</li>
+<li>hidden until Aug. 5th</li>
+<li>hidden until Aug. 5th</li>
+</ol>
+<h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><p>The strategy of our AI is quite conservative for it assume its opponent is cleaver enough.</p>
+<p>Every turn, AI can take one action and so does its opponent. The AI will take the action that the minimal <code>scores</code> when its opponent takes one action is the highest.</p>
+<p><code>score</code> is measured by a quite complex algorithm involving searching tree. It evaluates whether an action will lead to the end of the game, cause damage and result in a either good or bad situation.</p>
+<p>Also, it’s often boring to see two tanks with the same life collide with each other resulting in a draw. So I also add some deduction in score for this kind of behavior. But the AI won’t stay away from its component because of another evaluation standard that rewards aggressive behavior.</p>
+<p>The overall result that I can never win it shows that the AI is quite powerful.</p>
 
     </div>
 
@@ -245,8 +289,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Notes/" rel="tag"><i class="fa fa-tag"></i> Notes</a>
-              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/Fun-Stuff/" rel="tag"><i class="fa fa-tag"></i> Fun Stuff</a>
+              <a href="/tags/Project/" rel="tag"><i class="fa fa-tag"></i> Project</a>
           </div>
 
         
@@ -255,13 +299,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/05/03/Frontend-Learning-Notes/" rel="prev" title="Frontend Learning Notes">
-      <i class="fa fa-chevron-left"></i> Frontend Learning Notes
+    <a href="/2022/06/25/C-and-C-Learning-Notes/" rel="prev" title="C and C++ Learning Notes">
+      <i class="fa fa-chevron-left"></i> C and C++ Learning Notes
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/05/10/Tech-Life-Hacks/" rel="next" title="Tech Life Hacks">
-      Tech Life Hacks <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -320,7 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Secure-Hashes-and-Message-Digests"><span class="nav-number">1.</span> <span class="nav-text">Secure Hashes and Message Digests</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Compile-the-program"><span class="nav-number">1.</span> <span class="nav-text">Compile the program</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-recommended-way"><span class="nav-number">1.1.</span> <span class="nav-text">The recommended way</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-ways"><span class="nav-number">1.2.</span> <span class="nav-text">Other ways</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-the-program"><span class="nav-number">2.</span> <span class="nav-text">Run the program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layer-of-the-program"><span class="nav-number">3.</span> <span class="nav-text">Layer of the program</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Objects"><span class="nav-number">4.</span> <span class="nav-text">Objects</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bullet"><span class="nav-number">4.1.</span> <span class="nav-text">Bullet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Player"><span class="nav-number">4.2.</span> <span class="nav-text">Player</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Game"><span class="nav-number">4.3.</span> <span class="nav-text">Game</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O-format"><span class="nav-number">5.</span> <span class="nav-text">I&#x2F;O format</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AI"><span class="nav-number">6.</span> <span class="nav-text">AI</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
