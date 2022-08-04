@@ -28,7 +28,7 @@
 <meta property="og:description" content="Tech life hacks I found useful">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-10T13:25:09.000Z">
-<meta property="article:modified_time" content="2022-06-27T13:15:01.907Z">
+<meta property="article:modified_time" content="2022-08-04T13:38:14.239Z">
 <meta property="article:author" content="zPatronus">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-27 21:15:01" itemprop="dateModified" datetime="2022-06-27T21:15:01+08:00">2022-06-27</time>
+                <time title="Modified: 2022-08-04 21:38:14" itemprop="dateModified" datetime="2022-08-04T21:38:14+08:00">2022-08-04</time>
               </span>
 
           
@@ -233,7 +233,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Life-Saver-When-Fixing-Someone’s-Internet"><a href="#Life-Saver-When-Fixing-Someone’s-Internet" class="headerlink" title="Life Saver When Fixing Someone’s Internet"></a>Life Saver When Fixing Someone’s Internet</h2><h3 id="How-to-get-MAC-address"><a href="#How-to-get-MAC-address" class="headerlink" title="How to get MAC address?"></a>How to get MAC address?</h3><p>Method 1. On Windows, open terminal and type in <code>getmac -V</code></p>
+        <h2 id="Port-Forwarding-Using-SSH"><a href="#Port-Forwarding-Using-SSH" class="headerlink" title="Port Forwarding Using SSH"></a>Port Forwarding Using SSH</h2><p>Sometimes we are faced with the following situation:</p>
+<pre class="mermaid">
+graph LR
+  A(Computer A)-->|SSH|B(Server A 192.168.1.3)
+  B-->|has access via 192.168.1.2:80|C(Server B 192.168.1.2)
+  A-->|does not have access|C</pre>
+
+<p><code>Computer A</code> is the computer that we can operate on, and through SSH, we can access <code>Server A</code>. <code>Server A</code> has access to <code>Server B</code> by a GUI web server running on <code>Server B</code> ‘s port 80. Theoretically we can have access to <code>Server B</code>, but since SSH does not a GUI, its’s difficult to do so.</p>
+<p>The ideal way of tacking this situation is somehow forwarding the 80 port on <code>Server B</code> to a port on our local computer. By doing so, we can have access to <code>Server B</code> by visiting the URL in our browser as if we are operating <code>Server A</code>.</p>
+<p>SSH provides a function called <code>port forwarding</code> to do the exact job.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 3311:192.168.1.2:80 user@192.168.1.3</span><br></pre></td></tr></table></figure>
+<p>This command forward the port at <code>192.168.1.2:80</code> to <code>localhost:3311</code>.</p>
+<h2 id="Life-Saver-When-Fixing-Someone’s-Internet"><a href="#Life-Saver-When-Fixing-Someone’s-Internet" class="headerlink" title="Life Saver When Fixing Someone’s Internet"></a>Life Saver When Fixing Someone’s Internet</h2><h3 id="How-to-get-MAC-address"><a href="#How-to-get-MAC-address" class="headerlink" title="How to get MAC address?"></a>How to get MAC address?</h3><p>Method 1. On Windows, open terminal and type in <code>getmac -V</code></p>
 <p>Method 2. On Windows, open terminal and type in <code>ipconfig -all</code>, this command can also give out the DNS server being used.</p>
 <p>Method 3. On Windows11 <strong>only</strong>, right click the network button on the button right corner and select <code>Network and Internet settings</code>, then click the network adapter you want to check MAC address for and it will show all the information.</p>
 <h2 id="Deal-with-Windows11-Start-Menu-Search-Not-Working"><a href="#Deal-with-Windows11-Start-Menu-Search-Not-Working" class="headerlink" title="Deal with Windows11 Start Menu Search Not Working"></a>Deal with Windows11 Start Menu Search Not Working</h2><p>Use <code>Task Manager</code> to restart <code>Windows Explorer</code>.</p>
@@ -336,7 +348,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Life-Saver-When-Fixing-Someone%E2%80%99s-Internet"><span class="nav-number">1.</span> <span class="nav-text">Life Saver When Fixing Someone’s Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-get-MAC-address"><span class="nav-number">1.1.</span> <span class="nav-text">How to get MAC address?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Windows11-Start-Menu-Search-Not-Working"><span class="nav-number">2.</span> <span class="nav-text">Deal with Windows11 Start Menu Search Not Working</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerToys-Powerful-Windows-Toolbox"><span class="nav-number">3.</span> <span class="nav-text">PowerToys | Powerful Windows Toolbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Win-Number-Open-Taskbar-Apps"><span class="nav-number">4.</span> <span class="nav-text">Win + Number | Open Taskbar Apps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ctrl-D-Detach-from-Something"><span class="nav-number">5.</span> <span class="nav-text">Ctrl+D | Detach from Something</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><span class="nav-number">6.</span> <span class="nav-text">Oh My Posh | A Theme Engine for Any Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-SSH-keys-to-a-New-Computer-Windows"><span class="nav-number">7.</span> <span class="nav-text">Transfer SSH keys to a New Computer (Windows)</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Port-Forwarding-Using-SSH"><span class="nav-number">1.</span> <span class="nav-text">Port Forwarding Using SSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Life-Saver-When-Fixing-Someone%E2%80%99s-Internet"><span class="nav-number">2.</span> <span class="nav-text">Life Saver When Fixing Someone’s Internet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-get-MAC-address"><span class="nav-number">2.1.</span> <span class="nav-text">How to get MAC address?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Windows11-Start-Menu-Search-Not-Working"><span class="nav-number">3.</span> <span class="nav-text">Deal with Windows11 Start Menu Search Not Working</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerToys-Powerful-Windows-Toolbox"><span class="nav-number">4.</span> <span class="nav-text">PowerToys | Powerful Windows Toolbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Win-Number-Open-Taskbar-Apps"><span class="nav-number">5.</span> <span class="nav-text">Win + Number | Open Taskbar Apps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ctrl-D-Detach-from-Something"><span class="nav-number">6.</span> <span class="nav-text">Ctrl+D | Detach from Something</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oh-My-Posh-A-Theme-Engine-for-Any-Shell"><span class="nav-number">7.</span> <span class="nav-text">Oh My Posh | A Theme Engine for Any Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transfer-SSH-keys-to-a-New-Computer-Windows"><span class="nav-number">8.</span> <span class="nav-text">Transfer SSH keys to a New Computer (Windows)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -448,6 +460,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'dark',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
@@ -506,6 +531,10 @@
 </script>
 
     
+
+  
+
+
 
   
 

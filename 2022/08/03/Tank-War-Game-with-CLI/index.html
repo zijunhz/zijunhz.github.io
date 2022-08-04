@@ -30,8 +30,8 @@
 <meta property="article:published_time" content="2022-08-03T07:43:09.000Z">
 <meta property="article:modified_time" content="2022-08-03T08:48:41.769Z">
 <meta property="article:author" content="zPatronus">
-<meta property="article:tag" content="Fun Stuff">
 <meta property="article:tag" content="Project">
+<meta property="article:tag" content="Fun Stuff">
 <meta property="article:tag" content="C &amp; C++">
 <meta name="twitter:card" content="summary">
 
@@ -291,8 +291,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Fun-Stuff/" rel="tag"><i class="fa fa-tag"></i> Fun Stuff</a>
               <a href="/tags/Project/" rel="tag"><i class="fa fa-tag"></i> Project</a>
+              <a href="/tags/Fun-Stuff/" rel="tag"><i class="fa fa-tag"></i> Fun Stuff</a>
               <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C & C++</a>
           </div>
 
@@ -476,6 +476,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'dark',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
@@ -534,6 +547,10 @@
 </script>
 
     
+
+  
+
+
 
   
 
