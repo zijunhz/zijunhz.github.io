@@ -27,13 +27,15 @@
 <meta property="og:site_name" content="zPatronus&#39;s blog">
 <meta property="og:description" content="A simple tank war game with CLI that supports PVP, PVE and DEMO mode.">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2022/08/06/vnL8YT.png">
 <meta property="article:published_time" content="2022-08-03T07:43:09.000Z">
-<meta property="article:modified_time" content="2022-08-03T08:48:41.769Z">
+<meta property="article:modified_time" content="2022-08-05T18:18:31.602Z">
 <meta property="article:author" content="zPatronus">
-<meta property="article:tag" content="Fun Stuff">
-<meta property="article:tag" content="Project">
 <meta property="article:tag" content="C &amp; C++">
+<meta property="article:tag" content="Project">
+<meta property="article:tag" content="Fun Stuff">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2022/08/06/vnL8YT.png">
 
 <link rel="canonical" href="http://example.com/2022/08/03/Tank-War-Game-with-CLI/">
 
@@ -212,10 +214,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-08-03 15:43:09 / Modified: 16:48:41" itemprop="dateCreated datePublished" datetime="2022-08-03T15:43:09+08:00">2022-08-03</time>
+              <time title="Created: 2022-08-03 15:43:09" itemprop="dateCreated datePublished" datetime="2022-08-03T15:43:09+08:00">2022-08-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-06 02:18:31" itemprop="dateModified" datetime="2022-08-06T02:18:31+08:00">2022-08-06</time>
+              </span>
 
           
             <div class="post-description">A simple tank war game with CLI that supports PVP, PVE and DEMO mode.</div>
@@ -270,11 +278,11 @@
 <p>The number of methods of this class is too large, but you can check out comments in <code>gameProcess.cpp</code> to see what each method do.</p>
 <p>You can find the declaration of <code>Game</code> in <code>gameProcess.h</code>.</p>
 <h2 id="I-O-format"><a href="#I-O-format" class="headerlink" title="I/O format"></a>I/O format</h2><p>The I/O format of this tank war game has three features to improve user experience.</p>
-<p>(img hidden until Aug. 5th)</p>
+<p><img src="https://s1.ax1x.com/2022/08/06/vnL8YT.png" alt="Screen shot of the game"></p>
 <ol>
-<li>hidden until Aug. 5th</li>
-<li>hidden until Aug. 5th</li>
-<li>hidden until Aug. 5th</li>
+<li>The map is colored. Players are painted with red and cyan and the boundary is painted yellow. This greatly reduces the difficulty of recognizing the location of the tanks and the boundary.</li>
+<li>The directions of the bullets and tanks are presented by arrows. This is also a great improvement in user experience because now the directions are clearly shown.</li>
+<li>All kinds of inputs in the game (except command line argument) are considered, i.e. if the input is not valid, the program won’t crash. Instead, it will provide you with a notification and let you input again. I am fully aware the pain when you are about to win but crash the game just because you accidentally type <code>-</code> instead of <code>0</code>.</li>
 </ol>
 <h2 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h2><p>The strategy of the AI is quite conservative for it assume its opponent is cleaver enough.</p>
 <p>Every turn, AI can take one action and so does its opponent. The AI will take the action that the minimal <code>scores</code> when its opponent takes one action is the highest.</p>
@@ -291,9 +299,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Fun-Stuff/" rel="tag"><i class="fa fa-tag"></i> Fun Stuff</a>
-              <a href="/tags/Project/" rel="tag"><i class="fa fa-tag"></i> Project</a>
               <a href="/tags/C-C/" rel="tag"><i class="fa fa-tag"></i> C & C++</a>
+              <a href="/tags/Project/" rel="tag"><i class="fa fa-tag"></i> Project</a>
+              <a href="/tags/Fun-Stuff/" rel="tag"><i class="fa fa-tag"></i> Fun Stuff</a>
           </div>
 
         
