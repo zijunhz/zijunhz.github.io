@@ -28,7 +28,7 @@
 <meta property="og:description" content="Notes taken while using Linux">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-10T13:50:25.000Z">
-<meta property="article:modified_time" content="2022-06-08T09:43:35.628Z">
+<meta property="article:modified_time" content="2022-09-15T06:54:44.745Z">
 <meta property="article:author" content="zPatronus">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-08 17:43:35" itemprop="dateModified" datetime="2022-06-08T17:43:35+08:00">2022-06-08</time>
+                <time title="Modified: 2022-09-15 14:54:44" itemprop="dateModified" datetime="2022-09-15T14:54:44+08:00">2022-09-15</time>
               </span>
 
           
@@ -233,7 +233,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br></pre></td></tr></table></figure>
+        <h2 id="restart-ssh"><a href="#restart-ssh" class="headerlink" title="restart ssh"></a>restart ssh</h2><p>On Ubuntu:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure>
+<h2 id="useradd-Add-User"><a href="#useradd-Add-User" class="headerlink" title="useradd | Add User"></a>useradd | Add User</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -m whateverNameYouLike</span><br><span class="line">sudo passwd nameOfTheUser</span><br><span class="line">usermod --shell /bin/bash nameOfTheUser</span><br><span class="line">su nameOfTheUser</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="tzselect-Set-Timezone"><a href="#tzselect-Set-Timezone" class="headerlink" title="tzselect | Set Timezone"></a>tzselect | Set Timezone</h2><p>A simple, user-friendly timezone settings guider.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tzselect</span><br></pre></td></tr></table></figure>
 <p>Remember to add a line in <code>~/.profile</code> according to instructions given by <code>tzselect</code>.</p>
@@ -345,7 +347,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#useradd-Add-User"><span class="nav-number">1.</span> <span class="nav-text">useradd | Add User</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tzselect-Set-Timezone"><span class="nav-number">2.</span> <span class="nav-text">tzselect | Set Timezone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean-Clear-Terminal-Screen"><span class="nav-number">3.</span> <span class="nav-text">clean | Clear Terminal Screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#screen-A-Terminal-Multiplexer"><span class="nav-number">4.</span> <span class="nav-text">screen | A Terminal Multiplexer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-does-it-do"><span class="nav-number">4.1.</span> <span class="nav-text">What does it do?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Use-it"><span class="nav-number">4.2.</span> <span class="nav-text">How to Use it</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#restart-ssh"><span class="nav-number">1.</span> <span class="nav-text">restart ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useradd-Add-User"><span class="nav-number">2.</span> <span class="nav-text">useradd | Add User</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tzselect-Set-Timezone"><span class="nav-number">3.</span> <span class="nav-text">tzselect | Set Timezone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clean-Clear-Terminal-Screen"><span class="nav-number">4.</span> <span class="nav-text">clean | Clear Terminal Screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#screen-A-Terminal-Multiplexer"><span class="nav-number">5.</span> <span class="nav-text">screen | A Terminal Multiplexer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-does-it-do"><span class="nav-number">5.1.</span> <span class="nav-text">What does it do?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Use-it"><span class="nav-number">5.2.</span> <span class="nav-text">How to Use it</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
