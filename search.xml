@@ -3,14 +3,19 @@
   <entry>
     <title>C and C++ Learning Notes</title>
     <url>/2022/06/25/C-and-C-Learning-Notes/</url>
-    <content><![CDATA[<h2 id="Copy-constructor"><a href="#Copy-constructor" class="headerlink" title="Copy constructor"></a>Copy constructor</h2><p><a href="https://www.geeksforgeeks.org/when-does-compiler-create-default-and-copy-constructors-in-cpp/">Default Copy Constructor</a></p>
+    <content><![CDATA[<h2 id="Deep-Copy-amp-Copy-Constructor"><a href="#Deep-Copy-amp-Copy-Constructor" class="headerlink" title="Deep Copy &amp; Copy Constructor"></a>Deep Copy &amp; Copy Constructor</h2><p><a href="https://www.geeksforgeeks.org/when-does-compiler-create-default-and-copy-constructors-in-cpp/">Default Copy Constructor</a></p>
 <blockquote>
 <p>The compiler also creates a copy constructor if we don’t write our own copy constructor. Unlike the default constructor, the body of the copy constructor created by the compiler is not empty, it copies all data members of the passed object to the object which is being created.</p>
 </blockquote>
 <p><a href="https://www.geeksforgeeks.org/copy-constructor-in-cpp/">Custom Copy Constructor</a></p>
-<p>Custom copy constructor can be really useful when there’s an array in a class and we want to deep copy it when passing value into a function/using <code>=</code> to assign this class to another class, etc. </p>
+<p>Custom copy constructor can be really useful when there’s an array in a class and we want to deep copy it when passing value into a function.</p>
 <p>Syntax:</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Class_name</span>(<span class="type">const</span> Class_name&amp; object)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>To change <code>=</code>, the assignment operator, into deep copy, we need to overload the <code>=</code> operator as well.</p>
+<p>Syntax:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">operator</span>=(<span class="type">const</span> Class_name&amp; object)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Since the content of the copy function and the overloading of the <code>=</code> operator is pretty much the same, we can write a private helper function to do the code reuse.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClassName::copyFrom</span><span class="params">(<span class="type">const</span> ClassName &amp;object)</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">ClassName&amp; ClassName::<span class="keyword">operator</span>=(<span class="type">const</span> ClassName &amp;object)&#123;</span><br><span class="line">    <span class="built_in">copyFrom</span>(object);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">ClassName::<span class="built_in">ClassName</span>(<span class="type">const</span> ClassName &amp;object)&#123;</span><br><span class="line">    <span class="built_in">copyFrom</span>(object);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Core-dumped-and-Segmentation-Fault"><a href="#Core-dumped-and-Segmentation-Fault" class="headerlink" title="Core dumped and Segmentation Fault"></a>Core dumped and Segmentation Fault</h2><p><a href="https://www.geeksforgeeks.org/core-dump-segmentation-fault-c-cpp/">Docs</a></p>
 <blockquote>
 <p>Core Dump/Segmentation fault is a specific kind of error caused by accessing memory that “does not belong to you.”</p>
